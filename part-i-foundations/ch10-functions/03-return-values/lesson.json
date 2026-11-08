@@ -1,0 +1,9 @@
+{
+  "title": "Return values",
+  "runtime": "node",
+  "minutes": 15,
+  "objective": "Return a result from a function, use it in another calculation, and write a function that returns nothing with void.",
+  "prerequisites": ["Parameters and defaults"],
+  "expected": "20",
+  "verify": ["20", "Total: 20"]
+}

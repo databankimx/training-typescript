@@ -1,12 +1,12 @@
 # Binary and hexadecimal numbers
 
-Computers count in binary, and programmers often write numbers in hexadecimal because it's shorter. You don't need to think like a computer, but you do need to recognise both, because they turn up in flags, colours, and error codes.
+Computers count in binary, and programmers often write numbers in hexadecimal because it's shorter. You don't need to think like a computer, but you do need to recognize both, because they turn up in flags, colors, and error codes.
 
 > **Coming from JavaScript:** the `0b` and `0x` prefixes and `toString(base)` work the same way in both languages.
 
 ## Writing numbers in other bases
 
-We normally count in base 10, with digits 0 to 9. Computers count in base 2 (binary, digits 0 and 1), and programmers often use base 16 (hexadecimal, digits 0 to 9 and then a to f). Both are useful for flags and colours, where each digit is a single on-or-off switch or a pair of values.
+We normally count in base 10, with digits 0 to 9. Computers count in base 2 (binary, digits 0 and 1), and programmers often use base 16 (hexadecimal, digits 0 to 9 and then a to f). Both are useful for flags and colors, where each digit is a single on-or-off switch or a pair of values.
 
 In your code, a prefix tells the program which base you mean:
 

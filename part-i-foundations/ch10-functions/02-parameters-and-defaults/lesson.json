@@ -1,0 +1,9 @@
+{
+  "title": "Parameters and defaults",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Give a parameter a default value, make a parameter optional, and let the caller leave it out.",
+  "prerequisites": ["Defining functions"],
+  "expected": "Hello, Ada!",
+  "verify": ["Hello, Ada!", "Welcome, Grace!", "HIHI", "HI"]
+}

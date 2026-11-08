@@ -1,0 +1,9 @@
+{
+  "title": "Arrow functions",
+  "runtime": "node",
+  "minutes": 15,
+  "objective": "Write a short function with an arrow, use a block body when it needs more than one line, and recognize the arrow functions used with array methods.",
+  "prerequisites": ["Return values"],
+  "expected": "25",
+  "verify": ["25", "5"]
+}

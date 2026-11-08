@@ -1,0 +1,9 @@
+{
+  "title": "Scope",
+  "runtime": "node",
+  "minutes": 15,
+  "objective": "See which names a function can read from outside it, and which names exist only inside it.",
+  "prerequisites": ["Callbacks"],
+  "expected": "62.5",
+  "verify": ["62.5"]
+}

@@ -49,7 +49,7 @@ The program is already in `main.ts`. You should see:
 ```quiz
 Why does `0.1 + 0.2` show `0.30000000000000004`?
 ○ JavaScript has a bug.
-→ Not quite. The behaviour is by design, and every language that uses this kind of storage has it.
+→ Not quite. The behavior is by design, and every language that uses this kind of storage has it.
 ◉ Many decimal numbers can't be stored exactly in binary, so the sum is slightly off.
 → Right. The computer stores the nearest value it can, and small errors add up.
 ○ The checker added the extra digits.

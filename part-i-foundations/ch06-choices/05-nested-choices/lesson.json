@@ -2,7 +2,7 @@
   "title": "Nested choices",
   "runtime": "node",
   "minutes": 20,
-  "objective": "Put one choice inside another, and recognise when a flat set of conditions is easier to read.",
+  "objective": "Put one choice inside another, and recognize when a flat set of conditions is easier to read.",
   "prerequisites": ["Switch"],
   "expected": "enter with guardian",
   "verify": ["enter with guardian"]

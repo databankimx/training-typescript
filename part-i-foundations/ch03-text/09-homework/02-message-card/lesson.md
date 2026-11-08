@@ -22,11 +22,11 @@ Start from the code above, in your own file, and change it so that it prints thi
 Dear Ada, your report is ready.
 ```
 
-The name must come from the cleaned, capitalised value, not from typing `Ada` into the sentence.
+The name must come from the cleaned, capitalized value, not from typing `Ada` into the sentence.
 
 ## Hints
 
-- Clean the name first, then capitalise it, in the same way as the string report exercise.
+- Clean the name first, then capitalize it, in the same way as the string report exercise.
 - A template string can hold the name, so the sentence reads clearly.
 
 ## When you're stuck
