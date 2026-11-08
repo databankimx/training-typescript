@@ -1,0 +1,17 @@
+{
+  "name": "training-typescript",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Self-paced TypeScript developer training with a local lesson runner",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "check": "tsc -p tsconfig.check.json"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^7.0.2"
+  }
+}

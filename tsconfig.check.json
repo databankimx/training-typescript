@@ -1,0 +1,4 @@
+{
+  "extends": "./tsconfig.json",
+  "include": ["ch*/**/solution.ts", "lesson-runner/**/*.ts"]
+}

@@ -1,0 +1,9 @@
+{
+  "title": "Find the mistake before it runs",
+  "runtime": "node",
+  "minutes": 10,
+  "objective": "See a type error that JavaScript accepts silently, and understand why Node runs the file anyway.",
+  "prerequisites": ["Ch00 · Starting points"],
+  "expected": "02053",
+  "verify": ["02053"]
+}
