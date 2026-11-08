@@ -1,0 +1,9 @@
+{
+  "title": "Else if",
+  "runtime": "node",
+  "minutes": 15,
+  "objective": "Choose between several ranges with else if, and understand why the order of the checks matters.",
+  "prerequisites": ["If and else"],
+  "expected": "B",
+  "verify": ["B"]
+}

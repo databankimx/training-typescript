@@ -1,0 +1,9 @@
+{
+  "title": "Switch",
+  "runtime": "node",
+  "minutes": 15,
+  "objective": "Choose between named cases with switch, and see how break stops one case running into the next.",
+  "prerequisites": ["The conditional operator"],
+  "expected": "weekend",
+  "verify": ["weekend"]
+}

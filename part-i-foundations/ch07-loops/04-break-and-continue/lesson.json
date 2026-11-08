@@ -1,0 +1,9 @@
+{
+  "title": "Break and continue",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Leave a loop early with break, and skip one item with continue.",
+  "prerequisites": ["For...of and for...in"],
+  "expected": "7",
+  "verify": ["7", "9"]
+}

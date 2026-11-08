@@ -1,0 +1,9 @@
+{
+  "title": "While loops",
+  "runtime": "node",
+  "minutes": 15,
+  "objective": "Repeat a block of code while a condition stays true, and make sure the condition eventually becomes false.",
+  "prerequisites": ["Summary: Choices"],
+  "expected": "Count is 1",
+  "verify": ["Count is 1", "Count is 3"]
+}

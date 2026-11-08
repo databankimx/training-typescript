@@ -1,0 +1,9 @@
+{
+  "title": "Homework: running total",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Keep a total that grows as a loop passes each price, and print the total after each one.",
+  "prerequisites": ["Summary: Loops"],
+  "expected": "5",
+  "verify": ["5", "15", "18"]
+}

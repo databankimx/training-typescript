@@ -1,0 +1,9 @@
+{
+  "title": "Homework: traffic light",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Choose an instruction for each light colour with switch, and handle a colour nobody expected.",
+  "prerequisites": ["Homework: ticket price"],
+  "expected": "Get ready",
+  "verify": ["Get ready"]
+}

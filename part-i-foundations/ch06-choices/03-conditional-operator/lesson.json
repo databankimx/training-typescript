@@ -1,0 +1,9 @@
+{
+  "title": "The conditional operator",
+  "runtime": "node",
+  "minutes": 15,
+  "objective": "Choose between two values inside an expression, using the question mark and colon.",
+  "prerequisites": ["Else if"],
+  "expected": "child",
+  "verify": ["child", "cannot vote yet"]
+}

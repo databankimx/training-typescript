@@ -1,0 +1,8 @@
+{
+  "title": "Summary: Loops",
+  "runtime": "node",
+  "minutes": 5,
+  "objective": "Review the loop forms, how to steer them, and how to nest them, and test your understanding.",
+  "prerequisites": ["Nested loops"],
+  "verify": []
+}

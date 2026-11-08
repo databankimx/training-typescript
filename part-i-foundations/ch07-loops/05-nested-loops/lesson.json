@@ -1,0 +1,9 @@
+{
+  "title": "Nested loops",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Put one loop inside another, and follow how the inner loop runs in full for each pass of the outer one.",
+  "prerequisites": ["Break and continue"],
+  "expected": "1 2 3",
+  "verify": ["1 2 3", "2 4 6", "3 6 9"]
+}

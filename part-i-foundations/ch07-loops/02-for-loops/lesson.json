@@ -1,0 +1,9 @@
+{
+  "title": "For loops",
+  "runtime": "node",
+  "minutes": 15,
+  "objective": "Keep a counter in the loop's header, and add up a range of numbers with it.",
+  "prerequisites": ["While loops"],
+  "expected": "15",
+  "verify": ["15"]
+}
