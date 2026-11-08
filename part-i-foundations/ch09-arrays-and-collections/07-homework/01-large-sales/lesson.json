@@ -1,0 +1,9 @@
+{
+  "title": "Homework: large sales",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Keep only the sales above a limit, and add them up.",
+  "prerequisites": ["Summary: Arrays and collections"],
+  "expected": "420",
+  "verify": ["420"]
+}

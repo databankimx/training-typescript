@@ -1,0 +1,9 @@
+{
+  "title": "Nested objects",
+  "runtime": "node",
+  "minutes": 15,
+  "objective": "Put an object inside another object, and read a property several levels down with dots.",
+  "prerequisites": ["Object types and records"],
+  "expected": "Dallas",
+  "verify": ["Dallas", "1042"]
+}

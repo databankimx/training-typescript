@@ -1,0 +1,9 @@
+{
+  "title": "Homework: loyalty card",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Add a property to an object, and give its type a matching label, so the checker accepts the new property.",
+  "prerequisites": ["Summary: Objects"],
+  "expected": "Ada has 120 points",
+  "verify": ["Ada has 120 points"]
+}

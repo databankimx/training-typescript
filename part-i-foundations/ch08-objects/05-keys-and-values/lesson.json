@@ -1,0 +1,9 @@
+{
+  "title": "Listing keys and values",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "List an object's names with Object.keys and its values with Object.values, and loop over the names to print each entry.",
+  "prerequisites": ["Nested objects"],
+  "expected": "maths, art",
+  "verify": ["maths, art", "2", "maths 90", "art 75"]
+}

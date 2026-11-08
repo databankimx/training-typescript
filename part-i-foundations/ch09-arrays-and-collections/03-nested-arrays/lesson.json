@@ -1,0 +1,9 @@
+{
+  "title": "Nested arrays",
+  "runtime": "node",
+  "minutes": 15,
+  "objective": "Build a grid as a list of lists, read a value by its row and column, and print each row.",
+  "prerequisites": ["Transforming arrays"],
+  "expected": "6",
+  "verify": ["6", "2", "1 2 3", "4 5 6"]
+}

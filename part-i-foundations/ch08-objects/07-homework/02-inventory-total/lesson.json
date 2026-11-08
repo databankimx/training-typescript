@@ -1,0 +1,9 @@
+{
+  "title": "Homework: inventory total",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Add up every value in a record, without knowing the names in advance.",
+  "prerequisites": ["Homework: loyalty card"],
+  "expected": "7",
+  "verify": ["7"]
+}
