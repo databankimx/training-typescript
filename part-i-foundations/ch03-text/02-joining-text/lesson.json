@@ -1,0 +1,9 @@
+{
+  "title": "Joining text",
+  "runtime": "node",
+  "minutes": 15,
+  "objective": "Join text with the plus sign and with template strings, and see when each one is clearer.",
+  "prerequisites": ["Text values"],
+  "expected": "Ada Lovelace",
+  "verify": ["Ada Lovelace", "Hello, Ada Lovelace!"]
+}

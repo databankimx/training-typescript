@@ -1,0 +1,9 @@
+{
+  "title": "Printing values",
+  "runtime": "node",
+  "minutes": 15,
+  "objective": "Print several values at once, build text with template strings, and see how numbers and text print.",
+  "prerequisites": ["Hello, world!"],
+  "expected": "City: Dallas",
+  "verify": ["City: Dallas", "Population: 1300000", "2600000"]
+}

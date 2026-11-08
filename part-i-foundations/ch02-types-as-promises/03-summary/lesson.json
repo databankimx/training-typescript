@@ -1,0 +1,8 @@
+{
+  "title": "Summary: Types as promises",
+  "runtime": "node",
+  "minutes": 5,
+  "objective": "Review how annotations and inference state what a value can be, and test your understanding.",
+  "prerequisites": ["Letting TypeScript infer the type"],
+  "verify": []
+}

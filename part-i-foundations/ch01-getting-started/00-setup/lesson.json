@@ -1,0 +1,8 @@
+{
+  "title": "Setup",
+  "runtime": "node",
+  "minutes": 10,
+  "objective": "Confirm that Node, VS Code, and the lesson runner are ready before you start writing code.",
+  "prerequisites": [],
+  "verify": []
+}

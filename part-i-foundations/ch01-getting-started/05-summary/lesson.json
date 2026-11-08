@@ -1,0 +1,8 @@
+{
+  "title": "Summary: Getting started",
+  "runtime": "node",
+  "minutes": 5,
+  "objective": "Review what you've learned about running and checking TypeScript, and test your understanding.",
+  "prerequisites": ["Reading errors"],
+  "verify": []
+}

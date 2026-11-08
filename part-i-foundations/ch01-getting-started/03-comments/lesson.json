@@ -1,0 +1,9 @@
+{
+  "title": "Comments",
+  "runtime": "node",
+  "minutes": 10,
+  "objective": "Write line and block comments, and see that the program and the checker both ignore them.",
+  "prerequisites": ["Printing values"],
+  "expected": "Hello",
+  "verify": ["Hello"]
+}

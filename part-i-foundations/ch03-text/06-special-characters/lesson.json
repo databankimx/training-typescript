@@ -1,0 +1,9 @@
+{
+  "title": "Special characters",
+  "runtime": "node",
+  "minutes": 15,
+  "objective": "Write quotes, new lines, and tabs inside text, using a backslash as the escape character.",
+  "prerequisites": ["Cutting out part of text"],
+  "expected": "Line one",
+  "verify": ["Line one", "Line two", "She said \"hello\""]
+}

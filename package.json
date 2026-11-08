@@ -8,10 +8,21 @@
     "node": ">=24"
   },
   "scripts": {
-    "check": "tsc -p tsconfig.check.json"
+    "check": "tsc -p tsconfig.check.json",
+    "test": "node --test lesson-runner/tests/*.test.ts",
+    "build:runner": "tsc -p tsconfig.main.json && tsc -p tsconfig.preload.json && tsc -p tsconfig.renderer.json && node scripts/copy-renderer.mjs",
+    "start": "npm run build:runner && electron lesson-runner/dist/main.js"
   },
   "license": "MIT",
+  "dependencies": {
+    "@lezer/highlight": "1.2.5",
+    "@lezer/javascript": "1.5.6",
+    "markdown-it": "^14.1.0"
+  },
   "devDependencies": {
-    "typescript": "^7.0.2"
+    "@types/markdown-it": "^14.1.2",
+    "@types/node": "^24.0.0",
+    "electron": "45.2.3",
+    "typescript": "6.0.3"
   }
 }

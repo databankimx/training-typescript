@@ -8,7 +8,8 @@
     "verbatimModuleSyntax": true,
     "erasableSyntaxOnly": true,
     "allowImportingTsExtensions": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "types": ["node"]
   },
   "include": ["ch*/**/*.ts", "lesson-runner/**/*.ts"],
   "exclude": ["node_modules", "dist"]

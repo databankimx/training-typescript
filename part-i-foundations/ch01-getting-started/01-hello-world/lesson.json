@@ -1,0 +1,9 @@
+{
+  "title": "Hello, world!",
+  "runtime": "node",
+  "minutes": 10,
+  "objective": "Run your first TypeScript program, check it, and see what a mistake looks like before and after the program runs.",
+  "prerequisites": [],
+  "expected": "Hello, world!",
+  "verify": ["Hello, world!"]
+}

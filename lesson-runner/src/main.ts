@@ -1,0 +1,446 @@
+import { app, BrowserWindow, ipcMain, Menu, shell, type WebContents } from "electron";
+import { existsSync } from "node:fs";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
+import { checkFile, type Diagnostic } from "./core/check.ts";
+import { loadParts, type Chapter, type Lesson, type Part } from "./core/catalogue.ts";
+import { highlightCode } from "./core/highlight.ts";
+import { createLessonMarkdown } from "./core/markdown.ts";
+import { nodeMajorVersion, RunSession, type RunEvent } from "./core/run.ts";
+import { cleanWorkspaceSync, prepareWorkspace } from "./core/workspace.ts";
+import { parseState, serialiseState, emptyState, type AppState } from "./core/state.ts";
+
+// The compiled file lives in lesson-runner/dist, so the course root is two folders up.
+const here = dirname(fileURLToPath(import.meta.url));
+const courseRoot = join(here, "..", "..");
+const tsconfigPath = join(courseRoot, "tsconfig.json");
+const markdown = createLessonMarkdown();
+
+// The window icon is the blue DataBank D, as a PNG, when the build has created it.
+const windowIcon = join(here, "renderer", "app.png");
+
+// The pop-out opens a little smaller than the main window, so the two sit comfortably side by side.
+const MAIN_SIZE = { width: 1200, height: 800 };
+const POPOUT_SIZE = { width: 960, height: 680 };
+
+export interface LessonSummary {
+  id: string;
+  title: string;
+  minutes: number;
+  homework: boolean;
+}
+
+export interface ChapterSummary {
+  name: string;
+  lessons: LessonSummary[];
+}
+
+export interface PartSummary {
+  title: string;
+  chapters: ChapterSummary[];
+}
+
+// What the window shows for a step or a chapter introduction. A chapter introduction has no code, so it isn't runnable.
+export interface LessonView {
+  id: string;
+  kind: "step" | "chapter";
+  title: string;
+  objective: string;
+  minutes: number;
+  homework: boolean;
+  runnable: boolean;
+  html: string;
+  markdown: string;
+  source: string;
+}
+
+export interface PopoutState {
+  open: boolean;
+  lesson?: string;
+}
+
+let catalogue: Part[] | undefined;
+let chaptersById: Chapter[] = [];
+let mainWindow: BrowserWindow | undefined;
+let popout: BrowserWindow | undefined;
+let popoutLesson: string | undefined;
+let run: RunSession | undefined;
+let runSender: WebContents | undefined;
+
+async function getCatalogue(): Promise<Part[]> {
+  if (catalogue === undefined) {
+    catalogue = await loadParts(courseRoot);
+    chaptersById = catalogue.flatMap((part) => part.chapters);
+  }
+  return catalogue;
+}
+
+// A step's id is its chapter and step folder names, with "homework/" in front of a homework step's name. A chapter's
+// id is just its folder name. Only ids from the catalogue are accepted, so a request can't name a path outside the course.
+function lessonId(lesson: Lesson): string {
+  return `${lesson.chapter}/${lesson.step}`;
+}
+
+async function findLesson(id: unknown): Promise<Lesson> {
+  if (typeof id !== "string") {
+    throw new Error("A lesson id must be a string");
+  }
+  await getCatalogue();
+  for (const chapter of chaptersById) {
+    for (const lesson of chapter.lessons) {
+      if (lessonId(lesson) === id) {
+        return lesson;
+      }
+    }
+  }
+  throw new Error(`There is no lesson called "${id}"`);
+}
+
+async function findChapter(name: unknown): Promise<Chapter> {
+  if (typeof name !== "string") {
+    throw new Error("A chapter name must be a string");
+  }
+  await getCatalogue();
+  const chapter = chaptersById.find((item) => item.name === name);
+  if (chapter === undefined) {
+    throw new Error(`There is no chapter called "${name}"`);
+  }
+  return chapter;
+}
+
+function summarise(lesson: Lesson): LessonSummary {
+  return {
+    id: lessonId(lesson),
+    title: lesson.meta.title,
+    minutes: lesson.meta.minutes,
+    homework: lesson.homework,
+  };
+}
+
+// ---- The learner's progress ----
+
+// The progress file lives in the user's data folder, outside the repository, so it's never committed.
+function statePath(): string {
+  return join(app.getPath("userData"), "progress.json");
+}
+
+let stateCache: AppState | undefined;
+
+async function loadState(): Promise<AppState> {
+  if (stateCache === undefined) {
+    stateCache = parseState(await readFile(statePath(), "utf8").catch(() => undefined));
+  }
+  return stateCache;
+}
+
+// Writes the one shared copy of the state. Each window sends only its own change, so a pop-out can't overwrite progress
+// made in the main window.
+async function saveState(): Promise<void> {
+  const state = await loadState();
+  await mkdir(dirname(statePath()), { recursive: true });
+  await writeFile(statePath(), serialiseState(state), "utf8");
+}
+
+// ---- The pop-out window ----
+
+function popoutState(): PopoutState {
+  return popout === undefined ? { open: false } : { open: true, lesson: popoutLesson };
+}
+
+function notifyMainOfPopout(): void {
+  if (mainWindow !== undefined && !mainWindow.isDestroyed()) {
+    mainWindow.webContents.send("popout:state", popoutState());
+  }
+}
+
+function openPopout(id: string): void {
+  if (popout !== undefined && !popout.isDestroyed()) {
+    popoutLesson = id;
+    popout.webContents.send("lesson:show", id);
+    popout.focus();
+    notifyMainOfPopout();
+    return;
+  }
+
+  popoutLesson = id;
+  popout = createWindow({ mode: "lesson", lesson: id }, POPOUT_SIZE);
+  popout.on("closed", () => {
+    popout = undefined;
+    popoutLesson = undefined;
+    notifyMainOfPopout();
+  });
+  notifyMainOfPopout();
+}
+
+// Keeps an open pop-out on the same lesson as the main window. Does nothing when no pop-out is open.
+function syncPopout(id: string): void {
+  if (popout !== undefined && !popout.isDestroyed()) {
+    popoutLesson = id;
+    popout.webContents.send("lesson:show", id);
+    notifyMainOfPopout();
+  }
+}
+
+// ---- Reading lessons ----
+
+async function readOptional(path: string): Promise<string> {
+  return readFile(path, "utf8").catch(() => "");
+}
+
+async function viewOfStep(lesson: Lesson): Promise<LessonView> {
+  const markdownSource = await readFile(join(lesson.path, "lesson.md"), "utf8");
+  const code = await readOptional(join(lesson.path, "main.ts"));
+  return {
+    id: lessonId(lesson),
+    kind: "step",
+    title: lesson.meta.title,
+    objective: lesson.meta.objective,
+    minutes: lesson.meta.minutes,
+    homework: lesson.homework,
+    runnable: code !== "",
+    html: markdown.render(markdownSource),
+    markdown: markdownSource,
+    source: code,
+  };
+}
+
+async function viewOfChapter(chapter: Chapter): Promise<LessonView> {
+  const introSource = await readOptional(join(chapter.path, "lesson.md"));
+  const text = introSource === "" ? "This chapter has no introduction yet." : introSource;
+  return {
+    id: chapter.name,
+    kind: "chapter",
+    title: chapter.name,
+    objective: "",
+    minutes: 0,
+    homework: false,
+    runnable: false,
+    html: markdown.render(text),
+    markdown: text,
+    source: "",
+  };
+}
+
+// ---- Run and Check ----
+
+// Sends a run event to the window that started the run. The run session is shared, so events go to the latest sender.
+function sessionFor(sender: WebContents): RunSession {
+  runSender = sender;
+  run ??= new RunSession((event: RunEvent) => {
+    if (runSender !== undefined && !runSender.isDestroyed()) {
+      runSender.send("run:event", event);
+    }
+  });
+  return run;
+}
+
+// Node is needed on PATH, at version 24 or later. The check happens before anything is copied or started, so the
+// window can say what's wrong.
+async function requireNode(): Promise<void> {
+  const major = await nodeMajorVersion();
+  if (major === undefined) {
+    throw new Error("Node.js wasn't found on PATH. Install Node.js 24 or later, then open the runner again.");
+  }
+  if (major < 24) {
+    throw new Error(`Node.js ${major} is installed, but this course needs Node.js 24 or later.`);
+  }
+}
+
+function requireCode(code: unknown): string {
+  if (typeof code !== "string") {
+    throw new Error("The editor's text must be a string");
+  }
+  return code;
+}
+
+// ---- IPC ----
+
+async function summariseParts(): Promise<PartSummary[]> {
+  const parts = await getCatalogue();
+  return parts.map((part) => ({
+    title: part.title,
+    chapters: part.chapters.map((chapter) => ({
+      name: chapter.name,
+      lessons: chapter.lessons.map(summarise),
+    })),
+  }));
+}
+
+function registerHandlers(): void {
+  ipcMain.handle("catalogue:list", async (): Promise<PartSummary[]> => summariseParts());
+
+  // Re-reads the course from disk, so lessons added since the runner started appear without a restart.
+  ipcMain.handle("catalogue:refresh", async (): Promise<PartSummary[]> => {
+    catalogue = undefined;
+    return summariseParts();
+  });
+
+  ipcMain.handle("lesson:open", async (_event, id: unknown): Promise<LessonView> => {
+    return viewOfStep(await findLesson(id));
+  });
+
+  ipcMain.handle("chapter:open", async (_event, name: unknown): Promise<LessonView> => {
+    return viewOfChapter(await findChapter(name));
+  });
+
+  // Colours a block of TypeScript for the editor's highlight layer. Only TypeScript is coloured here.
+  ipcMain.handle("code:highlight", (_event, code: unknown): string => {
+    if (typeof code !== "string") {
+      return "";
+    }
+    return highlightCode("typescript", code) ?? "";
+  });
+
+  // Runs the editor's text. The text is copied into the step's work folder first, so the lesson files are untouched.
+  ipcMain.handle("run:start", async (event, id: unknown, code: unknown): Promise<void> => {
+    const lesson = await findLesson(id);
+    const text = requireCode(code);
+    await requireNode();
+    const mainFile = await prepareWorkspace(courseRoot, lessonId(lesson), lesson.path, text);
+    sessionFor(event.sender).start(mainFile, dirname(mainFile));
+  });
+
+  ipcMain.handle("run:input", (_event, text: unknown): void => {
+    if (typeof text === "string") {
+      run?.write(text);
+    }
+  });
+
+  ipcMain.handle("run:stop", (): void => {
+    run?.stop();
+  });
+
+  // Type-checks the editor's text, in the same work folder as Run.
+  ipcMain.handle("check:run", async (_event, id: unknown, code: unknown): Promise<Diagnostic[]> => {
+    const lesson = await findLesson(id);
+    const text = requireCode(code);
+    const mainFile = await prepareWorkspace(courseRoot, lessonId(lesson), lesson.path, text);
+    return checkFile(mainFile, tsconfigPath);
+  });
+
+  ipcMain.handle("lesson:popout", async (_event, id: unknown): Promise<void> => {
+    // A step's id contains a slash. A chapter introduction's id is just the chapter's name.
+    if (typeof id === "string" && id.includes("/")) {
+      openPopout(lessonId(await findLesson(id)));
+    } else {
+      openPopout((await findChapter(id)).name);
+    }
+  });
+
+  // The main window calls this whenever it shows a different step, so an open pop-out follows it.
+  ipcMain.handle("popout:sync", async (_event, id: unknown): Promise<void> => {
+    if (typeof id === "string") {
+      syncPopout(id);
+    }
+  });
+
+  ipcMain.handle("popout:redock", (): void => {
+    if (popout !== undefined && !popout.isDestroyed()) {
+      popout.close();
+    }
+  });
+
+  ipcMain.handle("popout:state", (): PopoutState => popoutState());
+
+  // The learner's progress: the last lesson, and the quiz answers and revealed homework for each lesson.
+  ipcMain.handle("state:get", (): Promise<AppState> => loadState());
+  ipcMain.handle("state:saveProgress", async (_event, id: unknown, progress: unknown): Promise<void> => {
+    if (typeof id !== "string" || typeof progress !== "object" || progress === null) {
+      return;
+    }
+    const cleaned = parseState(JSON.stringify({ progress: { [id]: progress } })).progress[id];
+    if (cleaned !== undefined) {
+      (await loadState()).progress[id] = cleaned;
+      await saveState();
+    }
+  });
+  ipcMain.handle("state:saveLast", async (_event, id: unknown): Promise<void> => {
+    if (typeof id === "string") {
+      (await loadState()).last = id;
+      await saveState();
+    }
+  });
+  // Clears all progress: quiz answers, revealed homework, and the last lesson. Every window then redraws.
+  ipcMain.handle("state:reset", async (): Promise<void> => {
+    stateCache = emptyState();
+    await saveState();
+    for (const window of [mainWindow, popout]) {
+      if (window !== undefined && !window.isDestroyed()) {
+        window.webContents.send("progress:reset");
+      }
+    }
+  });
+}
+
+// ---- Windows ----
+
+// Opens a web link in the default browser. Anything that isn't an http or https address is ignored.
+function openExternalLink(url: string): void {
+  if (/^https?:\/\//i.test(url)) {
+    void shell.openExternal(url);
+  }
+}
+
+function createWindow(query: Record<string, string>, size: { width: number; height: number } = MAIN_SIZE): BrowserWindow {
+  const window = new BrowserWindow({
+    ...size,
+    title: "TypeScript Training",
+    autoHideMenuBar: true,
+    icon: existsSync(windowIcon) ? windowIcon : undefined,
+    webPreferences: {
+      preload: join(here, "preload.js"),
+      contextIsolation: true,
+      sandbox: true,
+      nodeIntegration: false,
+    },
+  });
+
+  // Links in a lesson open in the default browser. Only web addresses are passed on, so a link can't start anything
+  // else on the computer. The window itself never navigates away from its page.
+  window.webContents.setWindowOpenHandler(({ url }) => {
+    openExternalLink(url);
+    return { action: "deny" };
+  });
+  window.webContents.on("will-navigate", (event, url) => {
+    event.preventDefault();
+    openExternalLink(url);
+  });
+
+  void window.loadFile(join(here, "renderer", "index.html"), { query });
+  return window;
+}
+
+function openMainWindow(): void {
+  mainWindow = createWindow({});
+  mainWindow.on("closed", () => {
+    mainWindow = undefined;
+    // Closing the main program closes its pop-out too, so nothing is left running behind it.
+    if (popout !== undefined && !popout.isDestroyed()) {
+      popout.close();
+    }
+  });
+}
+
+app
+  .whenReady()
+  .then(() => {
+    // The runner has no File, Edit, View, or Window menus, so the application menu is removed.
+    Menu.setApplicationMenu(null);
+    registerHandlers();
+    openMainWindow();
+  })
+  .catch((err: unknown) => {
+    console.error(err);
+    app.exit(1);
+  });
+
+// Any running program is stopped, and the work folder is removed, when the runner closes.
+app.on("before-quit", () => {
+  run?.stop();
+  cleanWorkspaceSync(courseRoot);
+});
+
+app.on("window-all-closed", () => {
+  app.quit();
+});

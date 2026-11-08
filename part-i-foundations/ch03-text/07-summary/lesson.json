@@ -1,0 +1,8 @@
+{
+  "title": "Summary: Text",
+  "runtime": "node",
+  "minutes": 5,
+  "objective": "Review the basic ways to build, change, search, and cut text, and test your understanding.",
+  "prerequisites": ["Special characters"],
+  "verify": []
+}

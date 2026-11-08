@@ -1,0 +1,9 @@
+{
+  "title": "Searching text",
+  "runtime": "node",
+  "minutes": 15,
+  "objective": "Ask whether text contains a word, starts with a word, or where a word first appears.",
+  "prerequisites": ["Changing case and spaces"],
+  "expected": "true",
+  "verify": ["true", "10"]
+}

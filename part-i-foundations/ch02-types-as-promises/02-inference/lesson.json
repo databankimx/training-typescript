@@ -1,0 +1,9 @@
+{
+  "title": "Letting TypeScript infer the type",
+  "runtime": "node",
+  "minutes": 15,
+  "objective": "See when TypeScript works out a type from a value, and when an annotation is worth writing.",
+  "prerequisites": ["Annotations: writing the promise down"],
+  "expected": "3 items",
+  "verify": ["3 items"]
+}
