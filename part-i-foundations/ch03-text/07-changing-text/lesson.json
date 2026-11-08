@@ -1,0 +1,9 @@
+{
+  "title": "Changing and formatting text",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Replace part of text, split it into pieces, repeat it, pad it to a fixed width, and keep backslashes as they are.",
+  "prerequisites": ["Special characters"],
+  "expected": "reports/2026/returns.csv",
+  "verify": ["reports/2026/returns.csv", "3", "sales.csv", "==========", "007", "C:\\new\\folder"]
+}

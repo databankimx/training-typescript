@@ -1,6 +1,6 @@
 # Ch02 · Types as promises
 
-**Before you start:** complete Chapter 1. You should be comfortable running a program and reading the checker's messages.
+Computers are very literal. They'll do exactly what you say, including the parts you didn't mean. A type is how you tell the checker what you meant, so it can spot the places where what you wrote and what you intended have drifted apart. This chapter is about making those promises explicit.
 
 Every value in a program has a **type**. A type is the name for what kind of value something is. The two you've already met are:
 

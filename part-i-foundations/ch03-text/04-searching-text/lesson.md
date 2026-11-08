@@ -1,6 +1,6 @@
 # Searching text
 
-**Before you start:** complete Changing case and spaces.
+Sometimes you only need to know whether a word is in the text, and sometimes you need to know exactly where it is. Both questions come up constantly, and both have answers that are easy to get slightly wrong by hand.
 
 > **Coming from JavaScript:** `includes`, `startsWith`, and `indexOf` work the same way in both languages.
 

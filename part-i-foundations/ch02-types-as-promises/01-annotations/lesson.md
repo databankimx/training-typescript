@@ -1,6 +1,6 @@
 # Annotations: writing the promise down
 
-**Before you start:** complete Chapter 1 and the Reading errors step.
+A function is a little machine with a slot for its input and a chute for its output. An annotation is the label on each slot and chute, saying what goes in and what comes out. Labels cost nothing, and they save an astonishing amount of confusion.
 
 > **Coming from JavaScript:** the annotations are the TypeScript part. The function itself is plain JavaScript, and Node runs it without the labels.
 

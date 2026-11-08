@@ -1,0 +1,9 @@
+{
+  "title": "Rounding and formatting numbers",
+  "runtime": "node",
+  "minutes": 15,
+  "objective": "Round a number to a whole number, round it down or up, and show it with two decimal places.",
+  "prerequisites": ["Number values"],
+  "expected": "19.46",
+  "verify": ["19", "19.46", "20"]
+}

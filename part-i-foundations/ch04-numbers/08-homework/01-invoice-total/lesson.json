@@ -1,0 +1,9 @@
+{
+  "title": "Homework: invoice total",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Add up item prices, apply a tax rate, and show the total with exactly two decimal places.",
+  "prerequisites": ["Summary: Numbers"],
+  "expected": "Total: 48.16",
+  "verify": ["Total: 48.16"]
+}

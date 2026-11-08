@@ -1,0 +1,9 @@
+{
+  "title": "Truthy and falsy values",
+  "runtime": "node",
+  "minutes": 15,
+  "objective": "See which values a program treats as yes and which as no when it checks a value directly, and use an if statement to act on the answer.",
+  "prerequisites": ["Comparisons"],
+  "expected": "no name",
+  "verify": ["no name", "false", "true"]
+}

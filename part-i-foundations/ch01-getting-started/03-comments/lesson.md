@@ -1,8 +1,8 @@
 # Comments
 
-> **Coming from JavaScript:** TypeScript uses the same comment syntax as JavaScript, with `//` and `/* */`.
+Code is read far more often than it's written, and the person reading it is rarely the person who wrote it. A comment is a note for that reader. Quite often, that reader is you, a few months from now, with no memory of why you did anything.
 
-**Before you start:** complete Printing values
+> **Coming from JavaScript:** TypeScript uses the same comment syntax as JavaScript, with `//` and `/* */`.
 
 Programs are read by computers, and also by people. A **comment** is a note in the code, written for the people who read it. The computer skips comments, so they never change what the program does.
 

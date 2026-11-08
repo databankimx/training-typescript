@@ -1,0 +1,8 @@
+{
+  "title": "Summary: Booleans and missing values",
+  "runtime": "node",
+  "minutes": 5,
+  "objective": "Review how comparisons, truthiness, and fallbacks decide what a program does, and test your understanding.",
+  "prerequisites": ["Missing values"],
+  "verify": []
+}

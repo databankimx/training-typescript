@@ -1,0 +1,9 @@
+{
+  "title": "Homework: greeting",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Use a fallback value for a name that might be missing, and combine it with a greeting.",
+  "prerequisites": ["Homework: access check"],
+  "expected": "Hello, guest!",
+  "verify": ["Hello, guest!"]
+}

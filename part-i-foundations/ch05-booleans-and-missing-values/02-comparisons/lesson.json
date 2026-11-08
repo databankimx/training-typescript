@@ -1,0 +1,9 @@
+{
+  "title": "Comparisons",
+  "runtime": "node",
+  "minutes": 15,
+  "objective": "Compare numbers and text, and use strict equality to check whether two values are the same kind and the same value.",
+  "prerequisites": ["True and false"],
+  "expected": "true",
+  "verify": ["true", "false"]
+}

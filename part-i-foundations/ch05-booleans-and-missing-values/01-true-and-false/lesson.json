@@ -1,0 +1,9 @@
+{
+  "title": "True and false",
+  "runtime": "node",
+  "minutes": 10,
+  "objective": "Store a yes-or-no answer in a boolean, and flip it with the not operator.",
+  "prerequisites": ["Summary: Text"],
+  "expected": "true",
+  "verify": ["true"]
+}

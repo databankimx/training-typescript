@@ -1,8 +1,8 @@
 # Printing values
 
-> **Coming from JavaScript:** `console.log`, template strings, and arithmetic work the same as in JavaScript. The `const` keyword does too.
+A program that only says hello is a parrot. Real programs keep track of things, such as a city, a population, or the number of mugs left in the kitchen, and then report on them. This step covers how values are stored and how they reach the screen.
 
-**Before you start:** complete Hello, world!
+> **Coming from JavaScript:** `console.log`, template strings, and arithmetic work the same as in JavaScript. The `const` keyword does too.
 
 So far, each program has printed one line of text. Real programs work with **values**, and they show those values as they go. This step shows how.
 

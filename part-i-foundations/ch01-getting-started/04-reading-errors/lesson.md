@@ -1,8 +1,8 @@
 # Reading errors
 
-> **Coming from JavaScript:** the `: number` labels are the TypeScript part. Node ignores them when it runs the program, which is why Run still prints `42`.
+Every programmer spends a surprising part of the day staring at error messages. Nobody enjoys it, but the ones who get good at it are the ones who read the first line first. This step teaches that habit, starting with a mistake you make on purpose.
 
-**Before you start:** complete Comments
+> **Coming from JavaScript:** the `: number` labels are the TypeScript part. Node ignores them when it runs the program, which is why Run still prints `42`.
 
 Mistakes are normal, and every programmer makes them many times a day. What matters is being able to read the message a tool gives you. This step shows you how.
 

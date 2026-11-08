@@ -1,6 +1,6 @@
 # Letting TypeScript infer the type
 
-**Before you start:** complete Annotations: writing the promise down.
+You don't have to label everything. The checker is quite capable of working out what a box holds from what you put in it, which is more than can be said for the boxes in most people's kitchens. This step shows where that works, and where you still need to help.
 
 > **Coming from JavaScript:** `const` and `let` are the same as in JavaScript. Only the checker's view of the values is new.
 

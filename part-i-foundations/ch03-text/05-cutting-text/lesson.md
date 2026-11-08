@@ -1,6 +1,6 @@
 # Cutting out part of text
 
-**Before you start:** complete Searching text.
+Once you can find something, you'll want to take it out. Cutting text by position is useful for codes, IDs, and file extensions, and it has one rule that catches almost everyone at first: the last character in a cut is not included.
 
 > **Coming from JavaScript:** `slice` works the same way in both languages.
 

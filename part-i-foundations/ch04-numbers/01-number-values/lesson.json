@@ -1,0 +1,9 @@
+{
+  "title": "Number values",
+  "runtime": "node",
+  "minutes": 15,
+  "objective": "Calculate with numbers, and check whether a number is a whole number.",
+  "prerequisites": ["Summary: Text"],
+  "expected": "43",
+  "verify": ["43", "true", "false"]
+}

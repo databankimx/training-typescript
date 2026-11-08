@@ -1,0 +1,8 @@
+{
+  "title": "Summary: Numbers",
+  "runtime": "node",
+  "minutes": 5,
+  "objective": "Review how numbers round, display, convert, and calculate, and test your understanding.",
+  "prerequisites": ["The Math library"],
+  "verify": []
+}

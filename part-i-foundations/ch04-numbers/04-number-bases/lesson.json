@@ -1,0 +1,9 @@
+{
+  "title": "Binary and hexadecimal numbers",
+  "runtime": "node",
+  "minutes": 15,
+  "objective": "Write numbers in binary and hexadecimal, and convert a number into text in either base.",
+  "prerequisites": ["Floating-point error and money"],
+  "expected": "10",
+  "verify": ["10", "255", "1010", "ff"]
+}

@@ -1,6 +1,6 @@
 # Joining text
 
-**Before you start:** complete Text values.
+Joining text sounds simple until you try to build a sentence with a name in the middle of it. This step shows two ways to do it, and why one of them leaves you wondering which quote went where.
 
 > **Coming from JavaScript:** the `+` sign and template strings work the same way. Both are part of JavaScript, and the checker reads them the same way too.
 

@@ -1,6 +1,6 @@
 # Ch03 · Text
 
-**Before you start:** complete Chapter 2. You should be comfortable with `const`, `let`, and the labels that say what kind of value a box holds.
+Most programs spend their lives handling text: names, messages, file paths, and the things people type into forms, usually with a stray space at one end. This chapter is about building text, tidying it up, and finding things inside it, which is a surprising share of what software does.
 
 Most programs work with text: names, messages, file paths, and the words a user types into a form. In TypeScript, text has the type `string`, and this chapter shows how to build it, change it, search it, and cut pieces out of it.
 
@@ -13,5 +13,6 @@ Text is the first kind of value you'll use in many different ways, so it's a goo
 3. How to change text's case, and remove the spaces around it.
 4. How to search text for a word or a position.
 5. How to cut out a piece of text, and how to write characters that are hard to type, such as a new line.
+6. How to replace, split, repeat, and pad text, and how to keep backslashes exactly as you typed them.
 
 The chapter ends with a summary, and two homework exercises that combine the steps.

@@ -1,0 +1,9 @@
+{
+  "title": "Missing values",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Tell null and undefined apart, give a fallback for a missing value, and read a property that might not be there without a crash.",
+  "prerequisites": ["Combining answers"],
+  "expected": "none",
+  "verify": ["none", "0", "unknown"]
+}

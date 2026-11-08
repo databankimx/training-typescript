@@ -1,5 +1,7 @@
 ## Summary: Getting started
 
+Here's what the chapter boils down to. Read it once, answer the questions, and you'll be able to tell a type mistake from a syntax mistake without asking anyone.
+
 These are the basic ideas the rest of the course builds on.
 
 * **A program is a list of instructions.** The computer carries them out one at a time, from the first line to the last.

@@ -9,6 +9,7 @@ electron.contextBridge.exposeInMainWorld("runner", {
   openLesson: (id: string) => electron.ipcRenderer.invoke("lesson:open", id),
   openChapter: (name: string) => electron.ipcRenderer.invoke("chapter:open", name),
   highlight: (code: string) => electron.ipcRenderer.invoke("code:highlight", code),
+  solution: (id: string) => electron.ipcRenderer.invoke("lesson:solution", id),
   run: (id: string, code: string) => electron.ipcRenderer.invoke("run:start", id, code),
   sendInput: (text: string) => electron.ipcRenderer.invoke("run:input", text),
   stopRun: () => electron.ipcRenderer.invoke("run:stop"),

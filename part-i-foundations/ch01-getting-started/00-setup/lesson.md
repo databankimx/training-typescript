@@ -1,6 +1,6 @@
 # Set up your workstation
 
-**Before you start:** nothing. This is the first step, and it doesn't need any programming experience.
+Before any code can run, a few things have to be installed and persuaded to cooperate. This step is that part. It's the least glamorous thing in the course, and the only step you can't skip, which is roughly the deal with most software.
 
 Before you can write code, your computer needs two tools:
 

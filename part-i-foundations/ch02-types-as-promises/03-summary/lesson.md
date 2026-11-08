@@ -1,5 +1,7 @@
 ## Summary: Types as promises
 
+Types are promises about values, and the checker is the one keeping score. Here are the parts worth remembering when the promises start to feel like paperwork.
+
 These are the basic ideas from this chapter.
 
 * **A type says what kind of value something is.** Numbers and text are the two you've met most.

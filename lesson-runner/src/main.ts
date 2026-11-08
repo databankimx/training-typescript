@@ -284,6 +284,12 @@ function registerHandlers(): void {
     return viewOfChapter(await findChapter(name));
   });
 
+  // The complete solution to a homework exercise. It's only sent when the learner reveals it, not with the lesson.
+  ipcMain.handle("lesson:solution", async (_event, id: unknown): Promise<string> => {
+    const lesson = await findLesson(id);
+    return readOptional(join(lesson.path, "solution.ts"));
+  });
+
   // Colours a block of TypeScript for the editor's highlight layer. Only TypeScript is coloured here.
   ipcMain.handle("code:highlight", (_event, code: unknown): string => {
     if (typeof code !== "string") {

@@ -1,6 +1,6 @@
 # Changing case and spaces
 
-**Before you start:** complete Joining text.
+Users type what they like, including too many spaces and the occasional shouting capitals. This step shows how to tidy a value before you rely on it, which is a habit worth forming early.
 
 > **Coming from JavaScript:** `trim`, `toUpperCase`, and `toLowerCase` are the same methods in both languages. The string type is the TypeScript part.
 

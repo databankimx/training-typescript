@@ -140,10 +140,17 @@
       .lesson blockquote { margin-left: 0; padding: 4px 14px; border-left: 3px solid var(--accent); color: var(--muted); }
       .quiz { margin: 16px 0; padding: 12px 16px; border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: 4px; background: var(--panel); }
       .quiz-question p { margin: 0.3em 0; }
-      .quiz-choice-set ul { list-style: none; padding: 0; }
-      .quiz-choice button { padding: 6px 10px; margin: 3px 0; cursor: pointer; text-align: left; }
-      .quiz-choice.right button { background: rgba(46, 160, 67, 0.25); }
-      .quiz-choice.wrong button { background: rgba(244, 135, 113, 0.25); }
+      .quiz-choices { display: flex; flex-direction: column; gap: 4px; margin: 6px 0; }
+      .quiz-choice { display: flex; align-items: center; gap: 8px; padding: 6px 10px; border-radius: 4px; cursor: pointer; }
+      .quiz-choice:hover { background: var(--select); }
+      .quiz-choice.right { background: rgba(46, 160, 67, 0.25); }
+      .quiz-choice.picked-wrong { background: rgba(244, 135, 113, 0.25); }
+      .quiz-choice input:disabled + span { opacity: 0.8; }
+      .quiz-buttons { display: flex; align-items: center; gap: 8px; margin-top: 8px; }
+      .quiz-text { width: 100%; max-width: 360px; padding: 6px 8px; margin-top: 6px; background: var(--field); color: var(--text); border: 1px solid var(--border); border-radius: 3px; font: inherit; }
+      .quiz-feedback.correct { color: var(--stdin); }
+      .quiz-feedback.wrong { color: var(--error); }
+      .quiz-feedback .explain { color: var(--text); margin-top: 4px; }
       .quiz-feedback { display: block; margin-top: 6px; color: var(--text); }
       .quiz-feedback[hidden] { display: none; }
       .quiz-entry input { margin-left: 6px; padding: 5px 8px; background: var(--field); color: var(--text); border: 1px solid var(--border); border-radius: 3px; }
@@ -226,9 +233,9 @@
           </div>
 
           <div id="spoiler" class="spoiler hidden">
-            <p>Give this exercise a try before you look at the example. Write your own program in your project, and come back when you're ready.</p>
-            <p>If you get stuck, you can show the example. It's a spoiler, so you may learn more by trying first.</p>
-            <button id="reveal" class="run">Show example (spoiler)</button>
+            <p>Solve this exercise in your own file first. The solution is here when you want to compare your answer with it.</p>
+            <p>The solution is a spoiler, so you may learn more by trying first. It's shown read-only, and you can run it.</p>
+            <button id="reveal" class="run">Show solution (spoiler)</button>
           </div>
 
           <div id="redock" class="redock hidden">

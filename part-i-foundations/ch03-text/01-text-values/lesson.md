@@ -1,6 +1,6 @@
 # Text values
 
-**Before you start:** complete Letting TypeScript infer the type.
+Text is the first kind of value most people reach for, and it turns out to be more complicated than it looks. It has a length, it has quotes, and it refuses to be multiplied, which the checker will be happy to point out.
 
 > **Coming from JavaScript:** strings are the same in both languages. The `: string` label is the TypeScript part, and Node ignores it when the program runs.
 

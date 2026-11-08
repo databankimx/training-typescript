@@ -47,6 +47,7 @@ interface RunnerApi {
   openLesson(id: string): Promise<LessonView>;
   openChapter(name: string): Promise<LessonView>;
   highlight(code: string): Promise<string>;
+  solution(id: string): Promise<string>;
   popOutLesson(id: string): Promise<void>;
   syncPopout(id: string): Promise<void>;
   redock(): Promise<void>;
@@ -73,6 +74,8 @@ type RunnerEvent =
 interface QuizProgress {
   chosen?: number;
   typed?: string;
+  verdict?: "correct" | "wrong";
+  revealed?: boolean;
 }
 
 interface LessonProgress {
@@ -269,6 +272,23 @@ function showTab(name: "source" | "lesson"): void {
   updateRunButtons();
 }
 
+// Reveals the complete solution, shown read-only in the editor. Homework is solved in the learner's own file, so the
+// runner only shows the example and lets it be run.
+async function revealSolution(): Promise<void> {
+  if (current === undefined) {
+    return;
+  }
+  revealed = true;
+  progressFor(current.id).revealed = true;
+  saveProgress(current.id);
+  const editor = el<HTMLTextAreaElement>("editor");
+  editor.value = await window.runner.solution(current.id);
+  original = editor.value;
+  editor.readOnly = true;
+  await refreshEditor();
+  showTab("source");
+}
+
 function setupTabs(): void {
   for (const button of Array.from(document.querySelectorAll<HTMLButtonElement>(".tab"))) {
     button.addEventListener("click", () => {
@@ -276,12 +296,7 @@ function setupTabs(): void {
     });
   }
   el("reveal").addEventListener("click", () => {
-    revealed = true;
-    if (current !== undefined) {
-      progressFor(current.id).revealed = true;
-      saveProgress(current.id);
-    }
-    showTab("source");
+    void revealSolution();
   });
   el("redock-button").addEventListener("click", () => {
     void window.runner.redock();
@@ -368,20 +383,20 @@ async function show(view: LessonView): Promise<void> {
   editor.value = view.runnable ? view.source : NO_CODE_COMMENT;
   original = editor.value;
   editor.readOnly = !view.runnable;
+  // A revealed homework exercise opens on its solution, read-only, so the learner sees the complete example.
+  if (revealed && view.homework) {
+    editor.value = await window.runner.solution(view.id);
+    original = editor.value;
+    editor.readOnly = true;
+  }
   await refreshEditor();
 
   const body = el("lesson");
   body.innerHTML = view.html;
   renderedId = view.id;
-  const quizzes = Array.from(body.querySelectorAll<HTMLElement>(".quiz"));
-  quizzes.forEach((quiz, index) => {
-    if (quiz.classList.contains("quiz-choice-set")) {
-      wireChoiceSet(quiz, view.id, index);
-    } else if (quiz.classList.contains("quiz-fill")) {
-      wireFillQuiz(quiz, view.id, index);
-    }
+  Array.from(body.querySelectorAll<HTMLElement>(".quiz")).forEach((quiz, index) => {
+    wireQuiz(quiz, view.id, index);
   });
-  restoreQuizProgress(view.id, quizzes);
 
   el<HTMLButtonElement>("popout").disabled = isPopout;
   showTab(view.kind === "chapter" || isPopout ? "lesson" : previousTab);
@@ -486,6 +501,130 @@ function wireFillQuiz(quiz: HTMLElement, lessonId: string, index: number): void 
   });
 }
 
+// ---- Quizzes, as in the C++ course: pick an answer, press Check answer, and Try again or Show answer as needed ----
+
+// Wires one question. Its answer, verdict, and reveal are saved for the lesson, so they survive a restart.
+function wireQuiz(quiz: HTMLElement, lessonId: string, index: number): void {
+  const labels = Array.from(quiz.querySelectorAll<HTMLLabelElement>(".quiz-choice"));
+  const radios = Array.from(quiz.querySelectorAll<HTMLInputElement>('input[type="radio"]'));
+  const text = quiz.querySelector<HTMLInputElement>("input.quiz-text");
+  const feedback = quiz.querySelector<HTMLElement>(".quiz-feedback");
+  const check = quiz.querySelector<HTMLButtonElement>(".quiz-check");
+  const retry = quiz.querySelector<HTMLButtonElement>(".quiz-retry");
+  const show = quiz.querySelector<HTMLButtonElement>(".quiz-show");
+  if (feedback === null || check === null || retry === null || show === null) {
+    return;
+  }
+  const isChoice = labels.length > 0;
+  const key = String(index);
+
+  const read = (): QuizProgress => progressFor(lessonId).quizzes?.[key] ?? {};
+  const write = (patch: QuizProgress): void => {
+    const progress = progressFor(lessonId);
+    progress.quizzes ??= {};
+    progress.quizzes[key] = { ...progress.quizzes[key], ...patch };
+    saveProgress(lessonId);
+  };
+
+  const message = (kind: string, text: string, explanation: string): void => {
+    feedback.className = `quiz-feedback ${kind}`;
+    feedback.replaceChildren();
+    const line = document.createElement("div");
+    line.textContent = text;
+    feedback.append(line);
+    if (explanation !== "") {
+      const note = document.createElement("div");
+      note.className = "explain";
+      note.textContent = explanation;
+      feedback.append(note);
+    }
+  };
+
+  const paint = (): void => {
+    const state = read();
+    const locked = state.verdict === "correct" || state.revealed === true;
+    radios.forEach((radio) => (radio.disabled = locked));
+    if (text !== null) {
+      text.disabled = locked;
+    }
+    check.classList.toggle("hidden", locked);
+    show.classList.toggle("hidden", locked);
+    retry.classList.toggle("hidden", !(state.verdict === "wrong" && state.revealed !== true));
+
+    labels.forEach((label, position) => {
+      const right = label.dataset.correct === "true";
+      label.classList.toggle("right", right && (state.revealed === true || state.verdict === "correct"));
+      label.classList.toggle("picked-wrong", position === state.chosen && !right && state.verdict === "wrong");
+    });
+    if (state.chosen !== undefined && radios[state.chosen] !== undefined) {
+      radios[state.chosen].checked = true;
+    }
+
+    const picked = state.chosen === undefined ? undefined : labels[state.chosen];
+    const correctLabel = labels.find((label) => label.dataset.correct === "true");
+    if (state.revealed === true) {
+      const answer = isChoice ? (correctLabel?.textContent ?? "") : (quiz.dataset.answer ?? "");
+      const explanation = isChoice ? (correctLabel?.dataset.explanation ?? "") : (quiz.dataset.explanation ?? "");
+      message("correct", `The answer is: ${answer.trim()}`, explanation);
+    } else if (state.verdict === "correct") {
+      message("correct", "Correct.", picked?.dataset.explanation ?? "");
+    } else if (state.verdict === "wrong") {
+      const explanation = picked?.dataset.explanation || quiz.dataset.explanation || "";
+      message("wrong", "Not quite. Try again.", explanation);
+    } else {
+      feedback.className = "quiz-feedback";
+      feedback.replaceChildren();
+    }
+  };
+
+  // A note that doesn't change the saved state, such as "Choose an answer first."
+  const note = (text: string): void => {
+    message("", text, "");
+  };
+
+  if (text !== null) {
+    text.value = read().typed ?? "";
+  }
+  paint();
+
+  check.addEventListener("click", () => {
+    if (isChoice) {
+      const chosen = radios.findIndex((radio) => radio.checked);
+      if (chosen < 0) {
+        note("Choose an answer first.");
+        return;
+      }
+      const correct = labels[chosen].dataset.correct === "true";
+      write({ chosen, verdict: correct ? "correct" : "wrong" });
+    } else if (text !== null) {
+      const typed = text.value.trim();
+      if (typed === "") {
+        note("Type an answer first.");
+        return;
+      }
+      const expected = (quiz.dataset.answer ?? "").trim().toLowerCase();
+      const right = typed.toLowerCase() === expected;
+      write({ typed: text.value, verdict: right ? "correct" : "wrong" });
+    }
+    paint();
+  });
+
+  retry.addEventListener("click", () => {
+    write({ chosen: undefined, typed: undefined, verdict: undefined });
+    radios.forEach((radio) => (radio.checked = false));
+    if (text !== null) {
+      text.value = "";
+    }
+    paint();
+  });
+
+  // Once the answer has been shown, the question is locked.
+  show.addEventListener("click", () => {
+    write({ revealed: true });
+    paint();
+  });
+}
+
 // ---- The chapters pane: parts, which collapse, and the chapters in them ----
 
 function chapterTitle(name: string): string {
@@ -522,7 +661,7 @@ function renderChapters(): void {
       if (chapter.lessons.some((lesson) => lesson.homework)) {
         // Homework nests under its chapter, because it has its own steps.
         const homeworkRow = document.createElement("div");
-        homeworkRow.className = "chapter-row homework-row";
+        homeworkRow.className = "chapter-row homework-row hidden";
         homeworkRow.dataset.chapter = chapter.name;
         homeworkRow.dataset.homework = "true";
         homeworkRow.textContent = "Homework";
@@ -571,6 +710,10 @@ function stepRow(lesson: LessonSummary): HTMLButtonElement {
 }
 
 function selectChapter(name: string, homework: boolean): void {
+  // Homework is shown only under the chapter that's selected. The others collapse.
+  for (const row of Array.from(document.querySelectorAll<HTMLElement>(".homework-row"))) {
+    row.classList.toggle("hidden", row.dataset.chapter !== name);
+  }
   for (const row of Array.from(document.querySelectorAll<HTMLElement>(".chapter-row"))) {
     const isHomeworkRow = row.dataset.homework === "true";
     row.classList.toggle("selected", row.dataset.chapter === name && isHomeworkRow === homework);

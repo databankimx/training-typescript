@@ -1,0 +1,9 @@
+{
+  "title": "Homework: base converter",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Show one number in binary and in hexadecimal, as text.",
+  "prerequisites": ["Homework: invoice total"],
+  "expected": "11111111",
+  "verify": ["11111111", "ff"]
+}

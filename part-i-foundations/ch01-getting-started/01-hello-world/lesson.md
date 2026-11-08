@@ -1,8 +1,8 @@
 # Hello, world!
 
-> **Coming from JavaScript:** this is the same `console.log` you'd write in JavaScript. The only difference is the file extension, `.ts`.
+Every programming course begins with a program that says hello, and this one is no exception. It's a small ritual, like a band tuning up before the real song. It also shows that the machine does what it's told, which is more than some colleagues manage.
 
-**Before you start:** complete the Setup step. You don't need any programming experience for this one.
+> **Coming from JavaScript:** this is the same `console.log` you'd write in JavaScript. The only difference is the file extension, `.ts`.
 
 Every programming course starts with a program that prints `Hello, world!`. It's short, and it's the first time your computer does something because you told it to.
 

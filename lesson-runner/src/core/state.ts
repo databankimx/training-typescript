@@ -5,6 +5,8 @@
 export interface QuizProgress {
   chosen?: number;
   typed?: string;
+  verdict?: "correct" | "wrong";
+  revealed?: boolean;
 }
 
 export interface LessonProgress {

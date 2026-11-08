@@ -1,6 +1,6 @@
 # Special characters
 
-**Before you start:** complete Cutting out part of text.
+Some characters can't be typed directly inside quotes: quotes, new lines, and tabs among them. This step covers how to write them using a backslash, and why the backslash itself then needs care.
 
 > **Coming from JavaScript:** escape characters are the same in both languages.
 
@@ -62,10 +62,10 @@ What does `\n` do inside a string?
 
 ```quiz
 Which line prints a quote inside a double-quoted string?
-○ console.log("She said "hi"");
+○ `console.log("She said "hi"");`
 → Not quite. The quote before `hi` ends the text early, and the program can't read the rest.
-◉ console.log("She said \"hi\"");
+◉ `console.log("She said \"hi\"");`
 → Right. The backslash tells the program that the quote is part of the text.
-○ console.log("She said \hi\");
+○ `console.log("She said \hi\");`
 → Not quite. The backslash has to come before the quote, not before the word.
 ```
