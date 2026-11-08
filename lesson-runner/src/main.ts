@@ -4,7 +4,7 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { checkFile, type Diagnostic } from "./core/check.ts";
-import { loadParts, type Chapter, type Lesson, type Part } from "./core/catalogue.ts";
+import { loadParts, type Chapter, type Lesson, type Part } from "./core/catalog.ts";
 import { highlightCode } from "./core/highlight.ts";
 import { createLessonMarkdown } from "./core/markdown.ts";
 import { nodeMajorVersion, RunSession, type RunEvent } from "./core/run.ts";
@@ -60,7 +60,7 @@ export interface PopoutState {
   lesson?: string;
 }
 
-let catalogue: Part[] | undefined;
+let catalog: Part[] | undefined;
 let chaptersById: Chapter[] = [];
 let mainWindow: BrowserWindow | undefined;
 let popout: BrowserWindow | undefined;
@@ -68,16 +68,16 @@ let popoutLesson: string | undefined;
 let run: RunSession | undefined;
 let runSender: WebContents | undefined;
 
-async function getCatalogue(): Promise<Part[]> {
-  if (catalogue === undefined) {
-    catalogue = await loadParts(courseRoot);
-    chaptersById = catalogue.flatMap((part) => part.chapters);
+async function getCatalog(): Promise<Part[]> {
+  if (catalog === undefined) {
+    catalog = await loadParts(courseRoot);
+    chaptersById = catalog.flatMap((part) => part.chapters);
   }
-  return catalogue;
+  return catalog;
 }
 
 // A step's id is its chapter and step folder names, with "homework/" in front of a homework step's name. A chapter's
-// id is just its folder name. Only ids from the catalogue are accepted, so a request can't name a path outside the course.
+// id is just its folder name. Only ids from the catalog are accepted, so a request can't name a path outside the course.
 function lessonId(lesson: Lesson): string {
   return `${lesson.chapter}/${lesson.step}`;
 }
@@ -86,7 +86,7 @@ async function findLesson(id: unknown): Promise<Lesson> {
   if (typeof id !== "string") {
     throw new Error("A lesson id must be a string");
   }
-  await getCatalogue();
+  await getCatalog();
   for (const chapter of chaptersById) {
     for (const lesson of chapter.lessons) {
       if (lessonId(lesson) === id) {
@@ -101,7 +101,7 @@ async function findChapter(name: unknown): Promise<Chapter> {
   if (typeof name !== "string") {
     throw new Error("A chapter name must be a string");
   }
-  await getCatalogue();
+  await getCatalog();
   const chapter = chaptersById.find((item) => item.name === name);
   if (chapter === undefined) {
     throw new Error(`There is no chapter called "${name}"`);
@@ -257,7 +257,7 @@ function requireCode(code: unknown): string {
 // ---- IPC ----
 
 async function summariseParts(): Promise<PartSummary[]> {
-  const parts = await getCatalogue();
+  const parts = await getCatalog();
   return parts.map((part) => ({
     title: part.title,
     chapters: part.chapters.map((chapter) => ({
@@ -268,11 +268,11 @@ async function summariseParts(): Promise<PartSummary[]> {
 }
 
 function registerHandlers(): void {
-  ipcMain.handle("catalogue:list", async (): Promise<PartSummary[]> => summariseParts());
+  ipcMain.handle("catalog:list", async (): Promise<PartSummary[]> => summariseParts());
 
   // Re-reads the course from disk, so lessons added since the runner started appear without a restart.
-  ipcMain.handle("catalogue:refresh", async (): Promise<PartSummary[]> => {
-    catalogue = undefined;
+  ipcMain.handle("catalog:refresh", async (): Promise<PartSummary[]> => {
+    catalog = undefined;
     return summariseParts();
   });
 
@@ -290,7 +290,7 @@ function registerHandlers(): void {
     return readOptional(join(lesson.path, "solution.ts"));
   });
 
-  // Colours a block of TypeScript for the editor's highlight layer. Only TypeScript is coloured here.
+  // Colors a block of TypeScript for the editor's highlight layer. Only TypeScript is colored here.
   ipcMain.handle("code:highlight", (_event, code: unknown): string => {
     if (typeof code !== "string") {
       return "";

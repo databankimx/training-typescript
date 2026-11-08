@@ -4,7 +4,7 @@ import { mkdtemp, mkdir, writeFile, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { chapterTitle, loadCatalogue, loadParts, parseLessonMeta, partTitle } from "../src/core/catalogue.ts";
+import { chapterTitle, loadCatalog, loadParts, parseLessonMeta, partTitle } from "../src/core/catalog.ts";
 
 const validMeta = {
   title: "Hello, world!",
@@ -19,7 +19,7 @@ const validMeta = {
 const PART = "part-i-test";
 
 async function makeRoot(): Promise<string> {
-  return mkdtemp(join(tmpdir(), "ts-catalogue-"));
+  return mkdtemp(join(tmpdir(), "ts-catalog-"));
 }
 
 // Writes a lesson at root/part-i-test/chapter/step/lesson.json. The step may be a path, such as "04-homework/01-x".
@@ -88,7 +88,7 @@ test("a homework step's exercises come after the regular steps, flagged as homew
     await writeLesson(root, "ch01-first", "02-homework/01-exercise", { ...validMeta, title: "Exercise" });
     await writeLesson(root, "ch01-first", "02-homework/02-second", { ...validMeta, title: "Second exercise" });
 
-    const lessons = (await loadCatalogue(root))[0].lessons;
+    const lessons = (await loadCatalog(root))[0].lessons;
 
     assert.deepEqual(
       lessons.map((lesson) => lesson.meta.title),
@@ -108,7 +108,7 @@ test("reports a broken lesson.json with its location", async () => {
   const root = await makeRoot();
   try {
     await writeLesson(root, "ch01-first", "01-broken", { ...validMeta, objective: 42 });
-    await assert.rejects(loadCatalogue(root), /ch01-first\/01-broken\/lesson\.json: "objective"/);
+    await assert.rejects(loadCatalog(root), /ch01-first\/01-broken\/lesson\.json: "objective"/);
   } finally {
     await rm(root, { recursive: true, force: true });
   }
@@ -120,7 +120,7 @@ test("reports a lesson.json that isn't valid JSON", async () => {
     const dir = join(root, PART, "ch01-first", "01-garbled");
     await mkdir(dir, { recursive: true });
     await writeFile(join(dir, "lesson.json"), "{ not json", "utf8");
-    await assert.rejects(loadCatalogue(root), /not valid JSON/);
+    await assert.rejects(loadCatalog(root), /not valid JSON/);
   } finally {
     await rm(root, { recursive: true, force: true });
   }
@@ -133,7 +133,7 @@ test("loads the course's own parts and Chapter 1 from the repository", async () 
   assert.equal(parts[0].title, "Part I - Foundations");
   const chapter = parts[0].chapters.find((item) => item.name === "ch01-getting-started");
   if (chapter === undefined) {
-    throw new Error("ch01-getting-started should be in the catalogue");
+    throw new Error("ch01-getting-started should be in the catalog");
   }
   assert.equal(chapter.lessons[0].meta.title, "Setup");
   assert.ok(chapter.lessons.some((lesson) => lesson.meta.title === "Hello, world!"));
@@ -141,10 +141,10 @@ test("loads the course's own parts and Chapter 1 from the repository", async () 
 
 test("the course's Chapter 2 has its homework after its regular steps", async () => {
   const root = fileURLToPath(new URL("../../", import.meta.url));
-  const chapters = await loadCatalogue(root);
+  const chapters = await loadCatalog(root);
   const chapter = chapters.find((item) => item.name === "ch02-types-as-promises");
   if (chapter === undefined) {
-    throw new Error("ch02-types-as-promises should be in the catalogue");
+    throw new Error("ch02-types-as-promises should be in the catalog");
   }
   const last = chapter.lessons[chapter.lessons.length - 1];
   assert.equal(last.homework, true);

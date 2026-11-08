@@ -19,7 +19,7 @@ The JavaScript course is the reference for the order of topics. The TypeScript c
 | 09 Arrays and collections | Array types, methods, nested arrays, traversal, pipelines, tuples and destructuring, maps and sets, searching, slices, splicing | JS ch04 Collections |
 | 10 Functions | Parameters, return types, optional and default parameters, arrow functions, callbacks, scope | JS Part II ch08 Functions (moved forward, because types need them early) |
 
-## Part II - Modelling
+## Part II - Modeling
 
 | TS chapter | Topic | JavaScript chapter |
 |---|---|---|

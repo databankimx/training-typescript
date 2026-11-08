@@ -16,10 +16,10 @@ export function createLessonMarkdown(): MarkdownIt {
     if (label === "quiz") {
       return renderQuiz(parseQuiz(token.content), md);
     }
-    // Labels we support get colour. Unlabelled blocks, and labels we don't support, are plain text, like program output.
-    const coloured = label === "" ? undefined : highlightCode(label, token.content);
-    if (coloured !== undefined) {
-      return `<pre><code class="language-${label}">${coloured}</code></pre>\n`;
+    // Labels we support get color. Unlabelled blocks, and labels we don't support, are plain text, like program output.
+    const colored = label === "" ? undefined : highlightCode(label, token.content);
+    if (colored !== undefined) {
+      return `<pre><code class="language-${label}">${colored}</code></pre>\n`;
     }
     if (defaultFence !== undefined) {
       return defaultFence(tokens, idx, options, env, self);

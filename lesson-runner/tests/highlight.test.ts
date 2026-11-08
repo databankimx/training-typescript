@@ -34,7 +34,7 @@ test("javascript and js are highlighted with the JavaScript grammar", () => {
   assert.equal(highlightCode("js", "const x = 1;"), js);
 });
 
-test("pwsh and powershell colour comments, parameters, cmdlets, and variables", () => {
+test("pwsh and powershell color comments, parameters, cmdlets, and variables", () => {
   const html = highlightCode("pwsh", "# list files\nGet-ChildItem -Path $home");
   assert.ok(html !== undefined);
   assert.match(html, /<span class="tok-comment"># list files<\/span>/);
@@ -43,7 +43,7 @@ test("pwsh and powershell colour comments, parameters, cmdlets, and variables", 
   assert.match(html, /<span class="tok-variableName">\$home<\/span>/);
 });
 
-test("pwsh colours strings and keeps unmatched text as plain text", () => {
+test("pwsh colors strings and keeps unmatched text as plain text", () => {
   const html = highlightCode("pwsh", "Write-Host 'done'");
   assert.ok(html !== undefined);
   assert.match(html, /<span class="tok-string">&#39;done&#39;<\/span>/);
@@ -55,7 +55,7 @@ test("a label that isn't supported returns undefined", () => {
   assert.equal(highlightCode("python", "print('hi')"), undefined);
 });
 
-test("typescript and ts fences in a lesson are coloured", () => {
+test("typescript and ts fences in a lesson are colored", () => {
   const html = createLessonMarkdown().render(["```typescript", "const n: number = 1;", "```"].join("\n"));
   assert.match(html, /<code class="language-typescript">/);
   assert.match(html, /tok-keyword/);
@@ -64,7 +64,7 @@ test("typescript and ts fences in a lesson are coloured", () => {
   assert.match(short, /tok-keyword/);
 });
 
-test("pwsh fences in a lesson are coloured", () => {
+test("pwsh fences in a lesson are colored", () => {
   const html = createLessonMarkdown().render(["```pwsh", "Get-Date", "```"].join("\n"));
   assert.match(html, /<code class="language-pwsh">/);
   assert.match(html, /tok-function/);

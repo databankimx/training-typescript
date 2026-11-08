@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { loadCatalogue } from "../src/core/catalogue.ts";
+import { loadCatalog } from "../src/core/catalog.ts";
 import { createLessonMarkdown } from "../src/core/markdown.ts";
 
 // Renders every lesson and chapter introduction in the course. A broken quiz or a bad lesson.json fails here, rather
@@ -13,7 +13,7 @@ test("every lesson in the course renders", async () => {
   const markdown = createLessonMarkdown();
   const failures: string[] = [];
 
-  for (const chapter of await loadCatalogue(root)) {
+  for (const chapter of await loadCatalog(root)) {
     const introPath = join(chapter.path, "lesson.md");
     const sources: { name: string; text: string }[] = [];
     try {

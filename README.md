@@ -96,7 +96,7 @@ The course has four parts. The chapters follow the JavaScript course's order, an
 | Part | Chapters | Status |
 |---|---|---|
 | I - Foundations | Getting started, types as promises, text, numbers, booleans and missing values, choices, loops, objects, arrays and collections, functions | In progress. Chapters 1 to 5 are written |
-| II - Modelling | Aliases and interfaces, unions and narrowing, unknown and any, classes, generics, modules, error handling, async, HTTP and data | Planned |
+| II - Modeling | Aliases and interfaces, unions and narrowing, unknown and any, classes, generics, modules, error handling, async, HTTP and data | Planned |
 | III - Working with HTML | Typing the DOM, forms, dynamic forms, security, tooling and configuration | Planned |
 | IV - Advanced | Recursion, regular expressions, complexity, bitwise operations, closures, formatting, typed arrays, iterators, functional tools, advanced types, testing types, the final project | Planned |
 
@@ -143,7 +143,7 @@ The runner's dependencies were each reviewed under section 12 of the Development
 - **TypeScript** (Apache 2.0). It provides the checker and the compiler API.
 - **CodeMirror 6** (MIT). Used for the editor.
 - **markdown-it** (MIT). Renders lesson Markdown, with raw HTML off.
-- **@lezer/highlight** and **@lezer/javascript** (MIT). Colour code blocks in lessons.
+- **@lezer/highlight** and **@lezer/javascript** (MIT). Color code blocks in lessons.
 
 The exact versions are pinned in `package.json`, and the review record is kept in `LICENSE-REVIEW.md`.
 

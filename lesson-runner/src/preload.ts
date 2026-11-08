@@ -4,8 +4,8 @@
 const electron = require("electron") as typeof import("electron");
 
 electron.contextBridge.exposeInMainWorld("runner", {
-  listParts: () => electron.ipcRenderer.invoke("catalogue:list"),
-  refreshParts: () => electron.ipcRenderer.invoke("catalogue:refresh"),
+  listParts: () => electron.ipcRenderer.invoke("catalog:list"),
+  refreshParts: () => electron.ipcRenderer.invoke("catalog:refresh"),
   openLesson: (id: string) => electron.ipcRenderer.invoke("lesson:open", id),
   openChapter: (name: string) => electron.ipcRenderer.invoke("chapter:open", name),
   highlight: (code: string) => electron.ipcRenderer.invoke("code:highlight", code),

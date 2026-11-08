@@ -4,11 +4,11 @@ import { parser as javascriptParser } from "@lezer/javascript";
 // The TypeScript grammar is the JavaScript parser with the "ts" dialect turned on.
 const typescriptParser = javascriptParser.configure({ dialect: "ts" });
 
-// Colours a code block as HTML. Each token gets a span whose class is one of @lezer/highlight's standard names
+// Colors a code block as HTML. Each token gets a span whose class is one of @lezer/highlight's standard names
 // (tok-keyword, tok-string, and so on), so one stylesheet serves every language.
 //
 // highlightCode returns undefined for a label it doesn't support. The caller shows that block as plain text, the same
-// as an unlabelled block, so a label is only coloured when we've chosen to support it.
+// as an unlabelled block, so a label is only colored when we've chosen to support it.
 
 function escapeHtml(text: string): string {
   return text

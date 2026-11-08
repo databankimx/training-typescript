@@ -1,7 +1,7 @@
 import { readdir, readFile } from "node:fs/promises";
 import { join } from "node:path";
 
-// The runner's course catalogue, following the JavaScript course's layout:
+// The runner's course catalog, following the JavaScript course's layout:
 //
 //   part-i-foundations/                   a part: a folder named part-<roman>-<words>
 //     ch01-getting-started/               a chapter: a folder named ch<NN>-<words>
@@ -217,6 +217,6 @@ export async function loadParts(root: string): Promise<Part[]> {
 }
 
 // Every chapter in every part, in course order.
-export async function loadCatalogue(root: string): Promise<Chapter[]> {
+export async function loadCatalog(root: string): Promise<Chapter[]> {
   return (await loadParts(root)).flatMap((part) => part.chapters);
 }
