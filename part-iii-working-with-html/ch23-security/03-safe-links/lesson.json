@@ -1,0 +1,9 @@
+{
+  "title": "Safe links",
+  "runtime": "node",
+  "minutes": 25,
+  "objective": "Parse an address with URL, accept it only when its scheme is http or https, and set the link's href only then.",
+  "prerequisites": ["Building with text"],
+  "expected": "Safe link: https://example.com/",
+  "verify": ["Safe link: https://example.com/", "Only http and https links are allowed."]
+}

@@ -1,0 +1,9 @@
+{
+  "title": "Timing checks",
+  "runtime": "node",
+  "minutes": 25,
+  "objective": "Measure how long a form was open before it was submitted, and treat an impossibly fast submission as automated",
+  "prerequisites": ["A honeypot field"],
+  "expected": "Thanks for your comment.",
+  "verify": []
+}

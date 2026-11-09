@@ -1,0 +1,9 @@
+{
+  "title": "What tsconfig controls",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Describe a project's settings as a typed object, and see how the file list and the strict flags shape what the checker reports.",
+  "prerequisites": ["Summary: Security"],
+  "expected": "training: strict on, 1 pattern",
+  "verify": ["training: strict on, 1 pattern"]
+}

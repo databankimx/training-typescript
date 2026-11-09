@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Markup injection</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <label>Comment <input id="input" type="text" value="&lt;b&gt;bold&lt;/b&gt; text"></label>
+    <p>As markup (unsafe): <span id="unsafe"></span></p>
+    <p>As text (safe): <span id="safe"></span></p>
+    <script type="module" src="main.js"></script>
+  </body>
+</html>

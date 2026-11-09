@@ -1,0 +1,9 @@
+{
+  "title": "Sorting rows",
+  "runtime": "node",
+  "minutes": 25,
+  "objective": "Keep the rows' data in an array, sort a copy of it, and redraw the rows from the sorted copy when the learner changes the order.",
+  "prerequisites": ["Filtering rows"],
+  "expected": "Paper: 5",
+  "verify": ["Paper: 5", "Pencils: 2", "Pens: 3"]
+}

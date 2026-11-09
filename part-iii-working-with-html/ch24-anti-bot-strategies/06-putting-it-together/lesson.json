@@ -1,0 +1,9 @@
+{
+  "title": "Putting the checks together",
+  "runtime": "node",
+  "minutes": 45,
+  "objective": "Combine a honeypot, a timing check, and a challenge in one form, order the checks deliberately, and explain what each contributes",
+  "prerequisites": ["Server-side limits"],
+  "expected": "Thanks for your comment.",
+  "verify": []
+}

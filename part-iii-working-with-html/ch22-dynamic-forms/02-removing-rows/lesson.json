@@ -1,0 +1,9 @@
+{
+  "title": "Removing rows",
+  "runtime": "node",
+  "minutes": 25,
+  "objective": "Remove one row when its own button is pressed, using one click handler on the list, so rows added later also work.",
+  "prerequisites": ["Adding rows"],
+  "expected": "Pencils",
+  "verify": ["Pencils", "Paper"]
+}

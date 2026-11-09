@@ -1,0 +1,9 @@
+{
+  "title": "Server-side limits",
+  "runtime": "node",
+  "minutes": 35,
+  "objective": "Enforce a rate limit where the browser cannot change it, and explain which parts of a check must live on the server",
+  "prerequisites": ["An arithmetic challenge"],
+  "expected": "Too many requests. Wait and try again.",
+  "verify": []
+}

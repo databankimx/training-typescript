@@ -1,0 +1,9 @@
+{
+  "title": "The strict flags",
+  "runtime": "node",
+  "minutes": 25,
+  "objective": "Understand what strict mode turns on, and see the checker report a missing type that strict mode requires.",
+  "prerequisites": ["What tsconfig controls"],
+  "expected": "Hello, Ada 6",
+  "verify": ["Hello, Ada 6"]
+}

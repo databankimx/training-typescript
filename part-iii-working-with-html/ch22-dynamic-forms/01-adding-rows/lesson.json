@@ -1,0 +1,9 @@
+{
+  "title": "Adding rows",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Create a new list item each time the learner presses a button, and add it to the page.",
+  "prerequisites": ["Summary: Forms"],
+  "expected": "Item 1",
+  "verify": ["Item 1", "Item 2"]
+}

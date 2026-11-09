@@ -1,0 +1,8 @@
+{
+  "title": "Summary: Dynamic forms",
+  "runtime": "node",
+  "minutes": 5,
+  "objective": "Review how a page adds, removes, filters, and sorts rows, and test your understanding.",
+  "prerequisites": ["Sorting rows"],
+  "verify": []
+}

@@ -1,0 +1,9 @@
+{
+  "title": "Homework: shape declaration",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Use a type from a declaration file, with import type, to label a value and compute from it.",
+  "prerequisites": ["Homework: missing value"],
+  "expected": "Area: 12",
+  "verify": ["Area: 12"]
+}

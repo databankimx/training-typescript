@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Accessible challenge</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <main>
+      <h1>Prove you are a person</h1>
+      <form id="challenge-form">
+        <p id="question">What is 7 + 5?</p>
+        <label for="answer">Your answer</label>
+        <input id="answer" type="text" inputmode="numeric" autocomplete="off">
+        <p id="hint">Type the answer as digits only.</p>
+        <button type="submit">Check</button>
+      </form>
+      <p id="feedback"></p>
+    </main>
+    <script type="module" src="main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,9 @@
+{
+  "title": "Building with text",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Add a learner's text to a list safely, by creating each element and setting its textContent.",
+  "prerequisites": ["Markup injection"],
+  "expected": "Add a name to see it listed as text",
+  "verify": ["<i>Lovelace</i>"]
+}

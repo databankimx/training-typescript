@@ -1,0 +1,9 @@
+{
+  "title": "Homework: category filter",
+  "runtime": "node",
+  "minutes": 25,
+  "objective": "Show only the rows whose category matches a select, and report how many rows are showing.",
+  "prerequisites": ["Homework: add with total"],
+  "expected": "Showing 3 items",
+  "verify": ["Showing 3 items", "Showing 1 item"]
+}

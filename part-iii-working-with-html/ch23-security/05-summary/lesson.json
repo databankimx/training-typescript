@@ -1,0 +1,8 @@
+{
+  "title": "Summary: Security",
+  "runtime": "node",
+  "minutes": 5,
+  "objective": "Review how text becomes markup, and how to show, link, and escape learner text safely.",
+  "prerequisites": ["Escaping"],
+  "verify": []
+}

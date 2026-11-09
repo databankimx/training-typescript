@@ -1,0 +1,9 @@
+{
+  "title": "A honeypot field",
+  "runtime": "node",
+  "minutes": 25,
+  "objective": "Add a field people cannot see or fill in, and treat any submission that fills it as automated, without telling the sender why",
+  "prerequisites": ["Why bots matter"],
+  "expected": "Thanks for your comment.",
+  "verify": []
+}
