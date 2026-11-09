@@ -1,0 +1,8 @@
+{
+  "title": "Summary: Final project",
+  "runtime": "node",
+  "minutes": 10,
+  "objective": "Review how the parts of the GL checker fit together, and which course ideas each part depends on",
+  "prerequisites": ["The review report"],
+  "verify": []
+}

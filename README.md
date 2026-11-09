@@ -57,19 +57,21 @@ Lessons quote only the short examples they need from these references, and expla
 
 - **Windows 10 or 11**
 - **Node.js 24 or later.** The course relies on Node running `.ts` files directly.
+- **Visual Studio Build Tools with the C++ workload**, for the native modules the runner needs.
+- **Python 3**, for node-gyp.
 - **VS Code** (recommended). TypeScript support is built in, and the editor reads the same `tsconfig.json` as the checker.
 
 See [QUICKSTART.md](QUICKSTART.md) for a step-by-step guide.
 
 ### Quick start
 
-From the repository root, in an Administrator PowerShell:
+From the repository root, in PowerShell:
 
 ```pwsh
 powershell -ExecutionPolicy Bypass -File .\setup.ps1
 ```
 
-The script checks for Git, Node.js, and VS Code, installs anything missing, and installs the course's dependencies. It's safe to run more than once.
+The script checks Node.js, the C++ Build Tools, and Python 3. It installs the course's dependencies exactly as recorded in `package-lock.json`, builds the runner, and runs the course checks. It's safe to run more than once. To install what's missing as well (Git, Node.js, and the Build Tools), run it from an Administrator PowerShell with `-InstallMissing`.
 
 Then start the lesson runner:
 
@@ -81,26 +83,26 @@ npm start
 
 ## Learning workflow
 
-1. Select a chapter, then select a step from the Steps pane. Read the lesson, and predict the output before you run anything.
+1. Choose a chapter, then a step from the Steps pane. Read the lesson, and predict the output before you run anything.
 2. Press **Run** to see what the program does. Press **Check** to see what the checker says about it, without running it.
 3. Change the code and explain why the result changes. Compare the checker's message with what Node does, because they often disagree.
-4. Solve homework in your own file first. Then press **Show solution** to compare your answer with the complete solution, which is read-only.
+4. Solve homework in your own file first. Then press **Show solution (spoiler)** to compare your answer with the complete solution, which is read-only.
 5. Move on when you can explain the behaviour, not when the program runs.
 
 ---
 
 ## Curriculum
 
-The course has four parts. The chapters follow the JavaScript course's order, and each chapter has an introduction, runnable steps, a summary with quizzes, and homework.
+The course has four parts. The chapters follow the JavaScript course's order wherever the topic is the same. Each chapter has an introduction, runnable steps, a summary with quizzes, and homework. Some TypeScript chapters are shorter than their JavaScript counterparts, and Part IV includes two chapters, on advanced types and on testing types, that have no JavaScript counterpart.
 
 | Part | Chapters | Status |
 |---|---|---|
-| I - Foundations | Getting started, types as promises, text, numbers, booleans and missing values, choices, loops, objects, arrays and collections, functions | In progress. Chapters 1 to 5 are written |
-| II - Modeling | Aliases and interfaces, unions and narrowing, unknown and any, classes, generics, modules, error handling, async, HTTP and data | Planned |
-| III - Working with HTML | Typing the DOM, forms, dynamic forms, security, tooling and configuration | Planned |
-| IV - Advanced | Recursion, regular expressions, complexity, bitwise operations, closures, formatting, typed arrays, iterators, functional tools, advanced types, testing types, the final project | Planned |
+| I - Foundations | Getting started, types as promises, text, numbers, booleans and missing values, choices, loops, objects, arrays and collections, functions | Written (chapters 1 to 10) |
+| II - Modeling | Aliases and interfaces, unions and narrowing, unknown and any, classes, generics, modules, error handling, async, HTTP and data | Written (chapters 11 to 19) |
+| III - Working with HTML | Typing the DOM, forms, dynamic forms, security, anti-bot strategies, tooling and configuration | Written (chapters 20 to 25) |
+| IV - Advanced | Recursion, regular expressions, complexity, bitwise operations, closures, internationalized formatting, typed arrays, iterators and generators, functional tools, advanced types, testing types and library design, the final project | Written (chapters 26 to 37) |
 
-The outline is a plan, and it may change as the lessons are written. [CURRICULUM.md](CURRICULUM.md) has the full mapping.
+The lessons are checked by `npm test` and `npm run check`, as described under Verification below. [CURRICULUM.md](CURRICULUM.md) has the full mapping to the JavaScript course.
 
 ---
 
@@ -111,13 +113,13 @@ npm test
 npm run check
 ```
 
-`npm test` renders every lesson, so a broken quiz or a missing file fails there, and it runs the runner's own tests. `npm run check` compiles every `solution.ts` with the same settings the editor uses, so the course's solutions stay correct as the course changes.
+`npm test` renders every lesson, so a broken quiz or a missing file fails there, and it runs the runner's own tests. `npm run check` compiles every `solution.ts` with the same settings the editor uses, so the course's solutions stay correct as the course changes. `setup.ps1` runs both.
 
 ---
 
 ## Progress and reset
 
-Your progress is kept in a file outside the repository, so it's never committed. The file holds the last lesson you were on, your quiz answers, and any solutions you've revealed. It's stored in your user data folder, in `training-typescript\progress.json`.
+Your progress is kept in a file outside the repository, so it's never committed. The file holds the last lesson you were on, your quiz answers, and any solutions you've revealed. It's stored in your user data folder, at `%APPDATA%\training-typescript\progress.json`.
 
 To clear all progress, press Ctrl+Alt+Shift+Backspace in the runner. A short message confirms the reset. Quiz answers are cleared, revealed solutions are hidden again, and the next start opens the first chapter.
 
@@ -131,7 +133,7 @@ Student code runs under the system Node, the same one VS Code uses, so Run gives
 
 Running a program uses your account, and it is **not an operating-system sandbox**. Run trusted lesson code. The runner is intended for one local learner, not network hosting or multi-user deployment.
 
-Markdown in lessons supports headings, paragraphs, lists, code blocks, and links. Raw HTML is shown as text, not run. Links to web addresses open in your default browser. Quizzes are answered with radio buttons, and each answer is saved with your progress.
+Markdown in lessons supports headings, paragraphs, lists, code blocks, and links. Raw HTML is shown as text, not run. Links to web addresses open in your default browser. Quizzes are answered with radio buttons or a text box, and each answer is saved with your progress.
 
 ---
 
@@ -157,21 +159,22 @@ For questions about licensing compliance, see the [Development Rules of Engageme
 training-typescript/
 |- part-i-foundations/                   - Part I: each chapter is a folder inside the part
 |  |- ch01-getting-started/              - Chapter 1: setup, the first programs, and the summary
-|  |- ch02-types-as-promises/            - Chapter 2: annotations, inference, and homework
-|  |- ch03-text/                         - Chapter 3: text, with its homework
-|  |- ch04-numbers/                      - Chapter 4: numbers, with its homework
-|  |- ch05-booleans-and-missing-values/  - Chapter 5: booleans, comparisons, and missing values
+|  |- ch02-types-as-promises/            - Chapter 2
+|  |- ...                                - Chapters 3 to 10
+|- part-ii-modeling/                     - Part II: chapters 11 to 19
+|- part-iii-working-with-html/           - Part III: chapters 20 to 25, including the browser (page) steps
+|- part-iv-advanced/                     - Part IV: chapters 26 to 37
 |- lesson-runner/                        - The desktop runner
 |  |- src/                               - Main process, preload, and core modules
 |  |- src/renderer/                      - The window: its page and its script
 |  |- tests/                             - The runner's tests
-|- scripts/                              - Build helpers
+|- scripts/                              - Build helpers, the checker, and the visualizer copy script
 |- setup.ps1                             - Prepares everything the course needs
 |- QUICKSTART.md                         - Step-by-step setup guide
 |- CURRICULUM.md                         - How the chapters map to the JavaScript course
 ```
 
-Each step is a folder with a `lesson.json`, a `lesson.md`, and, for runnable steps, a `main.ts` and a `solution.ts`. Homework is a `homework` step inside its chapter, and each exercise is a folder inside it.
+Each chapter is a folder with an optional `lesson.md` introduction. Each step is a folder with a `lesson.json`, a `lesson.md`, and, for runnable steps, a `main.ts` and a `solution.ts`. A browser step also has an `index.html` and a `style.css`, and a visualizer step has a `visualizer` folder. Homework is a folder named `NN-homework` inside its chapter, and each exercise is a folder inside it. The runner lists homework under its chapter, separately from the steps.
 
 ---
 
@@ -188,6 +191,7 @@ This training curriculum was developed for internal use at DataBank. As with the
 | Date | Changes |
 |---|---|
 | 11/08/2026 | Initial version: the lesson runner, setup and QUICKSTART, Part I chapters 1 to 5 with their summaries and homework, and the curriculum crosswalk |
+| 11/09/2026 | All 37 chapters written, with summaries and homework. The setup script, QUICKSTART, and README brought up to date with the runner |
 
 ---
 
