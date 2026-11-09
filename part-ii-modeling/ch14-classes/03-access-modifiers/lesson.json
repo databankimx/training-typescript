@@ -1,0 +1,9 @@
+{
+  "title": "Access modifiers",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Hide a property from code outside its class with private, and stop it being replaced with readonly.",
+  "prerequisites": ["Methods and state"],
+  "expected": "Ada: 125",
+  "verify": ["Ada: 125"]
+}

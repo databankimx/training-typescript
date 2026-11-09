@@ -1,0 +1,9 @@
+{
+  "title": "Homework: typed input",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Turn an unknown input that holds text into a number, and reject any input that isn't text.",
+  "prerequisites": ["Homework: safe title"],
+  "expected": "84",
+  "verify": ["84"]
+}

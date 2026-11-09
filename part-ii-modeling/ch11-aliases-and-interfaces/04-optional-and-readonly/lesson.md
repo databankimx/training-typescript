@@ -35,7 +35,7 @@ The `mug` object leaves out `discount`, and the checker accepts that because the
 
 ## Read-only means read-only
 
-Try to change the SKU, and the checker refuses. The rule is about the property, not the object: the object's other properties can still change, but `sku` is fixed once it's set. Chapter 13 covers read-only types more fully, including `Readonly`, which makes a whole object read-only at once.
+Try to change the SKU, and the checker refuses. The rule is about the property, not the object: the object's other properties can still change, but `sku` is fixed once it's set. Chapter 15 covers read-only types more fully, including `Readonly`, which makes a whole object read-only at once.
 
 ## Try it
 

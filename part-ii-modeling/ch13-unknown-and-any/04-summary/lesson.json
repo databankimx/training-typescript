@@ -1,0 +1,8 @@
+{
+  "title": "Summary: Unknown and any",
+  "runtime": "node",
+  "minutes": 5,
+  "objective": "Review how unknown values are proven before use, and why any gives up the checker's protection.",
+  "prerequisites": ["Any turns the checker off"],
+  "verify": []
+}

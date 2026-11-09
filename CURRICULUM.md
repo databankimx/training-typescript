@@ -27,7 +27,7 @@ The JavaScript course is the reference for the order of topics. The TypeScript c
 | 12 Unions and narrowing | Unions, checking which kind of value you have | TypeScript only (builds on TS 05 and 06) |
 | 13 Unknown and any | `unknown`, `any`, and why `any` weakens the promises | TypeScript only |
 | 14 Classes | Class syntax, access modifiers, `readonly`, `implements` | JS Part II ch09 Classes |
-| 15 Generics | Type parameters, constraints | TypeScript only |
+| 15 Generics | Type parameters, constraints, and the utility types built on them, such as `Readonly`, `Partial`, and `Pick` | TypeScript only |
 | 16 Modules | Exports and imports, `import type`, module boundaries | JS Part II ch10 Modules |
 | 17 Error handling | `try`, `catch`, `finally`, throwing validation errors, typed failures | JS Part II ch11 Error handling |
 | 18 Async | Promises, `async` and `await`, rejections, `Promise.all` | JS Part II ch12 Async |

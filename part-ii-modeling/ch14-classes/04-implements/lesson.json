@@ -1,0 +1,9 @@
+{
+  "title": "Implementing an interface",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Make a class promise an interface's methods with implements, and use instances of different classes through that one interface.",
+  "prerequisites": ["Access modifiers"],
+  "expected": "9",
+  "verify": ["9", "16"]
+}

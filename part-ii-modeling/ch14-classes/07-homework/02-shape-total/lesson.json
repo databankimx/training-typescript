@@ -1,0 +1,9 @@
+{
+  "title": "Homework: shape total",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Write two classes that implement one interface, and total their areas through that interface.",
+  "prerequisites": ["Homework: bank account"],
+  "expected": "19",
+  "verify": ["19"]
+}

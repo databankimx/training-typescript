@@ -1,0 +1,9 @@
+{
+  "title": "Methods and state",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Write methods that change an object's state, and call them on an instance to see the change.",
+  "prerequisites": ["Class basics"],
+  "expected": "120",
+  "verify": ["120"]
+}

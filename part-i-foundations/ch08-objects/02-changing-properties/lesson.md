@@ -36,7 +36,7 @@ Two things happen here:
 
 The object was created with `const`, and you might expect that to stop it changing. It doesn't. `const` stops the name `customer` from being pointed at a different object. The object itself can still be changed, because its contents live inside it, not in the name.
 
-This surprises almost everyone the first time. If you need the object to stay the same, make a copy before changing it, or use a type that marks the properties as read-only. Chapter 13 covers read-only types.
+This surprises almost everyone the first time. If you need the object to stay the same, make a copy before changing it, or use a type that marks the properties as read-only. Chapter 15 covers read-only types.
 
 ## Adding a property
 

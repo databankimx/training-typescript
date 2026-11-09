@@ -1,0 +1,9 @@
+{
+  "title": "Class basics",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Define a class with properties and a constructor, and create objects from it with new.",
+  "prerequisites": ["Summary: Unknown and any"],
+  "expected": "Ada has 100",
+  "verify": ["Ada has 100"]
+}

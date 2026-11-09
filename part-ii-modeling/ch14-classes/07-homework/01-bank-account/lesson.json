@@ -1,0 +1,9 @@
+{
+  "title": "Homework: bank account",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Write a class whose balance is private, change it only through methods, and print the result.",
+  "prerequisites": ["Summary: Classes"],
+  "expected": "120",
+  "verify": ["120"]
+}
