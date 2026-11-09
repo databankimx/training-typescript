@@ -29,6 +29,7 @@ interface LessonView {
   html: string;
   markdown: string;
   source: string;
+  files: string[];
 }
 
 interface PopoutState {
@@ -54,10 +55,11 @@ interface RunnerApi {
   popoutState(): Promise<PopoutState>;
   onPopoutState(callback: (state: PopoutState) => void): void;
   onShowLesson(callback: (id: string) => void): void;
-  run(id: string, code: string): Promise<void>;
+  run(id: string, files: Record<string, string>): Promise<void>;
   sendInput(text: string): Promise<void>;
   stopRun(): Promise<void>;
-  check(id: string, code: string): Promise<Diagnostic[]>;
+  check(id: string, files: Record<string, string>): Promise<Diagnostic[]>;
+  codeFile(id: string, name: string): Promise<string>;
   onRunEvent(callback: (event: RunnerEvent) => void): void;
 }
 
@@ -123,6 +125,11 @@ let current: LessonView | undefined;
 let partsCache: PartSummary[] = [];
 let revealed = false;
 let original = "";
+// A step can have several code files. Each has its own text (buffers) and the text it started with (originals).
+let fileNames: string[] = [];
+let activeFile = "main.ts";
+let buffers: Record<string, string> = {};
+let originals: Record<string, string> = {};
 let popoutOpen = false;
 let running = false;
 // The id of the lesson whose text is in the lesson pane, and the scroll position each lesson was left at.
@@ -281,8 +288,11 @@ async function revealSolution(): Promise<void> {
   revealed = true;
   progressFor(current.id).revealed = true;
   saveProgress(current.id);
+  await switchFile(fileNames[0] ?? activeFile);
   const editor = el<HTMLTextAreaElement>("editor");
   editor.value = await window.runner.solution(current.id);
+  buffers[activeFile] = editor.value;
+  originals[activeFile] = editor.value;
   original = editor.value;
   editor.readOnly = true;
   await refreshEditor();
@@ -303,6 +313,60 @@ function setupTabs(): void {
   });
 }
 
+// ---- Code files: a step can have more than one, and each keeps its own text while the learner works on another ----
+
+// The text of every file the learner has opened or edited, for Run and Check.
+function collectFiles(): Record<string, string> {
+  const files: Record<string, string> = { ...buffers };
+  files[activeFile] = el<HTMLTextAreaElement>("editor").value;
+  return files;
+}
+
+// Shows a drop-down of the code files when a step has more than one. A changed file is marked with an asterisk.
+function renderFileTabs(): void {
+  const bar = el("file-tabs");
+  const select = el<HTMLSelectElement>("file-select");
+  if (fileNames.length < 2) {
+    bar.classList.add("hidden");
+    select.replaceChildren();
+    return;
+  }
+  bar.classList.remove("hidden");
+  const options = fileNames.map((name) => {
+    const value = name === activeFile ? el<HTMLTextAreaElement>("editor").value : (buffers[name] ?? "");
+    const changed = value !== (originals[name] ?? "");
+    const option = document.createElement("option");
+    option.value = name;
+    option.textContent = changed ? `${name} *` : name;
+    option.selected = name === activeFile;
+    return option;
+  });
+  select.replaceChildren(...options);
+  // Assigning the handler replaces the previous one, so re-rendering never stacks handlers.
+  select.onchange = () => {
+    void switchFile(select.value);
+  };
+}
+
+// Moves to another code file, keeping the edits made to the one being left.
+async function switchFile(name: string): Promise<void> {
+  if (name === activeFile || current === undefined) {
+    return;
+  }
+  const editor = el<HTMLTextAreaElement>("editor");
+  buffers[activeFile] = editor.value;
+  if (buffers[name] === undefined) {
+    const text = await window.runner.codeFile(current.id, name);
+    buffers[name] = text;
+    originals[name] = text;
+  }
+  activeFile = name;
+  editor.value = buffers[name];
+  original = originals[name] ?? "";
+  editor.readOnly = !current.runnable || (revealed && name === fileNames[0]);
+  await refreshEditor();
+}
+
 // ---- Editor ----
 
 async function refreshEditor(): Promise<void> {
@@ -314,6 +378,7 @@ async function refreshEditor(): Promise<void> {
   const changed = code !== original;
   el("modified").classList.toggle("hidden", !changed || activeTab() === "lesson");
   el<HTMLButtonElement>("reset").disabled = !changed;
+  renderFileTabs();
 }
 
 function setupEditor(): void {
@@ -379,16 +444,26 @@ async function show(view: LessonView): Promise<void> {
 
   el("title").textContent = view.title;
 
+  // The step's code files, with main.ts first. Each file keeps its own text and its own original, so switching files
+  // keeps the edits made to each one.
+  fileNames = view.runnable ? view.files : [];
+  activeFile = fileNames[0] ?? "main.ts";
   const editor = el<HTMLTextAreaElement>("editor");
-  editor.value = view.runnable ? view.source : NO_CODE_COMMENT;
-  original = editor.value;
+  const starting = view.runnable ? view.source : NO_CODE_COMMENT;
+  buffers = { [activeFile]: starting };
+  originals = { [activeFile]: starting };
+  editor.value = starting;
+  original = starting;
   editor.readOnly = !view.runnable;
   // A revealed homework exercise opens on its solution, read-only, so the learner sees the complete example.
   if (revealed && view.homework) {
     editor.value = await window.runner.solution(view.id);
+    buffers[activeFile] = editor.value;
+    originals[activeFile] = editor.value;
     original = editor.value;
     editor.readOnly = true;
   }
+  renderFileTabs();
   await refreshEditor();
 
   const body = el("lesson");
@@ -914,7 +989,7 @@ async function runCurrent(): Promise<void> {
   el("output").textContent = "";
   setRunning(true);
   try {
-    await window.runner.run(current.id, el<HTMLTextAreaElement>("editor").value);
+    await window.runner.run(current.id, collectFiles());
   } catch (err) {
     appendOutput("error", `${err instanceof Error ? err.message : String(err)}\n`);
     setRunning(false);
@@ -936,7 +1011,7 @@ async function runCheck(): Promise<void> {
   }
   el("output").textContent = "";
   try {
-    const diagnostics = await window.runner.check(current.id, el<HTMLTextAreaElement>("editor").value);
+    const diagnostics = await window.runner.check(current.id, collectFiles());
     if (diagnostics.length === 0) {
       appendOutput("status", "Check passed: no errors.\n");
       return;

@@ -1,0 +1,9 @@
+{
+  "title": "Homework: partial update",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Use Partial to describe an update that changes only some fields, and apply it to a record.",
+  "prerequisites": ["Homework: last item"],
+  "expected": "shipped",
+  "verify": ["shipped"]
+}

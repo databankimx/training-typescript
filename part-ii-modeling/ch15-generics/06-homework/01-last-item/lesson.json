@@ -1,0 +1,9 @@
+{
+  "title": "Homework: last item",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Write a generic function that returns the last item of a list, for a list of any type.",
+  "prerequisites": ["Summary: Generics"],
+  "expected": "2",
+  "verify": ["2"]
+}

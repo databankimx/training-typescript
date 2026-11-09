@@ -1,0 +1,9 @@
+{
+  "title": "Exports and imports",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Export a function and a value from one file, and import them into another file to use them.",
+  "prerequisites": ["Summary: Generics"],
+  "expected": "Hello, Ada!",
+  "verify": ["Hello, Ada!", "Hello, friend!"]
+}

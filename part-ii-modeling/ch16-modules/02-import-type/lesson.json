@@ -1,0 +1,9 @@
+{
+  "title": "Importing types",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Import a type-only name with import type, and use it to label a value from another module.",
+  "prerequisites": ["Exports and imports"],
+  "expected": "Ada in Dallas",
+  "verify": ["Ada in Dallas"]
+}

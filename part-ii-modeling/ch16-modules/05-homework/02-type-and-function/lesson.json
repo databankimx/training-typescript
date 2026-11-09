@@ -1,0 +1,9 @@
+{
+  "title": "Homework: a type and a function",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Import a type with import type and a function with a normal import from the same module, and use both together.",
+  "prerequisites": ["Homework: use the tax module"],
+  "expected": "Mug: 12.00",
+  "verify": ["Mug: 12.00"]
+}

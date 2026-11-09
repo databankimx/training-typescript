@@ -8,7 +8,7 @@ import { loadParts, type Chapter, type Lesson, type Part } from "./core/catalog.
 import { highlightCode } from "./core/highlight.ts";
 import { createLessonMarkdown } from "./core/markdown.ts";
 import { nodeMajorVersion, RunSession, type RunEvent } from "./core/run.ts";
-import { cleanWorkspaceSync, prepareWorkspace } from "./core/workspace.ts";
+import { cleanWorkspaceSync, listCodeFiles, prepareWorkspace } from "./core/workspace.ts";
 import { parseState, serialiseState, emptyState, type AppState } from "./core/state.ts";
 
 // The compiled file lives in lesson-runner/dist, so the course root is two folders up.
@@ -53,6 +53,7 @@ export interface LessonView {
   html: string;
   markdown: string;
   source: string;
+  files: string[];
 }
 
 export interface PopoutState {
@@ -202,6 +203,7 @@ async function viewOfStep(lesson: Lesson): Promise<LessonView> {
     html: markdown.render(markdownSource),
     markdown: markdownSource,
     source: code,
+    files: await listCodeFiles(lesson.path),
   };
 }
 
@@ -219,6 +221,7 @@ async function viewOfChapter(chapter: Chapter): Promise<LessonView> {
     html: markdown.render(text),
     markdown: text,
     source: "",
+    files: [],
   };
 }
 
@@ -247,11 +250,23 @@ async function requireNode(): Promise<void> {
   }
 }
 
-function requireCode(code: unknown): string {
-  if (typeof code !== "string") {
-    throw new Error("The editor's text must be a string");
+// The editor's text for every code file. Only files that belong to the lesson are accepted, and main.ts is always there.
+async function requireFiles(lesson: Lesson, raw: unknown): Promise<Record<string, string>> {
+  if (typeof raw !== "object" || raw === null || Array.isArray(raw)) {
+    throw new Error("The editor's files must be an object");
   }
-  return code;
+  const allowed = await listCodeFiles(lesson.path);
+  const files: Record<string, string> = {};
+  for (const [name, text] of Object.entries(raw)) {
+    if (!allowed.includes(name) || typeof text !== "string") {
+      throw new Error(`"${name}" is not a code file of this lesson`);
+    }
+    files[name] = text;
+  }
+  if (files["main.ts"] === undefined) {
+    files["main.ts"] = await readFile(join(lesson.path, "main.ts"), "utf8");
+  }
+  return files;
 }
 
 // ---- IPC ----
@@ -298,10 +313,10 @@ function registerHandlers(): void {
     return highlightCode("typescript", code) ?? "";
   });
 
-  // Runs the editor's text. The text is copied into the step's work folder first, so the lesson files are untouched.
-  ipcMain.handle("run:start", async (event, id: unknown, code: unknown): Promise<void> => {
+  // Runs the editor's files. They are copied into the step's work folder first, so the lesson files are untouched.
+  ipcMain.handle("run:start", async (event, id: unknown, files: unknown): Promise<void> => {
     const lesson = await findLesson(id);
-    const text = requireCode(code);
+    const text = await requireFiles(lesson, files);
     await requireNode();
     const mainFile = await prepareWorkspace(courseRoot, lessonId(lesson), lesson.path, text);
     sessionFor(event.sender).start(mainFile, dirname(mainFile));
@@ -317,12 +332,22 @@ function registerHandlers(): void {
     run?.stop();
   });
 
-  // Type-checks the editor's text, in the same work folder as Run.
-  ipcMain.handle("check:run", async (_event, id: unknown, code: unknown): Promise<Diagnostic[]> => {
+  // Type-checks the editor's files, in the same work folder as Run.
+  ipcMain.handle("check:run", async (_event, id: unknown, files: unknown): Promise<Diagnostic[]> => {
     const lesson = await findLesson(id);
-    const text = requireCode(code);
+    const text = await requireFiles(lesson, files);
     const mainFile = await prepareWorkspace(courseRoot, lessonId(lesson), lesson.path, text);
     return checkFile(mainFile, tsconfigPath);
+  });
+
+  // Reads one code file of a lesson, for the editor's file tabs. Only the lesson's own code files can be read.
+  ipcMain.handle("lesson:file", async (_event, id: unknown, name: unknown): Promise<string> => {
+    const lesson = await findLesson(id);
+    const allowed = await listCodeFiles(lesson.path);
+    if (typeof name !== "string" || !allowed.includes(name)) {
+      throw new Error(`"${String(name)}" is not a code file of this lesson`);
+    }
+    return readFile(join(lesson.path, name), "utf8");
   });
 
   ipcMain.handle("lesson:popout", async (_event, id: unknown): Promise<void> => {

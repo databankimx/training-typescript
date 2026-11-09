@@ -1,4 +1,4 @@
-import { cp, rm, writeFile } from "node:fs/promises";
+import { cp, readdir, rm, writeFile } from "node:fs/promises";
 import { rmSync } from "node:fs";
 import { join } from "node:path";
 
@@ -21,18 +21,32 @@ export function workspaceFolder(courseRoot: string, id: string): string {
   return join(courseRoot, WORK_FOLDER, ...segments);
 }
 
-// Copies a step's code files into its work folder, then writes the editor's text as main.ts. Lesson text and the
-// reference solution are left out, so only the learner's files are there.
-export async function prepareWorkspace(courseRoot: string, id: string, stepPath: string, code: string): Promise<string> {
+// The code files of a lesson step: main.ts first, then the others by name. The reference solution is never one of them.
+export async function listCodeFiles(stepPath: string): Promise<string[]> {
+  const names = (await readdir(stepPath, { withFileTypes: true }))
+    .filter((entry) => entry.isFile() && entry.name.endsWith(".ts") && entry.name !== "solution.ts")
+    .map((entry) => entry.name);
+  return names.sort((a, b) => (a === "main.ts" ? -1 : b === "main.ts" ? 1 : a.localeCompare(b)));
+}
+
+// Copies a step's code files into its work folder, then writes the text the learner has in the editor for each file.
+// Lesson text and the reference solution are left out, so only the learner's files are there.
+export async function prepareWorkspace(
+  courseRoot: string,
+  id: string,
+  stepPath: string,
+  files: Record<string, string>,
+): Promise<string> {
   const destination = workspaceFolder(courseRoot, id);
   await rm(destination, { recursive: true, force: true });
   await cp(stepPath, destination, {
     recursive: true,
     filter: (source) => !source.endsWith(".md") && !source.endsWith("lesson.json") && !source.endsWith("solution.ts"),
   });
-  const mainFile = join(destination, "main.ts");
-  await writeFile(mainFile, code, "utf8");
-  return mainFile;
+  for (const [name, text] of Object.entries(files)) {
+    await writeFile(join(destination, name), text, "utf8");
+  }
+  return join(destination, "main.ts");
 }
 
 // Removes the whole work folder. Used when the runner closes, so no copies are left behind.

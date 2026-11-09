@@ -1,0 +1,8 @@
+{
+  "title": "Summary: Modules",
+  "runtime": "node",
+  "minutes": 5,
+  "objective": "Review how modules share names through exports, how type-only imports stay out of the running program, and how boundaries hide the rest.",
+  "prerequisites": ["Module boundaries"],
+  "verify": []
+}

@@ -1,0 +1,9 @@
+{
+  "title": "Utility types",
+  "runtime": "node",
+  "minutes": 25,
+  "objective": "Use Readonly, Partial, and Pick to derive new types from an existing interface, without repeating its properties.",
+  "prerequisites": ["Constraints"],
+  "expected": "12",
+  "verify": ["12", "MUG-01: Mug at 10"]
+}

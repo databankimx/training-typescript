@@ -104,6 +104,9 @@
       .tab.active { color: var(--text); font-weight: 600; border-bottom-color: var(--accent); }
       .tabs-right { margin-left: auto; display: flex; align-items: center; gap: 10px; }
       .modified { color: var(--warning); font-size: 12px; }
+      .file-tabs { display: flex; align-items: center; gap: 8px; padding: 6px 12px; border-bottom: 1px solid var(--border); color: var(--muted); font-size: 12px; }
+      .file-select { background: var(--field); color: var(--text); border: 1px solid var(--border); border-radius: 3px; padding: 3px 6px; font-family: Consolas, "Cascadia Mono", monospace; font-size: 12px; }
+      body.popout .file-tabs { display: none !important; }
       .spoiler { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 10px; padding: 24px 32px; max-width: 640px; color: var(--muted); }
       .spoiler p { margin: 0; color: var(--text); }
       .redock { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 10px; padding: 24px 32px; color: var(--muted); }
@@ -232,6 +235,7 @@
             </span>
           </div>
 
+          <div id="file-tabs" class="file-tabs hidden"><label for="file-select">File</label><select id="file-select" class="file-select"></select></div>
           <div id="spoiler" class="spoiler hidden">
             <p>Solve this exercise in your own file first. The solution is here when you want to compare your answer with it.</p>
             <p>The solution is a spoiler, so you may learn more by trying first. It's shown read-only, and you can run it.</p>

@@ -1,0 +1,9 @@
+{
+  "title": "Module boundaries",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Keep a module's rule private, export only the function that uses it, and see the checker refuse an import of anything else.",
+  "prerequisites": ["Importing types"],
+  "expected": "62.5",
+  "verify": ["62.5"]
+}
