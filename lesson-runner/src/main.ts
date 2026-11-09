@@ -56,6 +56,7 @@ export interface LessonView {
   source: string;
   files: string[];
   page: boolean;
+  visualizer?: string;
 }
 
 export interface PopoutState {
@@ -207,6 +208,7 @@ async function viewOfStep(lesson: Lesson): Promise<LessonView> {
     source: code,
     files: await listCodeFiles(lesson.path),
     page: existsSync(join(lesson.path, "index.html")),
+    visualizer: lesson.meta.visualizerAlgorithm,
   };
 }
 
@@ -386,6 +388,22 @@ function registerHandlers(): void {
 
   ipcMain.handle("popout:state", (): PopoutState => popoutState());
 
+  // Opens the lesson's visualizer, an animation of an algorithm, in the page window. The algorithm name goes in the query.
+  ipcMain.handle("visualization:show", async (_event, id: unknown): Promise<void> => {
+    const lesson = await findLesson(id);
+    const algorithm: string | undefined = lesson.meta.visualizerAlgorithm;
+    if (algorithm === undefined) {
+      throw new Error(`Lesson ${String(id)} has no visualizer`);
+    }
+    // The visualizer is either in a visualizer folder, or beside the lesson. Either place is accepted.
+    const nested: string = join(lesson.path, "visualizer", "visualizer.html");
+    const beside: string = join(lesson.path, "visualizer.html");
+    const visualizerPath: string = existsSync(nested) ? nested : beside;
+    if (!existsSync(visualizerPath)) {
+      throw new Error(`Visualizer file not found for lesson ${String(id)}`);
+    }
+    openPageWindow(visualizerPath, `?algo=${encodeURIComponent(algorithm)}`);
+  });
   // The main window closes the page when the learner moves to another chapter or step.
   ipcMain.handle("page:close", (): void => {
     closePage();
@@ -435,7 +453,7 @@ async function writeBrowserModules(folder: string, files: Record<string, string>
 }
 
 // Opens the page in its own window. The page has no access to Node or the file system, and it can't leave its page.
-function openPageWindow(indexPath: string): void {
+function openPageWindow(indexPath: string, query?: string): void {
   closePage();
   const window = new BrowserWindow({
     width: POPOUT_SIZE.width,
@@ -451,7 +469,7 @@ function openPageWindow(indexPath: string): void {
   const pageUrl = pathToFileURL(indexPath).href;
   window.webContents.setWindowOpenHandler(() => ({ action: "deny" }));
   window.webContents.on("will-navigate", (event, url) => {
-    if (url !== pageUrl) {
+    if (url.split("?")[0] !== pageUrl.split("?")[0]) {
       event.preventDefault();
     }
   });
@@ -461,7 +479,7 @@ function openPageWindow(indexPath: string): void {
       pageWindow = undefined;
     }
   });
-  void window.loadFile(indexPath);
+  void window.loadFile(indexPath, query === undefined ? undefined : { search: query });
 }
 
 // Closes the page window, if one is open. Moving to another chapter or step, or closing the main window, calls this.

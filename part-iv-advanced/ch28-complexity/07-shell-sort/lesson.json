@@ -1,0 +1,10 @@
+{
+  "title": "Shell sort",
+  "runtime": "node",
+  "minutes": 35,
+  "objective": "Explain how Shell sort runs insertion sort over widely spaced values first, and why its speed depends on the gap sequence",
+  "prerequisites": ["Heap sort"],
+  "expected": "Shell sort: sorted: true",
+  "verify": ["Shell sort: sorted: true"],
+  "visualizerAlgorithm": "shell-sort"
+}

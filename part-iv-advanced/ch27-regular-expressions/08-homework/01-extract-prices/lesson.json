@@ -1,0 +1,9 @@
+{
+  "title": "Homework: extract prices",
+  "runtime": "node",
+  "minutes": 30,
+  "objective": "Use matchAll and a capture group to pull numeric prices out of a sentence, and convert each captured text to a number",
+  "prerequisites": ["Summary: Regular expressions"],
+  "expected": "3.5, 4",
+  "verify": ["3.5, 4"]
+}

@@ -1,0 +1,10 @@
+{
+  "title": "Linear and binary search",
+  "runtime": "node",
+  "minutes": 30,
+  "objective": "Count the comparisons made by linear search and by binary search on the same sorted values, and see why sorted data makes binary search possible",
+  "prerequisites": ["Counting the work"],
+  "expected": "Linear search: 778 comparisons",
+  "verify": ["Linear search: 778 comparisons", "Binary search: 10 comparisons"],
+  "visualizerAlgorithm": "linear-search"
+}

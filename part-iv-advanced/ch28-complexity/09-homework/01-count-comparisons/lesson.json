@@ -1,0 +1,9 @@
+{
+  "title": "Homework: counting comparisons",
+  "runtime": "node",
+  "minutes": 35,
+  "objective": "Count the comparisons insertion sort makes on a sorted list and on a reversed list, and explain why the two counts differ so much",
+  "prerequisites": ["Summary: Complexity"],
+  "expected": "Sorted: 999 comparisons",
+  "verify": ["Sorted: 999 comparisons", "Reversed: 499500 comparisons"]
+}

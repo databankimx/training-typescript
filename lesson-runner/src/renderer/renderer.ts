@@ -31,6 +31,7 @@ interface LessonView {
   source: string;
   files: string[];
   page: boolean;
+  visualizer?: string;
 }
 
 interface PopoutState {
@@ -62,6 +63,7 @@ interface RunnerApi {
   check(id: string, files: Record<string, string>): Promise<Diagnostic[]>;
   codeFile(id: string, name: string): Promise<string>;
   closePage(): Promise<void>;
+  showVisualization(id: string): Promise<void>;
   onRunEvent(callback: (event: RunnerEvent) => void): void;
 }
 
@@ -98,6 +100,7 @@ interface Window {
 
 // Icons drawn on an 18 x 18 grid, in the same style as the C++ runner.
 const ICONS: Record<string, string> = {
+  checkmark: '<polyline points="3,9 7,13 15,5"/>',
   copy: '<rect x="3.5" y="5.5" width="9" height="9.5" rx="2"/><rect x="6.5" y="2.5" width="9" height="9.5" rx="2"/>',
   clear: '<line x1="4" y1="4" x2="14" y2="14"/><line x1="14" y1="4" x2="4" y2="14"/>',
   popout: '<line x1="5" y1="13" x2="13" y2="5"/><polyline points="7,5 13,5 13,11"/>',
@@ -233,8 +236,31 @@ function setupZoom(): void {
 
 // ---- Output ----
 
-function copyText(text: string): void {
+function copyText(text: string, button?: HTMLElement): void {
   void navigator.clipboard.writeText(text);
+  if (button !== undefined) {
+    showCopyFeedback(button);
+  }
+}
+
+// Shows a tick in place of the copy icon, then fades back to the copy icon after a moment.
+function showCopyFeedback(button: HTMLElement): void {
+  const originalHTML = button.innerHTML;
+  button.innerHTML = icon("checkmark");
+  button.style.color = "#2563eb";
+  button.style.opacity = "1";
+  button.classList.add("copied");
+  window.setTimeout(() => {
+    button.style.transition = "opacity 0.3s ease-out";
+    button.style.opacity = "0";
+    window.setTimeout(() => {
+      button.innerHTML = originalHTML;
+      button.style.color = "";
+      button.classList.remove("copied");
+      button.style.opacity = "1";
+      button.style.transition = "";
+    }, 300);
+  }, 1500);
 }
 
 // ---- The tabs ----
@@ -251,6 +277,7 @@ function updateRunButtons(): void {
   const enabled = current?.kind === "step" && current.runnable && !gated && !isPopout;
   el<HTMLButtonElement>("run").disabled = !enabled || running;
   el<HTMLButtonElement>("check").disabled = !enabled || running;
+  el<HTMLButtonElement>("visualize").disabled = !enabled || running;
 }
 
 function showTab(name: "source" | "lesson"): void {
@@ -418,12 +445,12 @@ function setupEditor(): void {
 function setupCopy(): void {
   el("copy-source").addEventListener("click", () => {
     if (activeTab() === "lesson") {
-      copyText(current?.markdown ?? "");
+      copyText(current?.markdown ?? "", el("copy-source"));
     } else {
-      copyText(el<HTMLTextAreaElement>("editor").value);
+      copyText(el<HTMLTextAreaElement>("editor").value, el("copy-source"));
     }
   });
-  el("copy-output").addEventListener("click", () => copyText(el("output").textContent ?? ""));
+  el("copy-output").addEventListener("click", () => copyText(el("output").textContent ?? "", el("copy-output")));
   el("clear").addEventListener("click", () => {
     el("output").textContent = "";
   });
@@ -459,6 +486,8 @@ async function show(view: LessonView): Promise<void> {
   revealed = progressFor(view.id).revealed === true;
 
   el("title").textContent = view.title;
+  // Only a lesson with a visualizer shows the Visualize button.
+  el("visualize").classList.toggle("hidden", view.visualizer === undefined);
 
   // The step's code files, with main.ts first. Each file keeps its own text and its own original, so switching files
   // keeps the edits made to each one.
@@ -1077,6 +1106,13 @@ function setupRun(): void {
   el("check").addEventListener("click", () => {
     void runCheck();
   });
+  el("visualize").addEventListener("click", () => {
+    if (current !== undefined && current.visualizer !== undefined) {
+      window.runner.showVisualization(current.id).catch((err: unknown) => {
+        appendOutput("error", `${err instanceof Error ? err.message : String(err)}\n`);
+      });
+    }
+  });
   el("stop").addEventListener("click", () => {
     void window.runner.stopRun();
   });
@@ -1124,7 +1160,7 @@ async function start(): Promise<void> {
     el("popout-copy").classList.remove("hidden");
     el("popout-copy").innerHTML = icon("copy");
     el("popout-copy").addEventListener("click", () => {
-      copyText(current?.markdown ?? "");
+      copyText(current?.markdown ?? "", el("popout-copy"));
     });
     // The pop-out follows the main window. A chapter id has no slash, so it opens an introduction; a step id opens a step.
     window.runner.onShowLesson((id) => {

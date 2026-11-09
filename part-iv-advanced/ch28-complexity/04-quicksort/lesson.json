@@ -1,0 +1,10 @@
+{
+  "title": "Quicksort",
+  "runtime": "node",
+  "minutes": 35,
+  "objective": "Explain how quicksort partitions around a pivot, and why the choice of pivot affects its speed",
+  "prerequisites": ["Selection, bubble, and insertion sort"],
+  "expected": "Quicksort: sorted: true",
+  "verify": ["Quicksort: sorted: true"],
+  "visualizerAlgorithm": "quick-sort"
+}

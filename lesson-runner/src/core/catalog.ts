@@ -20,6 +20,7 @@ export interface LessonMeta {
   prerequisites: string[];
   expected?: string;
   verify: string[];
+  visualizerAlgorithm?: string;
 }
 
 export interface Lesson {
@@ -98,6 +99,13 @@ export function parseLessonMeta(raw: unknown, source: string): LessonMeta {
   };
   if (expected !== undefined) {
     meta.expected = expected;
+  }
+  const visualizer = obj["visualizerAlgorithm"];
+  if (visualizer !== undefined) {
+    if (typeof visualizer !== "string" || visualizer.trim() === "") {
+      throw new Error(`${source}: "visualizerAlgorithm" must be a non-empty string when it's given`);
+    }
+    meta.visualizerAlgorithm = visualizer;
   }
   return meta;
 }

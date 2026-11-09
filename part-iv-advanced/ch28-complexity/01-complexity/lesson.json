@@ -1,0 +1,9 @@
+{
+  "title": "Counting the work",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Count how many steps a loop performs, and see how the count grows when the input doubles",
+  "prerequisites": ["Summary: Regular expressions"],
+  "expected": "10 20",
+  "verify": ["10 20", "100 400"]
+}
