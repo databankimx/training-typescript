@@ -1,0 +1,9 @@
+{
+  "title": "Character classes and quantifiers",
+  "runtime": "node",
+  "minutes": 25,
+  "objective": "Describe a shape with character classes and quantifiers, and anchor it so only values of that exact shape are accepted",
+  "prerequisites": ["Patterns and matching"],
+  "expected": "true",
+  "verify": ["true", "false"]
+}

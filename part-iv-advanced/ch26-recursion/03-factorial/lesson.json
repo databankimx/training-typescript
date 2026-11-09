@@ -1,0 +1,9 @@
+{
+  "title": "Recursive factorial",
+  "runtime": "node",
+  "minutes": 25,
+  "objective": "Compute a factorial recursively, and explain how each call's result is multiplied in on the way back",
+  "prerequisites": ["Base cases and progress"],
+  "expected": "120",
+  "verify": ["120", "3628800"]
+}

@@ -1,0 +1,9 @@
+{
+  "title": "What recursion is",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Write a function that calls itself, and follow the order in which the calls run and finish",
+  "prerequisites": ["Summary: Anti-bot strategies"],
+  "expected": "3",
+  "verify": ["3", "2", "1", "Liftoff"]
+}

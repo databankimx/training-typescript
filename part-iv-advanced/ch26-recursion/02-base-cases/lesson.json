@@ -1,0 +1,9 @@
+{
+  "title": "Base cases and progress",
+  "runtime": "node",
+  "minutes": 25,
+  "objective": "Write a base case that stops recursion, and make each call move toward it, so the recursion always finishes",
+  "prerequisites": ["What recursion is"],
+  "expected": "1",
+  "verify": ["1", "2", "3"]
+}

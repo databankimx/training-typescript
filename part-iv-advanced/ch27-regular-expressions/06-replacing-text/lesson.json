@@ -1,0 +1,9 @@
+{
+  "title": "Replacing text",
+  "runtime": "node",
+  "minutes": 25,
+  "objective": "Replace every match with a fixed string, and with a typed function that computes each replacement from the matched text",
+  "prerequisites": ["Validating input"],
+  "expected": "2026/11/09",
+  "verify": ["2026/11/09", "Hello World"]
+}

@@ -1,0 +1,9 @@
+{
+  "title": "Validating input",
+  "runtime": "node",
+  "minutes": 30,
+  "objective": "Write a validator that accepts a code only when it has exactly the expected shape, and explain why a pattern that is too loose lets bad values through",
+  "prerequisites": ["Finding every match"],
+  "expected": "true",
+  "verify": ["true", "false"]
+}

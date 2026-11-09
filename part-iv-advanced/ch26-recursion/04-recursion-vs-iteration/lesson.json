@@ -1,0 +1,9 @@
+{
+  "title": "Recursion versus iteration",
+  "runtime": "node",
+  "minutes": 25,
+  "objective": "Write the same sum with a loop and with recursion, and choose between them by looking at the shape of the problem and the depth of the calls",
+  "prerequisites": ["Recursive factorial"],
+  "expected": "15",
+  "verify": ["15", "15"]
+}

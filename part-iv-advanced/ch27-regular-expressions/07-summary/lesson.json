@@ -1,0 +1,8 @@
+{
+  "title": "Summary: Regular expressions",
+  "runtime": "node",
+  "minutes": 5,
+  "objective": "Review patterns, captures, matching every occurrence, validation, and replacement",
+  "prerequisites": ["Replacing text"],
+  "verify": []
+}

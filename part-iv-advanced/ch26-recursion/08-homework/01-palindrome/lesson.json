@@ -1,0 +1,9 @@
+{
+  "title": "Homework: recursive palindrome checker",
+  "runtime": "node",
+  "minutes": 35,
+  "objective": "Write a recursive function that decides whether a word reads the same backwards, with a base case for words of length zero or one",
+  "prerequisites": ["Summary: Recursion"],
+  "expected": "true",
+  "verify": ["true", "false"]
+}
