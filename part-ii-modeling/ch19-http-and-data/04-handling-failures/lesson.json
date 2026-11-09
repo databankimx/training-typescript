@@ -1,0 +1,9 @@
+{
+  "title": "Handling failed responses",
+  "runtime": "node",
+  "minutes": 25,
+  "objective": "Check a response's status before reading its body, and turn a failed request into an error with a clear message.",
+  "prerequisites": ["Building requests"],
+  "expected": "{\"id\":7}",
+  "verify": ["{\"id\":7}", "Request failed with status 404"]
+}

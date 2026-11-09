@@ -1,0 +1,9 @@
+{
+  "title": "Responses and JSON",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Read a response's status, check whether it succeeded, and read its JSON body as data of unknown type.",
+  "prerequisites": ["Summary: Async"],
+  "expected": "200",
+  "verify": ["200", "true", "Ada"]
+}

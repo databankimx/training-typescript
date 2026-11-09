@@ -1,0 +1,9 @@
+{
+  "title": "Homework: status message",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Turn a response into a short message for the user, using its ok flag and status code.",
+  "prerequisites": ["Summary: HTTP and data"],
+  "expected": "Failed: 404",
+  "verify": ["Failed: 404"]
+}

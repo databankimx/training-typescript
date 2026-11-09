@@ -1,0 +1,8 @@
+{
+  "title": "Summary: HTTP and data",
+  "runtime": "node",
+  "minutes": 5,
+  "objective": "Review responses, checking data from outside the program, building requests, and handling failed responses, and test your understanding.",
+  "prerequisites": ["Handling failed responses"],
+  "verify": []
+}
