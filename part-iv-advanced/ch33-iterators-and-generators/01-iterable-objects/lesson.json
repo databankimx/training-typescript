@@ -1,0 +1,9 @@
+{
+  "title": "Iterable objects",
+  "runtime": "node",
+  "minutes": 25,
+  "objective": "Make an object iterable by providing an iterator with a next method, and use it in a for...of loop",
+  "prerequisites": ["Summary: Typed arrays"],
+  "expected": "1",
+  "verify": ["1", "2", "3"]
+}

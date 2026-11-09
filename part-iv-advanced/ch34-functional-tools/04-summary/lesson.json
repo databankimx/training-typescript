@@ -1,0 +1,8 @@
+{
+  "title": "Summary: Functional tools",
+  "runtime": "node",
+  "minutes": 5,
+  "objective": "Review map, filter, and reduce, composition, and partial application",
+  "prerequisites": ["Partial application"],
+  "verify": []
+}

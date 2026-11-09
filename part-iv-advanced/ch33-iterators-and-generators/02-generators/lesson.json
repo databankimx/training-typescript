@@ -1,0 +1,9 @@
+{
+  "title": "Generator functions",
+  "runtime": "node",
+  "minutes": 25,
+  "objective": "Write a generator with function* and yield, and see that it pauses at each yield and resumes when the next value is asked for",
+  "prerequisites": ["Iterable objects"],
+  "expected": "about to yield 1",
+  "verify": ["about to yield 1", "got 1", "about to yield 2", "got 2", "about to yield 3", "got 3"]
+}

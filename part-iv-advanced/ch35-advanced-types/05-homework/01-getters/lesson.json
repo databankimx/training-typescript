@@ -1,0 +1,9 @@
+{
+  "title": "Homework: getter types",
+  "runtime": "node",
+  "minutes": 30,
+  "objective": "Write a mapped type that turns each property of an object into a function returning that property's value, and use it with a typed object",
+  "prerequisites": ["Summary: Advanced types"],
+  "expected": "Ada",
+  "verify": ["Ada", "36"]
+}

@@ -1,0 +1,9 @@
+{
+  "title": "Composing functions",
+  "runtime": "node",
+  "minutes": 25,
+  "objective": "Combine two functions into one, with the first applied to the input and the second applied to its result, and check the types of the join",
+  "prerequisites": ["Map, filter, and reduce"],
+  "expected": "10",
+  "verify": ["10", "9"]
+}

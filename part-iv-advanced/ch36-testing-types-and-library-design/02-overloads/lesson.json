@@ -1,0 +1,9 @@
+{
+  "title": "Overloads",
+  "runtime": "node",
+  "minutes": 25,
+  "objective": "Give one function several signatures, so each kind of input gets a precise return type, and share one implementation between them",
+  "prerequisites": ["Type equality tests"],
+  "expected": "43",
+  "verify": ["43", "2"]
+}

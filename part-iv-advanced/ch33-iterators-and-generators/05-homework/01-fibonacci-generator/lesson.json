@@ -1,0 +1,9 @@
+{
+  "title": "Homework: a Fibonacci generator",
+  "runtime": "node",
+  "minutes": 25,
+  "objective": "Write an infinite generator for the Fibonacci numbers, and read its first values with the take function",
+  "prerequisites": ["Summary: Iterators and generators"],
+  "expected": "0",
+  "verify": ["0, 1, 1, 2, 3, 5, 8, 13"]
+}

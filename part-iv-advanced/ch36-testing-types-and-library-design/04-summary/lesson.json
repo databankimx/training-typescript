@@ -1,0 +1,8 @@
+{
+  "title": "Summary: Testing types and library design",
+  "runtime": "node",
+  "minutes": 5,
+  "objective": "Review type equality tests, overloads, and generic functions whose types are inferred",
+  "prerequisites": ["Generic library functions"],
+  "verify": []
+}

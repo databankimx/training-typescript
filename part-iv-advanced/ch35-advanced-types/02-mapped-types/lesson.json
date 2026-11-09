@@ -1,0 +1,9 @@
+{
+  "title": "Mapped types",
+  "runtime": "node",
+  "minutes": 25,
+  "objective": "Rewrite every property of an object type with a mapped type, and see that the new type follows the original keys automatically",
+  "prerequisites": ["Conditional types"],
+  "expected": "true false",
+  "verify": ["true false"]
+}

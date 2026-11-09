@@ -1,0 +1,9 @@
+{
+  "title": "Infinite sequences",
+  "runtime": "node",
+  "minutes": 25,
+  "objective": "Describe a sequence that never ends, and read just the first few values from it with a loop that stops",
+  "prerequisites": ["Generator functions"],
+  "expected": "1, 2, 3, 4, 5",
+  "verify": ["1, 2, 3, 4, 5"]
+}
