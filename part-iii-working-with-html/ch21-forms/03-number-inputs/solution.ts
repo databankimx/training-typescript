@@ -1,3 +1,5 @@
+export {};
+
 const amount = document.querySelector<HTMLInputElement>("#amount");
 const shown = document.querySelector<HTMLParagraphElement>("#shown");
 

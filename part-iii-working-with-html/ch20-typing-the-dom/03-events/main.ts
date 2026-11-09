@@ -1,3 +1,5 @@
+export {};
+
 const button = document.querySelector<HTMLButtonElement>("#count");
 const total = document.querySelector<HTMLParagraphElement>("#total");
 

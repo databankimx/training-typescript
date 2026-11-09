@@ -1,3 +1,5 @@
+export {};
+
 const input = document.querySelector<HTMLInputElement>("#input");
 const unsafe = document.querySelector<HTMLSpanElement>("#unsafe");
 const safe = document.querySelector<HTMLSpanElement>("#safe");

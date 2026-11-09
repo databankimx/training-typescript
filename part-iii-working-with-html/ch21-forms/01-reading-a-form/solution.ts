@@ -1,3 +1,5 @@
+export {};
+
 const form = document.querySelector<HTMLFormElement>("#order");
 const summary = document.querySelector<HTMLParagraphElement>("#summary");
 

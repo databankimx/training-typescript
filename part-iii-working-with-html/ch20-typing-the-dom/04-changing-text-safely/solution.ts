@@ -1,3 +1,5 @@
+export {};
+
 const input = document.querySelector<HTMLInputElement>("#comment");
 const preview = document.querySelector<HTMLDivElement>("#preview");
 

@@ -1,3 +1,5 @@
+export {};
+
 const form = document.querySelector<HTMLFormElement>("#order");
 const quantity = document.querySelector<HTMLInputElement>("#quantity");
 const result = document.querySelector<HTMLParagraphElement>("#result");

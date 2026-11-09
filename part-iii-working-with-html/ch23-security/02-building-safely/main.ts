@@ -1,3 +1,5 @@
+export {};
+
 const name = document.querySelector<HTMLInputElement>("#name");
 const add = document.querySelector<HTMLButtonElement>("#add");
 const names = document.querySelector<HTMLUListElement>("#names");

@@ -1,3 +1,5 @@
+export {};
+
 const shipping = document.querySelector<HTMLSelectElement>("#shipping");
 const note = document.querySelector<HTMLParagraphElement>("#note");
 

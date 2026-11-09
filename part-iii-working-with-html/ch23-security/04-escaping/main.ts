@@ -1,3 +1,5 @@
+export {};
+
 // Turns the characters that give markup its meaning into entities, so the browser shows them as text.
 function escapeHtml(text: string): string {
   return text

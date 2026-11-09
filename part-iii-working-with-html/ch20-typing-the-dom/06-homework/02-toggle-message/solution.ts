@@ -1,3 +1,5 @@
+export {};
+
 const toggle = document.querySelector<HTMLButtonElement>("#toggle");
 const message = document.querySelector<HTMLParagraphElement>("#message");
 

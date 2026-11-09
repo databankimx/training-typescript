@@ -1,3 +1,5 @@
+export {};
+
 const input = document.querySelector<HTMLInputElement>("#name");
 const output = document.querySelector<HTMLParagraphElement>("#output");
 

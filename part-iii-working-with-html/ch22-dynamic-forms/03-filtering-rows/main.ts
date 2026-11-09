@@ -1,3 +1,5 @@
+export {};
+
 const filter = document.querySelector<HTMLInputElement>("#filter");
 const list = document.querySelector<HTMLUListElement>("#items");
 

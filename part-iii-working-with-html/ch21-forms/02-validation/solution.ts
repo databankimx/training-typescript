@@ -1,3 +1,5 @@
+export {};
+
 const form = document.querySelector<HTMLFormElement>("#signup");
 const email = document.querySelector<HTMLInputElement>("#email");
 const message = document.querySelector<HTMLParagraphElement>("#message");

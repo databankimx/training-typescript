@@ -1,3 +1,5 @@
+export {};
+
 const form = document.querySelector<HTMLFormElement>("#add-form");
 const name = document.querySelector<HTMLInputElement>("#name");
 const price = document.querySelector<HTMLInputElement>("#price");

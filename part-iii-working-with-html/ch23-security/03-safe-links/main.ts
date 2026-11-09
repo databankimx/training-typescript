@@ -1,3 +1,5 @@
+export {};
+
 type LinkCheck = { ok: true; href: string } | { ok: false; message: string };
 
 // Accepts an address only when it parses as a URL and uses http or https. Anything else, including javascript: links,

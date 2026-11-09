@@ -1,3 +1,5 @@
+export {};
+
 type LinkCheck = { ok: true; href: string } | { ok: false; message: string };
 
 function checkLink(text: string): LinkCheck {

@@ -1,3 +1,5 @@
+export {};
+
 const list = document.querySelector<HTMLUListElement>("#items");
 
 if (list !== null) {

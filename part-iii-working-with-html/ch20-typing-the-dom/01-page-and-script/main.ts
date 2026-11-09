@@ -1,3 +1,5 @@
+export {};
+
 const title = document.getElementById("title");
 
 if (title !== null) {

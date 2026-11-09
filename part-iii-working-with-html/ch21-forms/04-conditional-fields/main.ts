@@ -1,3 +1,5 @@
+export {};
+
 const delivery = document.querySelector<HTMLSelectElement>("#delivery");
 const addressField = document.querySelector<HTMLLabelElement>("#address-field");
 const address = document.querySelector<HTMLInputElement>("#address");

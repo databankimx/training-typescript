@@ -1,3 +1,5 @@
+export {};
+
 const category = document.querySelector<HTMLSelectElement>("#category");
 const list = document.querySelector<HTMLUListElement>("#items");
 const count = document.querySelector<HTMLParagraphElement>("#count");
