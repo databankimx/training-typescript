@@ -1,4 +1,4 @@
-# Ch05 · Booleans and missing values
+# Ch05 - Booleans and missing values
 
 Programs are constantly asking questions: is the user logged in, is the form complete, is the price above the limit. The answers are yes or no, and the type that holds them is `boolean`. This chapter is about asking those questions well, combining the answers, and dealing with the awkward case where there's no answer at all.
 

@@ -2,11 +2,11 @@
 
 `querySelector` finds the first element that matches a CSS selector, such as `#name` for the element with that id. Its generic type parameter tells the checker what kind of element you expect. With `HTMLInputElement`, the checker allows `value`, which only inputs have. With `HTMLParagraphElement`, it allows `textContent` on a paragraph. The type says which properties exist, so the checker catches a mistake such as reading `value` from a paragraph.
 
-> **Coming from JavaScript:** `querySelector` is the same in both languages. The `<HTMLInputElement>` type parameter is the TypeScript part, and Node has no page to run it on.
+> **Coming from JavaScript:** `querySelector` is the same in both languages. The `<HTMLInputElement>` type parameter is the TypeScript part, and it has no effect on what the browser does.
 
-## The program
+## The page and the program
 
-The page has a text input with the id `name`, and an empty paragraph with the id `output`. The script is in `main.ts`:
+The page has a text field with the id `name`, already holding the text `Ada`, and an empty paragraph with the id `output`. The script is in `main.ts`:
 
 ```ts
 const input = document.querySelector<HTMLInputElement>("#name");
@@ -17,21 +17,23 @@ if (input !== null && output !== null) {
 }
 ```
 
-Press **Run**. With the input empty, the paragraph shows `Hello, stranger!`. The script runs once, when the page loads, so typing into the input doesn't change the greeting yet. Step 4 makes the page react as the learner types. The `||` picks `"stranger"` when the input is empty, because an empty string is falsy.
+Press **Run**. The paragraph shows `Hello, Ada!`, because the field starts with `Ada`. If the field were empty, the `||` would pick `"stranger"`, since an empty string is falsy.
 
 - **`<HTMLInputElement>`** says the element is an input, so `input.value` is allowed.
 - **`<HTMLParagraphElement>`** says the element is a paragraph, so `output.textContent` is allowed.
 - **The `if`** checks both elements exist before using them. Each selector can return `null`.
 
+The script runs once, when the page loads, so the greeting doesn't change as the learner types. The next lesson, on events, is where the page starts to react.
+
 ## Choosing the right type
 
-Pick the type that matches the element, not a general one. A general `HTMLElement` doesn't have `value`, so reading it would be refused. If you're not sure which type applies, hover over the selector in your editor, or look up the element in the HTML.
+Pick the type that matches the element, not a general one. A general `HTMLElement` doesn't have `value`, so reading it would be refused. If you're not sure which type applies, hover over the selector in your editor, or look at the element in the HTML.
 
 ## Try it
 
-- Change `#name` to `#missing`, and run. What does the greeting show, and why?
-- Change `<HTMLInputElement>` to `<HTMLParagraphElement>` on the first line, and press **Check**. What does the checker report about `input.value`?
-- Add a second input to the page, and read its value into a second paragraph. Remember that the script runs once, when the page loads.
+- Change `"#name"` to `"#missing"`, and run. What does the paragraph show now, and why?
+- Change the `value` attribute in `index.html` to an empty string, and run. What does the paragraph show?
+- Add a second input to the page, and read its value into a second paragraph.
 
 ## Quiz
 

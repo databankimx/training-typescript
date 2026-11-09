@@ -48,7 +48,7 @@ interface RunnerApi {
   onProgressReset(callback: () => void): void;
   openLesson(id: string): Promise<LessonView>;
   openChapter(name: string): Promise<LessonView>;
-  highlight(code: string): Promise<string>;
+  highlight(code: string, label: string): Promise<string>;
   solution(id: string): Promise<string>;
   popOutLesson(id: string): Promise<void>;
   syncPopout(id: string): Promise<void>;
@@ -371,12 +371,26 @@ async function switchFile(name: string): Promise<void> {
 
 // ---- Editor ----
 
+// The highlighter's label for a file: TypeScript, HTML, and CSS are colored, and anything else is shown as plain text.
+function highlightLabel(name: string): string {
+  if (name.endsWith(".ts")) {
+    return "typescript";
+  }
+  if (name.endsWith(".html")) {
+    return "html";
+  }
+  if (name.endsWith(".css")) {
+    return "css";
+  }
+  return "plain";
+}
+
 async function refreshEditor(): Promise<void> {
   const editor = el<HTMLTextAreaElement>("editor");
   const code = editor.value;
   const lines = code.split("\n").length;
   el("gutter").textContent = Array.from({ length: lines }, (_item, index) => String(index + 1)).join("\n");
-  el("highlight").innerHTML = (await window.runner.highlight(code)) + "\n";
+  el("highlight").innerHTML = (await window.runner.highlight(code, highlightLabel(activeFile))) + "\n";
   const changed = code !== original;
   el("modified").classList.toggle("hidden", !changed || activeTab() === "lesson");
   el<HTMLButtonElement>("reset").disabled = !changed;
@@ -713,13 +727,25 @@ function wireQuiz(quiz: HTMLElement, lessonId: string, index: number): void {
 // ---- The chapters pane: parts, which collapse, and the chapters in them ----
 
 function chapterTitle(name: string): string {
-  // "ch01-getting-started" becomes "Ch01 · Getting started", as in the other courses.
+  // "ch01-getting-started" becomes "Ch01 - Getting started".
   const match = /^ch(\d{2})-(.*)$/.exec(name);
   if (match === null) {
     return name;
   }
-  const words = match[2].replaceAll("-", " ");
-  return `Ch${match[1]} \u00b7 ${words.charAt(0).toUpperCase()}${words.slice(1)}`;
+  // The chapter title keeps the capitals of special words, such as DOM and HTML.
+  const special: Record<string, string> = {
+    api: "API",
+    dom: "DOM",
+    html: "HTML",
+    http: "HTTP",
+    javascript: "JavaScript",
+    json: "JSON",
+    xss: "XSS",
+  };
+  const words = match[2]
+    .split("-")
+    .map((word, index) => special[word] ?? (index === 0 ? word.charAt(0).toUpperCase() + word.slice(1) : word));
+  return `Ch${match[1]} - ${words.join(" ")}`;
 }
 
 function renderChapters(): void {

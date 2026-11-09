@@ -127,14 +127,14 @@ export function partTitle(folder: string): string {
   return `Part ${match[1].toUpperCase()} - ${words.map(titleWord).join(" ")}`;
 }
 
-// Turns a chapter folder into a short name, as the window shows it.
+// Turns a chapter folder into a short name, as the window shows it: ch01-getting-started becomes "Ch01 - Getting started".
 export function chapterTitle(folder: string): string {
   const match = /^ch(\d{2})-(.*)$/.exec(folder);
   if (match === null) {
     return folder;
   }
   const words = match[2].split("-").map((word, index) => (index === 0 ? titleWord(word) : (SPECIAL_WORDS[word] ?? word)));
-  return `Ch${match[1]} \u00b7 ${words.join(" ")}`;
+  return `Ch${match[1]} - ${words.join(" ")}`;
 }
 
 function isMissingFile(err: unknown): boolean {

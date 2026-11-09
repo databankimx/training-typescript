@@ -21,10 +21,13 @@ export function workspaceFolder(courseRoot: string, id: string): string {
   return join(courseRoot, WORK_FOLDER, ...segments);
 }
 
+// The kinds of file a learner edits in a step: TypeScript, and the page's HTML and CSS.
+const CODE_EXTENSIONS = [".ts", ".html", ".css"];
+
 // The code files of a lesson step: main.ts first, then the others by name. The reference solution is never one of them.
 export async function listCodeFiles(stepPath: string): Promise<string[]> {
   const names = (await readdir(stepPath, { withFileTypes: true }))
-    .filter((entry) => entry.isFile() && entry.name.endsWith(".ts") && entry.name !== "solution.ts")
+    .filter((entry) => entry.isFile() && CODE_EXTENSIONS.some((ext) => entry.name.endsWith(ext)) && entry.name !== "solution.ts")
     .map((entry) => entry.name);
   return names.sort((a, b) => (a === "main.ts" ? -1 : b === "main.ts" ? 1 : a.localeCompare(b)));
 }

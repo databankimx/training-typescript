@@ -1,4 +1,4 @@
-# Ch02 · Types as promises
+# Ch02 - Types as promises
 
 Computers are very literal. They'll do exactly what you say, including the parts you didn't mean. A type is how you tell the checker what you meant, so it can spot the places where what you wrote and what you intended have drifted apart. This chapter is about making those promises explicit.
 

@@ -1,0 +1,8 @@
+{
+  "title": "Summary: Forms",
+  "runtime": "node",
+  "minutes": 5,
+  "objective": "Review how forms are read, checked, converted, and shown or hidden, and test your understanding.",
+  "prerequisites": ["Conditional fields"],
+  "verify": []
+}

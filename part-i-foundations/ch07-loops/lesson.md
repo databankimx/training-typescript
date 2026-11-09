@@ -1,4 +1,4 @@
-# Ch07 · Loops
+# Ch07 - Loops
 
 Some jobs are repetitive by nature: print every line of a report, add up every price in a basket, try again until the connection works. A loop runs a block of code again and again, and this chapter covers the common forms, how to stop one early, and how to put a loop inside another.
 

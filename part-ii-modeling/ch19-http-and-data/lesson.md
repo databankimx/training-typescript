@@ -1,4 +1,4 @@
-# Ch19 · HTTP and data
+# Ch19 - HTTP and data
 
 Most real programs talk to other programs. A web page asks a server for a list of orders, a service sends a payment request, a sensor reports a reading. Each conversation is a **request** sent to an address, and a **response** coming back with a status and a body, usually in a format called JSON. The body arrives from outside the program, so its type isn't known in advance, and this chapter is about reading it safely.
 

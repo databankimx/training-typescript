@@ -1,4 +1,4 @@
-# Ch06 · Choices
+# Ch06 - Choices
 
 Programs make decisions all day long. If the payment went through, send the receipt. If the form is incomplete, show the error. If the light is red, stop. This chapter covers the tools for writing those decisions: `if`, `else`, the short form that fits on one line, and `switch` for choosing between many named cases.
 

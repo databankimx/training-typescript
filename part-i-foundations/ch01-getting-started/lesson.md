@@ -1,4 +1,4 @@
-# Ch01 · Getting started
+# Ch01 - Getting started
 
 Every course has a first day, which is usually spent discovering where the coffee is. This chapter is ours. You'll install the tools, run a program, and learn to read the messages that appear when something goes wrong, which turns out to be most of the job.
 

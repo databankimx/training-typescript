@@ -1,0 +1,9 @@
+{
+  "title": "Homework: quantity check",
+  "runtime": "node",
+  "minutes": 25,
+  "objective": "Read a number from a form on submit, check it is at least one, and show either the order or an error.",
+  "prerequisites": ["Summary: Forms"],
+  "expected": "Quantity must be at least 1",
+  "verify": ["Quantity must be at least 1"]
+}

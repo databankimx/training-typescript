@@ -7,8 +7,8 @@ test("part titles keep the capitals of special words", () => {
   assert.equal(partTitle("part-i-foundations"), "Part I - Foundations");
 });
 
-test("chapter titles are sentence case, with special words kept", () => {
-  assert.equal(chapterTitle("ch20-typing-the-dom"), "Ch20 \u00b7 Typing the DOM");
-  assert.equal(chapterTitle("ch19-http-and-data"), "Ch19 \u00b7 HTTP and data");
-  assert.equal(chapterTitle("ch01-getting-started"), "Ch01 \u00b7 Getting started");
+test("chapter titles are sentence case, keep special words, and use a hyphen after the number", () => {
+  assert.equal(chapterTitle("ch20-typing-the-dom"), "Ch20 - Typing the DOM");
+  assert.equal(chapterTitle("ch19-http-and-data"), "Ch19 - HTTP and data");
+  assert.equal(chapterTitle("ch01-getting-started"), "Ch01 - Getting started");
 });

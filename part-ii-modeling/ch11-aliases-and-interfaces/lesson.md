@@ -1,4 +1,4 @@
-# Ch11 · Aliases and interfaces
+# Ch11 - Aliases and interfaces
 
 Once a program has more than a handful of values, the same shapes start to appear everywhere. Every customer has a name and a city, every order has an ID and a total, every point has an x and a y. Writing the shape out in full each time is slow, and a small change means finding every copy. Aliases and interfaces let you give a shape a name, write it once, and use the name wherever it's needed. This is where modeling starts: you describe your data once, and the checker holds the rest of the program to that description.
 

@@ -1,4 +1,4 @@
-# Ch17 · Error handling
+# Ch17 - Error handling
 
 Programs fail. A file is missing, a network request times out, a user types text where a number belongs. The question is not whether a failure happens, but whether the program notices it and responds in a deliberate way. This chapter covers the two tools JavaScript gives for that, `try` and `catch` with `throw`, and a third approach that many TypeScript programs prefer: returning a failure as a value, which the checker can make you handle.
 

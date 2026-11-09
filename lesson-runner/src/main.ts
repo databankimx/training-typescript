@@ -4,7 +4,7 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { checkFile, type Diagnostic } from "./core/check.ts";
-import { loadParts, type Chapter, type Lesson, type Part } from "./core/catalog.ts";
+import { loadParts, chapterTitle, type Chapter, type Lesson, type Part } from "./core/catalog.ts";
 import { highlightCode } from "./core/highlight.ts";
 import { createLessonMarkdown } from "./core/markdown.ts";
 import { nodeMajorVersion, RunSession, type RunEvent } from "./core/run.ts";
@@ -216,7 +216,7 @@ async function viewOfChapter(chapter: Chapter): Promise<LessonView> {
   return {
     id: chapter.name,
     kind: "chapter",
-    title: chapter.name,
+    title: chapterTitle(chapter.name),
     objective: "",
     minutes: 0,
     homework: false,
@@ -309,12 +309,13 @@ function registerHandlers(): void {
     return readOptional(join(lesson.path, "solution.ts"));
   });
 
-  // Colors a block of TypeScript for the editor's highlight layer. Only TypeScript is colored here.
-  ipcMain.handle("code:highlight", (_event, code: unknown): string => {
+  // Colors a block of code for the editor's highlight layer. The label says which language the file is in.
+  ipcMain.handle("code:highlight", (_event, code: unknown, label: unknown): string => {
     if (typeof code !== "string") {
       return "";
     }
-    return highlightCode("typescript", code) ?? "";
+    const language = typeof label === "string" ? label : "typescript";
+    return highlightCode(language, code) ?? highlightCode("plain", code) ?? "";
   });
 
   // Runs the editor's files. They are copied into the step's work folder first, so the lesson files are untouched.

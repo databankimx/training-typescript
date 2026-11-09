@@ -27,6 +27,17 @@ test("lists the code files with main.ts first, leaving out the solution and the 
   }
 });
 
+test("lists the page's HTML and CSS alongside the TypeScript, with main.ts first", async () => {
+  const { root, step } = await makeStep();
+  try {
+    await writeFile(join(step, "index.html"), "<!doctype html>", "utf8");
+    await writeFile(join(step, "style.css"), "body {}", "utf8");
+    assert.deepEqual(await listCodeFiles(step), ["main.ts", "helper.ts", "index.html", "style.css"]);
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});
+
 test("writes the learner's text for every file, so a helper's edits are used by Run", async () => {
   const { root, step } = await makeStep();
   try {

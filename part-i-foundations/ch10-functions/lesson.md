@@ -1,4 +1,4 @@
-# Ch10 · Functions
+# Ch10 - Functions
 
 You've been calling functions since the first chapter: `console.log`, `trim`, `Math.round`. A function is a named set of instructions you can use again, with inputs and an output. This chapter covers writing your own: how to give them parameters and defaults, how to return results, and how the type labels describe what goes in and what comes out.
 

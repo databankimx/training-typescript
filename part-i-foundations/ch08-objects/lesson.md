@@ -1,4 +1,4 @@
-# Ch08 · Objects
+# Ch08 - Objects
 
 So far every value has stood on its own: a name, a price, a flag. Real things have several facts about them at once. A customer has a name, a city, and an age. An order has an ID, a buyer, and a list of items. An object groups those facts under one name, and this chapter covers how to build, read, change, and nest them, and how to give them a type.
 

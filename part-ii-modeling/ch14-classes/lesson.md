@@ -1,4 +1,4 @@
-# Ch14 · Classes
+# Ch14 - Classes
 
 A class is a blueprint for objects that belong together. An account has an owner and a balance, and it knows how to deposit and withdraw. Classes group the data and the actions on that data in one place, so the rules about an account live with the account. This chapter covers how to write a class, how methods change its state, how to hide details from other code, how a class can promise a set of methods, and how one class can extend another.
 

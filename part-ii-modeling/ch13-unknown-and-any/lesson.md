@@ -1,4 +1,4 @@
-# Ch13 · Unknown and any
+# Ch13 - Unknown and any
 
 Some values arrive from outside the program: a file, a form, a web request, a value a library returns. The program doesn't know their type, and the honest answer is to say so. TypeScript gives you two types for that. `unknown` says a value could be anything, and the checker makes you prove what it is before you use it. `any` switches the checker off for a value entirely. Both are useful, and both can hide mistakes, so this chapter shows when each belongs.
 

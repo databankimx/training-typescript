@@ -1,4 +1,4 @@
-# Ch03 · Text
+# Ch03 - Text
 
 Most programs spend their lives handling text: names, messages, file paths, and the things people type into forms, usually with a stray space at one end. This chapter is about building text, tidying it up, and finding things inside it, which is a surprising share of what software does.
 

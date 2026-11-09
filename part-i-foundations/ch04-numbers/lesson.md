@@ -1,4 +1,4 @@
-# Ch04 · Numbers
+# Ch04 - Numbers
 
 Numbers are the values most programs are really about. Prices, scores, and counts all need careful handling, and the way computers store decimals has a few habits that will surprise you. This chapter covers the common ones, so the surprises at least arrive expected.
 

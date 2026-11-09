@@ -51,7 +51,7 @@ test("rejects non-positive minutes", () => {
 test("turns part and chapter folder names into titles", () => {
   assert.equal(partTitle("part-i-foundations"), "Part I - Foundations");
   assert.equal(partTitle("part-iii-working-with-html"), "Part III - Working With HTML");
-  assert.equal(chapterTitle("ch01-getting-started"), "Ch01 \u00b7 Getting started");
+  assert.equal(chapterTitle("ch01-getting-started"), "Ch01 - Getting started");
 });
 
 test("loads parts, then chapters and steps, in folder-name order, skipping folders without lesson.json", async () => {
