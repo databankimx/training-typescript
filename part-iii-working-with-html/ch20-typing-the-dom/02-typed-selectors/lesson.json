@@ -1,0 +1,9 @@
+{
+  "title": "Typed selectors",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Find an input and a paragraph with querySelector, give each the type that matches it, and read the input's value.",
+  "prerequisites": ["A page and its script"],
+  "expected": "Hello, stranger!",
+  "verify": ["Hello, stranger!"]
+}

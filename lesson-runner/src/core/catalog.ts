@@ -102,6 +102,21 @@ export function parseLessonMeta(raw: unknown, source: string): LessonMeta {
   return meta;
 }
 
+// Words that keep their own capitals in titles, wherever they appear.
+const SPECIAL_WORDS: Record<string, string> = {
+  api: "API",
+  dom: "DOM",
+  html: "HTML",
+  http: "HTTP",
+  javascript: "JavaScript",
+  json: "JSON",
+  xss: "XSS",
+};
+
+function titleWord(word: string): string {
+  return SPECIAL_WORDS[word] ?? word.charAt(0).toUpperCase() + word.slice(1);
+}
+
 // Turns a part folder into a title: part-i-foundations becomes "Part I - Foundations".
 export function partTitle(folder: string): string {
   const match = /^part-([ivx]+)-(.*)$/.exec(folder);
@@ -109,8 +124,7 @@ export function partTitle(folder: string): string {
     return folder;
   }
   const words = match[2].split("-").filter((word) => word !== "");
-  const capitalised = words.map((word) => word.charAt(0).toUpperCase() + word.slice(1));
-  return `Part ${match[1].toUpperCase()} - ${capitalised.join(" ")}`;
+  return `Part ${match[1].toUpperCase()} - ${words.map(titleWord).join(" ")}`;
 }
 
 // Turns a chapter folder into a short name, as the window shows it.
@@ -119,8 +133,8 @@ export function chapterTitle(folder: string): string {
   if (match === null) {
     return folder;
   }
-  const words = match[2].replaceAll("-", " ");
-  return `Ch${match[1]} \u00b7 ${words.charAt(0).toUpperCase()}${words.slice(1)}`;
+  const words = match[2].split("-").map((word, index) => (index === 0 ? titleWord(word) : (SPECIAL_WORDS[word] ?? word)));
+  return `Ch${match[1]} \u00b7 ${words.join(" ")}`;
 }
 
 function isMissingFile(err: unknown): boolean {

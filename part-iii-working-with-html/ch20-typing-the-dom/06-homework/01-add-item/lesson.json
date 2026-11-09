@@ -1,0 +1,9 @@
+{
+  "title": "Homework: add item",
+  "runtime": "node",
+  "minutes": 25,
+  "objective": "Add a list item from a text field when the learner clicks a button, then clear the field.",
+  "prerequisites": ["Summary: Typing the DOM"],
+  "expected": "Each click adds the typed text to the list",
+  "verify": ["Each click adds the typed text to the list"]
+}

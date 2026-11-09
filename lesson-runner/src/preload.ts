@@ -19,6 +19,7 @@ electron.contextBridge.exposeInMainWorld("runner", {
   syncPopout: (id: string) => electron.ipcRenderer.invoke("popout:sync", id),
   redock: () => electron.ipcRenderer.invoke("popout:redock"),
   popoutState: () => electron.ipcRenderer.invoke("popout:state"),
+  closePage: () => electron.ipcRenderer.invoke("page:close"),
   getState: () => electron.ipcRenderer.invoke("state:get"),
   saveProgress: (id: string, progress: unknown) => electron.ipcRenderer.invoke("state:saveProgress", id, progress),
   saveLast: (id: string) => electron.ipcRenderer.invoke("state:saveLast", id),

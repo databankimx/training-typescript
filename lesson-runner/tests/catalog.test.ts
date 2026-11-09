@@ -50,7 +50,7 @@ test("rejects non-positive minutes", () => {
 
 test("turns part and chapter folder names into titles", () => {
   assert.equal(partTitle("part-i-foundations"), "Part I - Foundations");
-  assert.equal(partTitle("part-iii-working-with-javascript"), "Part III - Working With Javascript");
+  assert.equal(partTitle("part-iii-working-with-html"), "Part III - Working With HTML");
   assert.equal(chapterTitle("ch01-getting-started"), "Ch01 \u00b7 Getting started");
 });
 

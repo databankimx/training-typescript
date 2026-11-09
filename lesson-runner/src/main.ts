@@ -2,13 +2,14 @@ import { app, BrowserWindow, ipcMain, Menu, shell, type WebContents } from "elec
 import { existsSync } from "node:fs";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
+import { fileURLToPath, pathToFileURL } from "node:url";
 import { checkFile, type Diagnostic } from "./core/check.ts";
 import { loadParts, type Chapter, type Lesson, type Part } from "./core/catalog.ts";
 import { highlightCode } from "./core/highlight.ts";
 import { createLessonMarkdown } from "./core/markdown.ts";
 import { nodeMajorVersion, RunSession, type RunEvent } from "./core/run.ts";
 import { cleanWorkspaceSync, listCodeFiles, prepareWorkspace } from "./core/workspace.ts";
+import { transpileForBrowser } from "./core/page.ts";
 import { parseState, serialiseState, emptyState, type AppState } from "./core/state.ts";
 
 // The compiled file lives in lesson-runner/dist, so the course root is two folders up.
@@ -54,6 +55,7 @@ export interface LessonView {
   markdown: string;
   source: string;
   files: string[];
+  page: boolean;
 }
 
 export interface PopoutState {
@@ -204,6 +206,7 @@ async function viewOfStep(lesson: Lesson): Promise<LessonView> {
     markdown: markdownSource,
     source: code,
     files: await listCodeFiles(lesson.path),
+    page: existsSync(join(lesson.path, "index.html")),
   };
 }
 
@@ -222,6 +225,7 @@ async function viewOfChapter(chapter: Chapter): Promise<LessonView> {
     markdown: text,
     source: "",
     files: [],
+    page: false,
   };
 }
 
@@ -317,6 +321,13 @@ function registerHandlers(): void {
   ipcMain.handle("run:start", async (event, id: unknown, files: unknown): Promise<void> => {
     const lesson = await findLesson(id);
     const text = await requireFiles(lesson, files);
+    if (existsSync(join(lesson.path, "index.html"))) {
+      // A page step runs in its own window, not under Node. Its TypeScript is compiled to JavaScript beside the page.
+      const pageFile = await prepareWorkspace(courseRoot, lessonId(lesson), lesson.path, text);
+      await writeBrowserModules(dirname(pageFile), text);
+      openPageWindow(join(dirname(pageFile), "index.html"));
+      return;
+    }
     await requireNode();
     const mainFile = await prepareWorkspace(courseRoot, lessonId(lesson), lesson.path, text);
     sessionFor(event.sender).start(mainFile, dirname(mainFile));
@@ -374,6 +385,11 @@ function registerHandlers(): void {
 
   ipcMain.handle("popout:state", (): PopoutState => popoutState());
 
+  // The main window closes the page when the learner moves to another chapter or step.
+  ipcMain.handle("page:close", (): void => {
+    closePage();
+  });
+
   // The learner's progress: the last lesson, and the quiz answers and revealed homework for each lesson.
   ipcMain.handle("state:get", (): Promise<AppState> => loadState());
   ipcMain.handle("state:saveProgress", async (_event, id: unknown, progress: unknown): Promise<void> => {
@@ -402,6 +418,57 @@ function registerHandlers(): void {
       }
     }
   });
+}
+
+// ---- The page window: a step whose lesson is a web page opens here, in its own resizable window ----
+
+let pageWindow: BrowserWindow | undefined;
+
+// Writes each TypeScript file as browser JavaScript beside the page, so index.html can load it.
+async function writeBrowserModules(folder: string, files: Record<string, string>): Promise<void> {
+  for (const [name, text] of Object.entries(files)) {
+    if (name.endsWith(".ts")) {
+      await writeFile(join(folder, name.replace(/\.ts$/, ".js")), transpileForBrowser(text), "utf8");
+    }
+  }
+}
+
+// Opens the page in its own window. The page has no access to Node or the file system, and it can't leave its page.
+function openPageWindow(indexPath: string): void {
+  closePage();
+  const window = new BrowserWindow({
+    width: POPOUT_SIZE.width,
+    height: POPOUT_SIZE.height,
+    title: "Page",
+    resizable: true,
+    webPreferences: {
+      contextIsolation: true,
+      sandbox: true,
+      nodeIntegration: false,
+    },
+  });
+  const pageUrl = pathToFileURL(indexPath).href;
+  window.webContents.setWindowOpenHandler(() => ({ action: "deny" }));
+  window.webContents.on("will-navigate", (event, url) => {
+    if (url !== pageUrl) {
+      event.preventDefault();
+    }
+  });
+  pageWindow = window;
+  window.on("closed", () => {
+    if (pageWindow === window) {
+      pageWindow = undefined;
+    }
+  });
+  void window.loadFile(indexPath);
+}
+
+// Closes the page window, if one is open. Moving to another chapter or step, or closing the main window, calls this.
+function closePage(): void {
+  if (pageWindow !== undefined && !pageWindow.isDestroyed()) {
+    pageWindow.close();
+  }
+  pageWindow = undefined;
 }
 
 // ---- Windows ----
@@ -446,6 +513,7 @@ function openMainWindow(): void {
   mainWindow = createWindow({});
   mainWindow.on("closed", () => {
     mainWindow = undefined;
+    closePage();
     // Closing the main program closes its pop-out too, so nothing is left running behind it.
     if (popout !== undefined && !popout.isDestroyed()) {
       popout.close();

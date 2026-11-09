@@ -30,6 +30,7 @@ interface LessonView {
   markdown: string;
   source: string;
   files: string[];
+  page: boolean;
 }
 
 interface PopoutState {
@@ -60,6 +61,7 @@ interface RunnerApi {
   stopRun(): Promise<void>;
   check(id: string, files: Record<string, string>): Promise<Diagnostic[]>;
   codeFile(id: string, name: string): Promise<string>;
+  closePage(): Promise<void>;
   onRunEvent(callback: (event: RunnerEvent) => void): void;
 }
 
@@ -480,6 +482,10 @@ async function show(view: LessonView): Promise<void> {
 }
 
 async function openLesson(id: string): Promise<void> {
+  // Moving to another step closes any page window, so the page always matches the lesson on screen.
+  if (!isPopout) {
+    void window.runner.closePage();
+  }
   try {
     const view = await window.runner.openLesson(id);
     await show(view);
@@ -496,6 +502,10 @@ async function openLesson(id: string): Promise<void> {
 }
 
 async function openChapter(name: string): Promise<void> {
+  // Moving to another chapter closes any page window, as moving to another step does.
+  if (!isPopout) {
+    void window.runner.closePage();
+  }
   try {
     const view = await window.runner.openChapter(name);
     await show(view);
@@ -987,6 +997,16 @@ async function runCurrent(): Promise<void> {
     return;
   }
   el("output").textContent = "";
+  if (current.page) {
+    // A page step opens in its own window, and Run reloads that window with the current code.
+    appendOutput("status", "Opened the page in its own window. Run again to reload it with your changes.\n");
+    try {
+      await window.runner.run(current.id, collectFiles());
+    } catch (err) {
+      appendOutput("error", `${err instanceof Error ? err.message : String(err)}\n`);
+    }
+    return;
+  }
   setRunning(true);
   try {
     await window.runner.run(current.id, collectFiles());
