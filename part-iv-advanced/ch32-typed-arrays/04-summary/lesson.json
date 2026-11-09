@@ -1,0 +1,8 @@
+{
+  "title": "Summary: Typed arrays",
+  "runtime": "node",
+  "minutes": 5,
+  "objective": "Review fixed-size numbers, shared buffers, and encoding text as bytes",
+  "prerequisites": ["Text as bytes"],
+  "verify": []
+}

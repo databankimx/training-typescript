@@ -1,0 +1,9 @@
+{
+  "title": "Homework: byte length",
+  "runtime": "node",
+  "minutes": 25,
+  "objective": "Write a function that returns how many UTF-8 bytes a string needs, and use it to check a field's byte limit",
+  "prerequisites": ["Summary: Typed arrays"],
+  "expected": "6",
+  "verify": ["6", "3"]
+}

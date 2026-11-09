@@ -1,0 +1,9 @@
+{
+  "title": "Remembered variables",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Write a factory function that returns a function which still uses a variable from the factory's own scope",
+  "prerequisites": ["Summary: Bitwise operations"],
+  "expected": "Hello, Ada!",
+  "verify": ["Hello, Ada!", "Hi, Grace!"]
+}

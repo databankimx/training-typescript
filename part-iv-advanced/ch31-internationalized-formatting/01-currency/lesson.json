@@ -1,0 +1,9 @@
+{
+  "title": "Formatting money",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Format a number as currency for a named locale, and see that the same amount is written differently for another locale",
+  "prerequisites": ["Summary: Bitwise operations"],
+  "expected": "$1,234.50",
+  "verify": ["$1,234.50", "£1,234.50"]
+}

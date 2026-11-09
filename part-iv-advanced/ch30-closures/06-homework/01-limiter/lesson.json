@@ -1,0 +1,9 @@
+{
+  "title": "Homework: a call limiter",
+  "runtime": "node",
+  "minutes": 25,
+  "objective": "Write a factory whose returned function allows a fixed number of calls, keeping the count in a closure",
+  "prerequisites": ["Summary: Closures"],
+  "expected": "true true false",
+  "verify": ["true true false"]
+}

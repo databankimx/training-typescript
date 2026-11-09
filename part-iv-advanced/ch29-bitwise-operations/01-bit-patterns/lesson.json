@@ -1,0 +1,9 @@
+{
+  "title": "Bit patterns",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Write a number in binary, read a binary literal, and convert text in base two back to a number",
+  "prerequisites": ["Summary: Complexity"],
+  "expected": "1101",
+  "verify": ["1101", "13"]
+}

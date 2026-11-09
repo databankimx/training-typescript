@@ -1,0 +1,8 @@
+{
+  "title": "Summary: Bitwise operations",
+  "runtime": "node",
+  "minutes": 5,
+  "objective": "Review bit patterns, the logical operators, flags, shifts, the 32-bit limit, and BigInt",
+  "prerequisites": ["Large integers with BigInt"],
+  "verify": []
+}

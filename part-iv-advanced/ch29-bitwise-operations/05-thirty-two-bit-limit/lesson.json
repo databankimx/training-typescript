@@ -1,0 +1,9 @@
+{
+  "title": "The 32-bit limit",
+  "runtime": "node",
+  "minutes": 25,
+  "objective": "Explain how bitwise operators convert a number to a 32-bit integer, and see how a value one past the largest wraps to the most negative one",
+  "prerequisites": ["Shifting bits"],
+  "expected": "-2147483648",
+  "verify": ["-2147483648", "2147483647"]
+}

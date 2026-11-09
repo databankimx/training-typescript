@@ -1,0 +1,8 @@
+{
+  "title": "Summary: Closures",
+  "runtime": "node",
+  "minutes": 5,
+  "objective": "Review how closures keep variables, hide state, and remember results",
+  "prerequisites": ["Memoization"],
+  "verify": []
+}

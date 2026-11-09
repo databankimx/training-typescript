@@ -1,0 +1,9 @@
+{
+  "title": "Homework: set and toggle flags",
+  "runtime": "node",
+  "minutes": 25,
+  "objective": "Use masks to set, toggle, and clear flags in one number, and predict the value after each change",
+  "prerequisites": ["Summary: Bitwise operations"],
+  "expected": "5",
+  "verify": ["5", "7", "6"]
+}

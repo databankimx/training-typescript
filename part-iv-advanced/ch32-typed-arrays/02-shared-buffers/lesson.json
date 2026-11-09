@@ -1,0 +1,9 @@
+{
+  "title": "Shared buffers",
+  "runtime": "node",
+  "minutes": 25,
+  "objective": "Read one block of memory through two typed arrays, and see how the byte order decides the value a 16-bit view reads",
+  "prerequisites": ["Fixed-size numbers"],
+  "expected": "513",
+  "verify": ["513", "1, 2, 0, 0"]
+}

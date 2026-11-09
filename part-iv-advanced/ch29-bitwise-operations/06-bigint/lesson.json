@@ -1,0 +1,9 @@
+{
+  "title": "Large integers with BigInt",
+  "runtime": "node",
+  "minutes": 25,
+  "objective": "Use BigInt for integers beyond the safe range of ordinary numbers, and recognise the n suffix and the type that keeps them apart",
+  "prerequisites": ["The 32-bit limit"],
+  "expected": "18446744073709551616",
+  "verify": ["18446744073709551616", "9007199254740993", "true"]
+}

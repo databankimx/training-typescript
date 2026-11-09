@@ -1,0 +1,9 @@
+{
+  "title": "Formatting dates",
+  "runtime": "node",
+  "minutes": 25,
+  "objective": "Format a date for a named locale, and fix its time zone in the code so the printed day does not depend on the machine",
+  "prerequisites": ["Formatting money"],
+  "expected": "November 9, 2026",
+  "verify": ["November 9, 2026"]
+}

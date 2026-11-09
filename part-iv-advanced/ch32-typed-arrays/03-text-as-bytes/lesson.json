@@ -1,0 +1,9 @@
+{
+  "title": "Text as bytes",
+  "runtime": "node",
+  "minutes": 25,
+  "objective": "Encode text to UTF-8 bytes, decode it back, and see that the byte count can differ from the character count",
+  "prerequisites": ["Shared buffers"],
+  "expected": "3",
+  "verify": ["3", "Hé"]
+}
