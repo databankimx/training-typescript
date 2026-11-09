@@ -1,0 +1,9 @@
+{
+  "title": "Waiting for several operations",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Start several operations at once, wait for all of them with Promise.all, and use their results together.",
+  "prerequisites": ["Errors in async code"],
+  "expected": "Total items: 8",
+  "verify": ["Total items: 8"]
+}

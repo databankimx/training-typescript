@@ -1,0 +1,9 @@
+{
+  "title": "Promises",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Create a promise for a value that arrives later, and use its result with then, without stopping the rest of the program.",
+  "prerequisites": ["Summary: Error handling"],
+  "expected": "waiting",
+  "verify": ["waiting", "Got 42"]
+}

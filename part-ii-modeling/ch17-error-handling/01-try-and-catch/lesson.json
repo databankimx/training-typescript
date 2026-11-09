@@ -1,0 +1,9 @@
+{
+  "title": "Try and catch",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Contain a failure with try and catch, and narrow the caught error before reading its details.",
+  "prerequisites": ["Summary: Modules"],
+  "expected": "Could not read: SyntaxError",
+  "verify": ["Could not read: SyntaxError"]
+}

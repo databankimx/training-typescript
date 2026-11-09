@@ -1,0 +1,9 @@
+{
+  "title": "Homework: safe divide",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Throw an error for a division by zero, and catch it to print a message instead of a result.",
+  "prerequisites": ["Summary: Error handling"],
+  "expected": "5",
+  "verify": ["5", "Cannot divide by zero"]
+}

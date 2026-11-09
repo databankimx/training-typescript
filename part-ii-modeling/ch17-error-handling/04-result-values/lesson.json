@@ -1,0 +1,9 @@
+{
+  "title": "Results as values",
+  "runtime": "node",
+  "minutes": 25,
+  "objective": "Return success or failure as a value with a union type, and use narrowing on a shared ok property so the caller handles both cases.",
+  "prerequisites": ["Finally"],
+  "expected": "84",
+  "verify": ["84", "\"abc\" is not a valid age"]
+}

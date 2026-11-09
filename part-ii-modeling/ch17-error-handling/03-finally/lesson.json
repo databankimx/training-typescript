@@ -1,0 +1,9 @@
+{
+  "title": "Finally",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Run cleanup code with finally, so it happens whether the work succeeds or fails.",
+  "prerequisites": ["Throwing errors"],
+  "expected": "checked config",
+  "verify": ["checked config", "Ada", "default"]
+}
