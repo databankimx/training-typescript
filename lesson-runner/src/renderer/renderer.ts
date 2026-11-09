@@ -643,6 +643,7 @@ function renderChapters(): void {
   for (const part of partsCache) {
     const heading = document.createElement("div");
     heading.className = "part-title open";
+    heading.dataset.part = part.title;
     heading.innerHTML = `<span class="chevron">${icon("chevron", 12)}</span><span></span>`;
     heading.querySelector("span:last-child")!.textContent = part.title;
 
@@ -673,9 +674,7 @@ function renderChapters(): void {
     }
 
     heading.addEventListener("click", () => {
-      const collapsed = !body.classList.contains("collapsed");
-      body.classList.toggle("collapsed", collapsed);
-      heading.classList.toggle("open", !collapsed);
+      openPart(part.title);
     });
 
     sections.push(heading, body);
@@ -709,7 +708,25 @@ function stepRow(lesson: LessonSummary): HTMLButtonElement {
   return button;
 }
 
+// Opens the part with this title, and collapses every other part, so only one part is open at a time.
+function openPart(title: string): void {
+  for (const heading of Array.from(document.querySelectorAll<HTMLElement>(".part-title"))) {
+    const open = heading.dataset.part === title;
+    heading.classList.toggle("open", open);
+    heading.nextElementSibling?.classList.toggle("collapsed", !open);
+  }
+}
+
+// Opens the part that holds the chapter.
+function showPartOf(chapterName: string): void {
+  const owner = partsCache.find((part) => part.chapters.some((chapter) => chapter.name === chapterName));
+  if (owner !== undefined) {
+    openPart(owner.title);
+  }
+}
+
 function selectChapter(name: string, homework: boolean): void {
+  showPartOf(name);
   // Homework is shown only under the chapter that's selected. The others collapse.
   for (const row of Array.from(document.querySelectorAll<HTMLElement>(".homework-row"))) {
     row.classList.toggle("hidden", row.dataset.chapter !== name);

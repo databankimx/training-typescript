@@ -1,0 +1,9 @@
+{
+  "title": "Homework: order interface",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Describe an order with an interface, including an optional note, and print the order from its properties.",
+  "prerequisites": ["Summary: Aliases and interfaces"],
+  "expected": "Order 1042: 35 (gift wrap)",
+  "verify": ["Order 1042: 35 (gift wrap)"]
+}

@@ -11,7 +11,7 @@ The JavaScript course is the reference for the order of topics. The TypeScript c
 | 01 Getting started | Running, checking, printing, comments, reading errors | JS ch01 Hello (runtime, variables) |
 | 02 Types as promises | Annotations, inference, what a type promises | JS ch02 Fundamentals (types, values, bindings) |
 | 03 Text | Strings, template literals, string methods, searching, escapes | JS ch02 Fundamentals (strings, template literals, escapes) |
-| 04 Numbers | Number types, rounding, formatting, floating-point, bases, parsing, Math | JS ch03 Numbers |
+| 04 Numbers | Number types, arithmetic operators, rounding, formatting, floating-point, bases, parsing, Math | JS ch02 Fundamentals (arithmetic operators), JS ch03 Numbers |
 | 05 Booleans and missing values | Comparisons, strict equality, truthiness, logical operators, null and undefined | JS ch05 Boolean logic |
 | 06 Choices | `if`, `else`, the conditional operator, `switch`, complex conditions | JS ch06 Control flow |
 | 07 Loops | `while`, `do...while`, `for`, `for...of`, `for...in`, `break` and `continue`, nested loops | JS ch07 Loops |

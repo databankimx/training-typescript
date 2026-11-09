@@ -1,0 +1,9 @@
+{
+  "title": "Type aliases",
+  "runtime": "node",
+  "minutes": 15,
+  "objective": "Give an object shape a name with a type alias, and use the name for several values.",
+  "prerequisites": ["Summary: Functions"],
+  "expected": "25",
+  "verify": ["25"]
+}

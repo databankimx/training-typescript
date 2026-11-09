@@ -1,0 +1,8 @@
+{
+  "title": "Summary: Aliases and interfaces",
+  "runtime": "node",
+  "minutes": 5,
+  "objective": "Review how aliases and interfaces name shapes, how interfaces extend, and how optional and read-only properties refine them.",
+  "prerequisites": ["Optional and read-only properties"],
+  "verify": []
+}

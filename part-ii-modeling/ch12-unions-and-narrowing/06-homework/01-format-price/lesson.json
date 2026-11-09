@@ -1,0 +1,9 @@
+{
+  "title": "Homework: format price",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Accept a price that may arrive as a number or as text, and narrow the union before formatting it.",
+  "prerequisites": ["Summary: Unions and narrowing"],
+  "expected": "$12.00",
+  "verify": ["$12.00"]
+}

@@ -1,0 +1,9 @@
+{
+  "title": "Homework: product type",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Name a plain type with an alias, and use it in an interface whose identifier is read-only.",
+  "prerequisites": ["Homework: order interface"],
+  "expected": "MUG-01: Mug at 12",
+  "verify": ["MUG-01: Mug at 12"]
+}

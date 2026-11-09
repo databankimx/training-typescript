@@ -1,0 +1,9 @@
+{
+  "title": "Literal unions",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Name a fixed set of allowed text values with a literal union, and use switch so every value is covered.",
+  "prerequisites": ["Narrowing missing values"],
+  "expected": "Accepting orders",
+  "verify": ["Accepting orders", "Awaiting approval"]
+}

@@ -1,0 +1,9 @@
+{
+  "title": "Homework: sales status",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Restrict a status to two exact values with a literal union, and handle each value in a switch.",
+  "prerequisites": ["Homework: format price"],
+  "expected": "Sell tickets",
+  "verify": ["Sell tickets"]
+}

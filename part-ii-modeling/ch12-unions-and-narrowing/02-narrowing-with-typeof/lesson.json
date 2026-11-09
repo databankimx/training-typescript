@@ -1,0 +1,9 @@
+{
+  "title": "Narrowing with typeof",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Use typeof to check which type a union holds, and let the checker allow the operations that suit that type.",
+  "prerequisites": ["Union types"],
+  "expected": "number, doubled: 42",
+  "verify": ["number, doubled: 42", "text, shouted: HI"]
+}

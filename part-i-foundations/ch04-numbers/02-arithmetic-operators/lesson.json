@@ -1,0 +1,9 @@
+{
+  "title": "Arithmetic operators",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Use the arithmetic operators, control the order of a calculation with brackets, and update a value with the shorthand operators.",
+  "prerequisites": ["Number values"],
+  "expected": "7",
+  "verify": ["7", "13", "15", "2.5", "2", "32", "16"]
+}

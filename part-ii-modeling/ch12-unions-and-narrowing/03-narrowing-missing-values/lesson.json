@@ -1,0 +1,9 @@
+{
+  "title": "Narrowing missing values",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Narrow a value that might be null or undefined with an explicit null check or a truthiness check, before using it.",
+  "prerequisites": ["Narrowing with typeof"],
+  "expected": "Hello, stranger",
+  "verify": ["Hello, stranger", "Hello, Ada", "Grace", "(empty)"]
+}

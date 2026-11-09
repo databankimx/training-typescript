@@ -1,0 +1,8 @@
+{
+  "title": "Summary: Unions and narrowing",
+  "runtime": "node",
+  "minutes": 5,
+  "objective": "Review how unions describe several possible types, and how narrowing and literal unions make them safe to use.",
+  "prerequisites": ["Literal unions"],
+  "verify": []
+}
