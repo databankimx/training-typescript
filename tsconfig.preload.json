@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "ES2023",
+    "module": "CommonJS",
+    "strict": true,
+    "noEmit": false,
+    "verbatimModuleSyntax": false,
+    "erasableSyntaxOnly": true,
+    "skipLibCheck": true,
+    "types": ["node"],
+    "outDir": "lesson-runner/dist",
+    "rootDir": "lesson-runner/src"
+  },
+  "include": ["lesson-runner/src/preload.ts"]
+}

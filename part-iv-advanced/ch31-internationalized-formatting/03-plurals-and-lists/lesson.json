@@ -1,0 +1,9 @@
+{
+  "title": "Plurals and lists",
+  "runtime": "node",
+  "minutes": 25,
+  "objective": "Choose a singular or plural word from the locale's own rule, and join a list of names with the locale's conjunction",
+  "prerequisites": ["Formatting dates"],
+  "expected": "1 item",
+  "verify": ["1 item", "2 items", "Ada, Grace, and Linus"]
+}

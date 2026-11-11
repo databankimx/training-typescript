@@ -1,0 +1,8 @@
+{
+  "title": "Summary: Functions",
+  "runtime": "node",
+  "minutes": 5,
+  "objective": "Review how functions take inputs, give results, and pass around, and test your understanding.",
+  "prerequisites": ["Scope"],
+  "verify": []
+}

@@ -1,0 +1,9 @@
+{
+  "title": "Homework: string report",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Trim, capitalize, and measure a title that arrived from a form.",
+  "prerequisites": ["Summary: Text"],
+  "expected": "Monthly sales",
+  "verify": ["Monthly sales", "13"]
+}

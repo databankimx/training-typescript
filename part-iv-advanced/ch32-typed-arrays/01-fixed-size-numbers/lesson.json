@@ -1,0 +1,9 @@
+{
+  "title": "Fixed-size numbers",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Store numbers in a typed array of single bytes, and see how values outside the byte range wrap around",
+  "prerequisites": ["Summary: Internationalized formatting"],
+  "expected": "255, 0, 255, 0",
+  "verify": ["255, 0, 255, 0"]
+}

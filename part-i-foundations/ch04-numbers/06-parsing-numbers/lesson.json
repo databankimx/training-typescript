@@ -1,0 +1,9 @@
+{
+  "title": "Turning text into numbers",
+  "runtime": "node",
+  "minutes": 15,
+  "objective": "Convert text such as a form field into a number, and recognize the NaN result when the text isn't a number.",
+  "prerequisites": ["Binary and hexadecimal numbers"],
+  "expected": "43",
+  "verify": ["43", "12", "3.5", "NaN"]
+}

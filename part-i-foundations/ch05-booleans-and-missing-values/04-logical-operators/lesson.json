@@ -1,0 +1,9 @@
+{
+  "title": "Combining answers",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Combine yes-or-no answers with and, or, and not, and choose a fallback value with the nullish coalescing operator.",
+  "prerequisites": ["Truthy and falsy values"],
+  "expected": "false",
+  "verify": ["false", "true", "guest"]
+}

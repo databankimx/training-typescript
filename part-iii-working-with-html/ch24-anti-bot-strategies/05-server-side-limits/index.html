@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Server-side limits</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <main>
+      <h1>Leave a comment</h1>
+      <p class="note">There is no real server in this lesson. The script below plays the server's part, and it keeps its own records.</p>
+      <label for="comment">Comment</label>
+      <textarea id="comment" rows="3"></textarea>
+      <div class="actions">
+        <button id="person" type="button">Send as a person</button>
+        <button id="bot" type="button">Send as a bot (five times)</button>
+      </div>
+      <p id="status" role="status"></p>
+      <ol id="log"></ol>
+    </main>
+    <script type="module" src="main.js"></script>
+  </body>
+</html>

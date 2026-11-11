@@ -1,0 +1,9 @@
+{
+  "title": "Homework: missing value",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Handle a value that find may not return, so the checker accepts the code under strict null checks.",
+  "prerequisites": ["Summary: Tooling and configuration"],
+  "expected": "Found 6",
+  "verify": ["Found 6", "Not found"]
+}

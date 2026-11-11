@@ -1,0 +1,9 @@
+{
+  "title": "Changing properties",
+  "runtime": "node",
+  "minutes": 15,
+  "objective": "Change a property's value after the object is made, and see why a constant object can still change.",
+  "prerequisites": ["Reading properties"],
+  "expected": "Ada lives in Austin, age 37",
+  "verify": ["Ada lives in Austin, age 37"]
+}

@@ -1,0 +1,9 @@
+{
+  "title": "Homework: an accessible challenge",
+  "runtime": "node",
+  "minutes": 35,
+  "objective": "Connect a challenge's answer field to its hint, and announce a wrong answer to screen readers without moving the visitor's focus",
+  "prerequisites": ["Homework: limit submissions"],
+  "expected": "Type the answer as digits only.",
+  "verify": []
+}

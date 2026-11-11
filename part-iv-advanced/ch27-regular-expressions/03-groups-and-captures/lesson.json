@@ -1,0 +1,9 @@
+{
+  "title": "Groups and captures",
+  "runtime": "node",
+  "minutes": 30,
+  "objective": "Capture parts of a match with parentheses, read them with typed destructuring, and reorder them into another format",
+  "prerequisites": ["Character classes and quantifiers"],
+  "expected": "09/11/2026",
+  "verify": ["09/11/2026"]
+}

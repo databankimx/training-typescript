@@ -1,0 +1,9 @@
+{
+  "title": "Floating-point error and money",
+  "runtime": "node",
+  "minutes": 15,
+  "objective": "See why decimal sums can be slightly wrong, and keep money exact by working in whole cents.",
+  "prerequisites": ["Rounding and formatting numbers"],
+  "expected": "0.30000000000000004",
+  "verify": ["0.30000000000000004", "30", "0.3"]
+}

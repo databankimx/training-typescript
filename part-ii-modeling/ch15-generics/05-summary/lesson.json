@@ -1,0 +1,8 @@
+{
+  "title": "Summary: Generics",
+  "runtime": "node",
+  "minutes": 5,
+  "objective": "Review how type parameters, constraints, and utility types let one definition serve many types.",
+  "prerequisites": ["Utility types"],
+  "verify": []
+}

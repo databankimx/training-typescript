@@ -1,0 +1,9 @@
+{
+  "title": "Generic types",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Write a type that takes a type parameter, such as a box that holds one value, and use it for several different types.",
+  "prerequisites": ["Generic functions"],
+  "expected": "3 items",
+  "verify": ["3 items"]
+}

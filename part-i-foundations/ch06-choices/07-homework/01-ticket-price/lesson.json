@@ -1,0 +1,9 @@
+{
+  "title": "Homework: ticket price",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Choose a price from a list of age ranges, using else if.",
+  "prerequisites": ["Summary: Choices"],
+  "expected": "12",
+  "verify": ["12"]
+}

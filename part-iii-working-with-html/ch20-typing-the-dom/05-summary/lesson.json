@@ -1,0 +1,8 @@
+{
+  "title": "Summary: Typing the DOM",
+  "runtime": "node",
+  "minutes": 5,
+  "objective": "Review how scripts find elements, react to events, and change text safely, and test your understanding.",
+  "prerequisites": ["Changing text safely"],
+  "verify": []
+}

@@ -1,0 +1,9 @@
+{
+  "title": "Reading properties",
+  "runtime": "node",
+  "minutes": 15,
+  "objective": "Build an object from several named values, and read each one with a dot or with brackets.",
+  "prerequisites": ["Summary: Loops"],
+  "expected": "Ada",
+  "verify": ["Ada", "Dallas"]
+}

@@ -1,0 +1,10 @@
+{
+  "title": "Merge sort",
+  "runtime": "node",
+  "minutes": 35,
+  "objective": "Explain how merge sort divides a list in half and merges sorted halves, and why its work does not depend on the data",
+  "prerequisites": ["Quicksort"],
+  "expected": "Merge sort: sorted: true",
+  "verify": ["Merge sort: sorted: true"],
+  "visualizerAlgorithm": "merge-sort"
+}

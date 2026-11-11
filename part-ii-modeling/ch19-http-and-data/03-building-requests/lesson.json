@@ -1,0 +1,9 @@
+{
+  "title": "Building requests",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Describe a request with its method, address, headers, and body, and read those parts back.",
+  "prerequisites": ["Checking data"],
+  "expected": "POST",
+  "verify": ["POST", "https://example.com/orders", "application/json"]
+}

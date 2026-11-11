@@ -1,0 +1,9 @@
+{
+  "title": "Homework: parse price",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Return a price parse as a result value, and print the value or the error by narrowing on ok.",
+  "prerequisites": ["Homework: safe divide"],
+  "expected": "Price: 12.5",
+  "verify": ["Price: 12.5"]
+}

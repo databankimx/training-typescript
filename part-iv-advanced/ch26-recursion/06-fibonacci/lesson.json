@@ -1,0 +1,9 @@
+{
+  "title": "Fibonacci and repeated work",
+  "runtime": "node",
+  "minutes": 30,
+  "objective": "Write the Fibonacci sequence recursively, count how often a value is recomputed, and recognise when recursion repeats work",
+  "prerequisites": ["Recursing through nested arrays"],
+  "expected": "55",
+  "verify": ["55", "calls"]
+}

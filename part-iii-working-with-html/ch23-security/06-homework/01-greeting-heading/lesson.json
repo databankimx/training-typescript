@@ -1,0 +1,9 @@
+{
+  "title": "Homework: greeting heading",
+  "runtime": "node",
+  "minutes": 25,
+  "objective": "Write an escapeHtml function, and use it to build a heading that shows a typed name as text.",
+  "prerequisites": ["Summary: Security"],
+  "expected": "Hello, Tom & Jerry <3",
+  "verify": ["Hello, Tom & Jerry <3"]
+}

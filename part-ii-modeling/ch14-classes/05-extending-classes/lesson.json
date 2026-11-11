@@ -1,0 +1,9 @@
+{
+  "title": "Extending classes",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Extend a class to inherit its properties and methods, and override a method to change one behavior.",
+  "prerequisites": ["Implementing an interface"],
+  "expected": "Rex barks",
+  "verify": ["Rex barks"]
+}

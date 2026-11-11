@@ -1,0 +1,9 @@
+{
+  "title": "An arithmetic challenge",
+  "runtime": "node",
+  "minutes": 30,
+  "objective": "Ask a question a person is likely to answer, check the answer, and understand why this kind of challenge has limits",
+  "prerequisites": ["Timing checks"],
+  "expected": "That answer is not right. Try again.",
+  "verify": []
+}

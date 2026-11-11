@@ -1,0 +1,9 @@
+{
+  "title": "Reading a form",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Handle a form's submit event without reloading the page, and read the values the learner entered.",
+  "prerequisites": ["Summary: Typing the DOM"],
+  "expected": "2 x M",
+  "verify": ["2 x M"]
+}

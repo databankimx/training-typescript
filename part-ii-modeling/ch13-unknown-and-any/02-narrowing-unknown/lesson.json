@@ -1,0 +1,9 @@
+{
+  "title": "Narrowing unknown values",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Prove the type of an unknown value with typeof and with a check of its shape, and then use the value safely.",
+  "prerequisites": ["Unknown values"],
+  "expected": "text of length 5",
+  "verify": ["text of length 5", "number 3.1", "something else", "Ada"]
+}

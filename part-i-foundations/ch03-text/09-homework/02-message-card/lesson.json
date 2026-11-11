@@ -1,0 +1,9 @@
+{
+  "title": "Homework: message card",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Clean a name from a form, capitalize it, and build a sentence with it.",
+  "prerequisites": ["Homework: string report"],
+  "expected": "Dear Ada, your report is ready.",
+  "verify": ["Dear Ada, your report is ready."]
+}

@@ -1,0 +1,9 @@
+{
+  "title": "For...of and for...in",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Visit each item in a list with for...of, and each name in an object with for...in.",
+  "prerequisites": ["For loops"],
+  "expected": "Dallas",
+  "verify": ["Dallas", "Austin", "Houston", "apples: 3", "pears: 0"]
+}

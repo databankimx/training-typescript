@@ -1,0 +1,9 @@
+{
+  "title": "Flags in one number",
+  "runtime": "node",
+  "minutes": 30,
+  "objective": "Pack yes-or-no settings into one number with masks, and set, clear, toggle, and test them with bitwise operators",
+  "prerequisites": ["AND, OR, XOR, and NOT"],
+  "expected": "3",
+  "verify": ["3", "7", "true", "5", "4"]
+}

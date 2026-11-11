@@ -147,3 +147,22 @@ vite.config.ts.timestamp-*
 
 # Turbo Repo
 .turbo
+
+# Editor and IDE settings.
+# Build and debug tasks are shared with students. Machine-specific settings stay ignored.
+.vscode/*
+!.vscode/tasks.json
+!.vscode/launch.json
+.idea/
+*.user
+
+# The lesson runner's build output, made by its build step
+lesson-runner/dist/
+lesson-runner/build/
+
+# Run and Check work on copies of a step, made in .runner-work and removed when the runner closes
+.runner-work/
+
+LICENSE-REVIEW.md
+RUNNER-DESIGN.md
+sample.md

@@ -1,0 +1,9 @@
+{
+  "title": "Reconciling a distribution",
+  "runtime": "node",
+  "minutes": 40,
+  "objective": "Check each distribution row and the total against the invoice, collect every problem, and report whether the distribution reconciles",
+  "prerequisites": ["Looking up GL codes"],
+  "expected": "Reconciled: yes",
+  "verify": ["Reconciled: yes", "Not reconciled: GL subtotal must equal $90.00 after tax and freight"]
+}

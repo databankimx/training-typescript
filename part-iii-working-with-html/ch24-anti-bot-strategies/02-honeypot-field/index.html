@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Leave a comment</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <main>
+      <h1>Leave a comment</h1>
+      <form id="comment-form">
+        <label for="comment">Comment</label>
+        <textarea id="comment" rows="3"></textarea>
+
+        <!-- The honeypot: moved off-screen by CSS, skipped by keyboard users, hidden from screen readers. -->
+        <div class="honeypot" aria-hidden="true">
+          <label for="website">Leave this field empty</label>
+          <input id="website" name="website" type="text" tabindex="-1" autocomplete="off">
+        </div>
+
+        <div class="actions">
+          <button type="submit">Submit</button>
+          <button id="bot" type="button">Simulate a bot</button>
+        </div>
+      </form>
+      <p id="status" role="status"></p>
+      <ul id="saved"></ul>
+    </main>
+    <script type="module" src="main.js"></script>
+  </body>
+</html>

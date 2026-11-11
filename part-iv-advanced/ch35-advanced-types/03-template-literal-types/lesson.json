@@ -1,0 +1,9 @@
+{
+  "title": "Template literal types",
+  "runtime": "node",
+  "minutes": 25,
+  "objective": "Describe text with a fixed shape using template literal types, and build a union of every combination of two lists",
+  "prerequisites": ["Mapped types"],
+  "expected": "/users/ada",
+  "verify": ["/users/ada", "btn-small"]
+}

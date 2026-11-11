@@ -1,0 +1,9 @@
+{
+  "title": "Changing case and spaces",
+  "runtime": "node",
+  "minutes": 15,
+  "objective": "Remove spaces from the ends of text, and change its case, by calling methods on a string.",
+  "prerequisites": ["Joining text"],
+  "expected": "DALLAS, TX",
+  "verify": ["DALLAS, TX", "dallas, tx"]
+}

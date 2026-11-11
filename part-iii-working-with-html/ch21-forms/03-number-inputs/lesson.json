@@ -1,0 +1,9 @@
+{
+  "title": "Number inputs and formatting",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Read a number input as a number with valueAsNumber, handle an empty field, and format the value as money as the learner types.",
+  "prerequisites": ["Validation"],
+  "expected": "$12.50",
+  "verify": ["$12.50", "No amount entered"]
+}

@@ -1,0 +1,8 @@
+{
+  "title": "Summary: Tooling and configuration",
+  "runtime": "node",
+  "minutes": 5,
+  "objective": "Review what tsconfig controls, what the strict flags catch, and how declaration files describe types.",
+  "prerequisites": ["Declaration files"],
+  "verify": []
+}

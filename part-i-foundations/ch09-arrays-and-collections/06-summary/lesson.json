@@ -1,0 +1,8 @@
+{
+  "title": "Summary: Arrays and collections",
+  "runtime": "node",
+  "minutes": 5,
+  "objective": "Review lists, their methods, tuples, maps, and sets, and test your understanding.",
+  "prerequisites": ["Maps and sets"],
+  "verify": []
+}

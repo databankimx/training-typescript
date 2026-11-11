@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "rewriteRelativeImportExtensions": true,
+    "outDir": "lesson-runner/dist",
+    "rootDir": "lesson-runner/src"
+  },
+  "include": ["lesson-runner/src/main.ts", "lesson-runner/src/core/**/*.ts"]
+}

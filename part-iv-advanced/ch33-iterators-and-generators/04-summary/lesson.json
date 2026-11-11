@@ -1,0 +1,8 @@
+{
+  "title": "Summary: Iterators and generators",
+  "runtime": "node",
+  "minutes": 5,
+  "objective": "Review the iteration protocol, generator functions, and reading from infinite sequences",
+  "prerequisites": ["Infinite sequences"],
+  "verify": []
+}

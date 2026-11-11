@@ -1,0 +1,9 @@
+{
+  "title": "Homework: a price formatter",
+  "runtime": "node",
+  "minutes": 25,
+  "objective": "Write a function that formats an amount in a chosen currency, using a named locale and a formatter created once",
+  "prerequisites": ["Summary: Internationalized formatting"],
+  "expected": "€1,234.50",
+  "verify": ["€1,234.50", "$1,234.50"]
+}

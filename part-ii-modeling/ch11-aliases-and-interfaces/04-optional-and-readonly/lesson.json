@@ -1,0 +1,9 @@
+{
+  "title": "Optional and read-only properties",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Mark a property as optional with a question mark, and as read-only with the readonly keyword.",
+  "prerequisites": ["Choosing between an alias and an interface"],
+  "expected": "Mug",
+  "verify": ["Mug", "0"]
+}

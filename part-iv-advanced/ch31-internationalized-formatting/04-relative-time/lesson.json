@@ -1,0 +1,9 @@
+{
+  "title": "Relative times",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Describe a time relative to now in words a reader would use, with numeric auto for the special cases",
+  "prerequisites": ["Plurals and lists"],
+  "expected": "yesterday",
+  "verify": ["yesterday", "in 3 days", "3 days ago"]
+}

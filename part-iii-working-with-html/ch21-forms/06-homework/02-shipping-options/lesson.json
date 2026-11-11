@@ -1,0 +1,9 @@
+{
+  "title": "Homework: shipping options",
+  "runtime": "node",
+  "minutes": 25,
+  "objective": "Read a choice from a select, update a note when the choice changes, and show the right note when the page first loads.",
+  "prerequisites": ["Homework: quantity check"],
+  "expected": "Standard: arrives in 5 days",
+  "verify": ["Standard: arrives in 5 days", "Express: arrives in 1 day"]
+}

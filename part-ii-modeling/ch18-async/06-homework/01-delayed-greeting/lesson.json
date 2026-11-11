@@ -1,0 +1,9 @@
+{
+  "title": "Homework: delayed greeting",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Write an async function that waits for a delay with await, then returns a greeting for the caller to print.",
+  "prerequisites": ["Summary: Async"],
+  "expected": "start",
+  "verify": ["start", "Hello, Ada"]
+}

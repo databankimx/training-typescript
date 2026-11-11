@@ -1,0 +1,10 @@
+{
+  "title": "Heap sort",
+  "runtime": "node",
+  "minutes": 35,
+  "objective": "Explain how a max heap stores a list so its largest value can be taken off repeatedly, and how heap sort uses it",
+  "prerequisites": ["Merge sort"],
+  "expected": "Heap sort: sorted: true",
+  "verify": ["Heap sort: sorted: true"],
+  "visualizerAlgorithm": "heap-sort"
+}

@@ -1,0 +1,8 @@
+{
+  "title": "Summary: Error handling",
+  "runtime": "node",
+  "minutes": 5,
+  "objective": "Review how try, catch, throw, finally, and result values handle failure, and test your understanding.",
+  "prerequisites": ["Results as values"],
+  "verify": []
+}

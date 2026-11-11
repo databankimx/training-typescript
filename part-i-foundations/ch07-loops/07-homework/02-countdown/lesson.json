@@ -1,0 +1,9 @@
+{
+  "title": "Homework: countdown",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Count down with a loop that changes its own condition, and print a final message when it ends.",
+  "prerequisites": ["Homework: running total"],
+  "expected": "3",
+  "verify": ["3", "2", "1", "Liftoff!"]
+}

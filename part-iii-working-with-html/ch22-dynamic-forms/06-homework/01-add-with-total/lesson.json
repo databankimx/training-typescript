@@ -1,0 +1,9 @@
+{
+  "title": "Homework: add with total",
+  "runtime": "node",
+  "minutes": 25,
+  "objective": "Add a row from a form on each submit, and keep a running total of the prices in a separate paragraph.",
+  "prerequisites": ["Summary: Dynamic forms"],
+  "expected": "Total: 3",
+  "verify": ["Total: 3"]
+}

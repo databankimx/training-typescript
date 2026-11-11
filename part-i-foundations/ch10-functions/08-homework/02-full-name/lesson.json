@@ -1,0 +1,9 @@
+{
+  "title": "Homework: full name",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Write a function that tidies a first name and a last name, and combines them into one name.",
+  "prerequisites": ["Homework: shipping cost"],
+  "expected": "Ada Lovelace",
+  "verify": ["Ada Lovelace"]
+}

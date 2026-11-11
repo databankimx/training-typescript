@@ -1,0 +1,9 @@
+{
+  "title": "Looking up GL codes",
+  "runtime": "node",
+  "minutes": 30,
+  "objective": "Look up a GL code in a read-only table and return a result that the caller must check before it can use the description",
+  "prerequisites": ["Money in whole cents"],
+  "expected": "6100: Office supplies",
+  "verify": ["6100: Office supplies", "9999: not an active GL code"]
+}

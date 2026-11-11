@@ -1,0 +1,9 @@
+{
+  "title": "Errors in async code",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Reject a promise when an operation fails, and catch the failure with try and catch around await.",
+  "prerequisites": ["Async and await"],
+  "expected": "user 7",
+  "verify": ["user 7", "Failed: No user with id 0"]
+}

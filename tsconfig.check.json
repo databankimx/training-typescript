@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.json",
+  "include": ["ch*/**/solution.ts", "lesson-runner/**/*.ts"],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "lesson-runner/src/preload.ts",
+    "lesson-runner/src/renderer/renderer.ts"
+  ]
+}

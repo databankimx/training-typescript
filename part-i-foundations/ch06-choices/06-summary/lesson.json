@@ -1,0 +1,8 @@
+{
+  "title": "Summary: Choices",
+  "runtime": "node",
+  "minutes": 5,
+  "objective": "Review how a program chooses between actions and values, and test your understanding.",
+  "prerequisites": ["Nested choices"],
+  "verify": []
+}

@@ -1,0 +1,9 @@
+{
+  "title": "Events",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "React to a click with addEventListener, use the page's state in the handler, and update what the learner sees.",
+  "prerequisites": ["Typed selectors"],
+  "expected": "Clicks: 3",
+  "verify": ["Clicks: 3"]
+}

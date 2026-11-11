@@ -1,0 +1,8 @@
+{
+  "title": "Summary: Internationalized formatting",
+  "runtime": "node",
+  "minutes": 5,
+  "objective": "Review how Intl formats numbers, dates, plurals, lists, and relative times for a named locale",
+  "prerequisites": ["Relative times"],
+  "verify": []
+}

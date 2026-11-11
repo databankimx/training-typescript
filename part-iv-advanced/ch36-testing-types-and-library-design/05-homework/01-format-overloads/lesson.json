@@ -1,0 +1,9 @@
+{
+  "title": "Homework: format overloads",
+  "runtime": "node",
+  "minutes": 30,
+  "objective": "Write a format function with an overload for numbers and one for dates, sharing a single implementation, and check that each call returns the right type",
+  "prerequisites": ["Summary: Testing types and library design"],
+  "expected": "42",
+  "verify": ["42", "2026-11-09"]
+}

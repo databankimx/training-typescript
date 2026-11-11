@@ -1,0 +1,8 @@
+{
+  "title": "Summary: Advanced types",
+  "runtime": "node",
+  "minutes": 5,
+  "objective": "Review conditional types, mapped types, and template literal types",
+  "prerequisites": ["Template literal types"],
+  "verify": []
+}

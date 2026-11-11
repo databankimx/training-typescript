@@ -1,0 +1,9 @@
+{
+  "title": "A page and its script",
+  "runtime": "node",
+  "minutes": 15,
+  "objective": "Load a script into a page, find an element by its id, and change what the page shows.",
+  "prerequisites": ["Summary: HTTP and data"],
+  "expected": "Hello, world!",
+  "verify": ["Hello, world!"]
+}

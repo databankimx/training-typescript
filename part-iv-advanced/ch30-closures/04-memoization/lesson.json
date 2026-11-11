@@ -1,0 +1,9 @@
+{
+  "title": "Memoization",
+  "runtime": "node",
+  "minutes": 30,
+  "objective": "Wrap a function in a closure that remembers each result, and measure how many times the original function runs",
+  "prerequisites": ["Private state with methods"],
+  "expected": "16 16 16",
+  "verify": ["16 16 16", "1"]
+}

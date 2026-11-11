@@ -1,0 +1,9 @@
+{
+  "title": "Generic library functions",
+  "runtime": "node",
+  "minutes": 25,
+  "objective": "Write a generic library function whose type parameter is inferred from its callback, so callers rarely need to write type arguments",
+  "prerequisites": ["Overloads"],
+  "expected": "0, 2, 4",
+  "verify": ["0, 2, 4", "item 0, item 1"]
+}

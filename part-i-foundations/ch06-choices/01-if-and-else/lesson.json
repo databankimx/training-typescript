@@ -1,0 +1,9 @@
+{
+  "title": "If and else",
+  "runtime": "node",
+  "minutes": 10,
+  "objective": "Run one block of code when a condition is true, and another when it's false.",
+  "prerequisites": ["Summary: Booleans and missing values"],
+  "expected": "pass",
+  "verify": ["pass"]
+}

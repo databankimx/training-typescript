@@ -1,0 +1,9 @@
+{
+  "title": "Object types and records",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Describe the shape of an object with a type, and tell a fixed shape apart from a record whose names can vary.",
+  "prerequisites": ["Changing properties"],
+  "expected": "2",
+  "verify": ["2", "3"]
+}

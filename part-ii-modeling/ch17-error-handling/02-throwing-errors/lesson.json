@@ -1,0 +1,9 @@
+{
+  "title": "Throwing errors",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Throw an error from a function when a value can't be used, and catch it where the caller can respond.",
+  "prerequisites": ["Try and catch"],
+  "expected": "30",
+  "verify": ["30", "Age cannot be negative: -5"]
+}

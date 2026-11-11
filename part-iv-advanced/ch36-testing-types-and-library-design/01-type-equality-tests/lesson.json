@@ -1,0 +1,9 @@
+{
+  "title": "Type equality tests",
+  "runtime": "node",
+  "minutes": 25,
+  "objective": "Write a type that is true only when two types are exactly the same, and use it to make the checker fail when a type changes unexpectedly",
+  "prerequisites": ["Summary: Advanced types"],
+  "expected": "passed",
+  "verify": ["passed"]
+}

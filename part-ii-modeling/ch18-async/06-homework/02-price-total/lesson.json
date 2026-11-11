@@ -1,0 +1,9 @@
+{
+  "title": "Homework: price total",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Start several asynchronous lookups together with Promise.all, and add their results into one total.",
+  "prerequisites": ["Homework: delayed greeting"],
+  "expected": "8",
+  "verify": ["8"]
+}

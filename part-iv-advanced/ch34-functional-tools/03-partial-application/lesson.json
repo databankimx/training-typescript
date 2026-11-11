@@ -1,0 +1,9 @@
+{
+  "title": "Partial application",
+  "runtime": "node",
+  "minutes": 25,
+  "objective": "Fix the first argument of a two-argument function to make a new one-argument function, and use it with map",
+  "prerequisites": ["Composing functions"],
+  "expected": "21",
+  "verify": ["21", "3, 6, 9"]
+}

@@ -1,0 +1,9 @@
+{
+  "title": "Homework: https only",
+  "runtime": "node",
+  "minutes": 25,
+  "objective": "Accept a link only when it uses https, refuse http with its own message, and set the link's address only for an accepted link.",
+  "prerequisites": ["Homework: greeting heading"],
+  "expected": "Only https links are allowed.",
+  "verify": ["Only https links are allowed.", "Safe link: https://example.com/"]
+}

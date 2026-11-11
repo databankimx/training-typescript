@@ -1,0 +1,9 @@
+{
+  "title": "Cutting out part of text",
+  "runtime": "node",
+  "minutes": 15,
+  "objective": "Take a piece of text by its positions, counting from the start or from the end.",
+  "prerequisites": ["Searching text"],
+  "expected": "TS",
+  "verify": ["TS", "2026", "0042"]
+}

@@ -1,0 +1,9 @@
+{
+  "title": "Interfaces",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Describe an object's shape with an interface, and extend one interface with another that adds properties.",
+  "prerequisites": ["Type aliases"],
+  "expected": "Ada has 500 points",
+  "verify": ["Ada has 500 points"]
+}

@@ -1,0 +1,9 @@
+{
+  "title": "Generic functions",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Write a function with a type parameter, so one definition works for a list of any type and returns an item of the same type.",
+  "prerequisites": ["Summary: Classes"],
+  "expected": "10",
+  "verify": ["10", "a"]
+}

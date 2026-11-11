@@ -1,0 +1,9 @@
+{
+  "title": "Annotations: writing the promise down",
+  "runtime": "node",
+  "minutes": 15,
+  "objective": "Read and write type annotations on parameters and return values, and see what the checker says when a promise is broken.",
+  "prerequisites": ["Hello, world!", "Find the mistake before it runs"],
+  "expected": "Hello, Ada!",
+  "verify": ["Hello, Ada!"]
+}

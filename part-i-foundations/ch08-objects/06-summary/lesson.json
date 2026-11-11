@@ -1,0 +1,8 @@
+{
+  "title": "Summary: Objects",
+  "runtime": "node",
+  "minutes": 5,
+  "objective": "Review how objects group related values, how their shapes are described, and how to list their names, and test your understanding.",
+  "prerequisites": ["Listing keys and values"],
+  "verify": []
+}

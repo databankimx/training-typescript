@@ -1,0 +1,9 @@
+{
+  "title": "Conditional fields",
+  "runtime": "node",
+  "minutes": 25,
+  "objective": "Show and hide a field according to another field's value, and make it required only when it's shown.",
+  "prerequisites": ["Number inputs and formatting"],
+  "expected": "Enter an address for postal delivery.",
+  "verify": ["Enter an address for postal delivery.", "Pick up at the shop. No address needed."]
+}

@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Order</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <form id="order">
+      <label>Quantity <input id="quantity" name="quantity" type="number" value="2" min="1"></label>
+      <label>Size
+        <select id="size" name="size">
+          <option value="S">Small</option>
+          <option value="M" selected>Medium</option>
+          <option value="L">Large</option>
+        </select>
+      </label>
+      <button type="submit">Submit</button>
+    </form>
+    <p id="summary"></p>
+    <script type="module" src="main.js"></script>
+  </body>
+</html>

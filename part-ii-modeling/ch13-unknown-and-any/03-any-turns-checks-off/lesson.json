@@ -1,0 +1,9 @@
+{
+  "title": "Any turns the checker off",
+  "runtime": "node",
+  "minutes": 15,
+  "objective": "See that any accepts every operation without checking it, and recognize why that hides mistakes the checker would otherwise catch.",
+  "prerequisites": ["Narrowing unknown values"],
+  "expected": "HI",
+  "verify": ["HI"]
+}

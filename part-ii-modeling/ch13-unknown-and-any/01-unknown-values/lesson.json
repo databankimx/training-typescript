@@ -1,0 +1,9 @@
+{
+  "title": "Unknown values",
+  "runtime": "node",
+  "minutes": 15,
+  "objective": "Store a value whose type isn't known, and see that the checker refuses to use it until its type is proven.",
+  "prerequisites": ["Summary: Unions and narrowing"],
+  "expected": "string",
+  "verify": ["string", "number"]
+}

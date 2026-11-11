@@ -1,0 +1,9 @@
+{
+  "title": "Tuples and destructuring",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Use a tuple to hold a fixed set of values in order, and pull its parts into names with destructuring.",
+  "prerequisites": ["Nested arrays"],
+  "expected": "7",
+  "verify": ["7", "Ada is 36"]
+}

@@ -1,0 +1,9 @@
+{
+  "title": "Conditional types",
+  "runtime": "node",
+  "minutes": 25,
+  "objective": "Write a type that chooses one of two types based on a condition, and use infer to pull the value type out of a promise",
+  "prerequisites": ["Summary: Functional tools"],
+  "expected": "5",
+  "verify": ["5", "text"]
+}

@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self'">
+    <title>TypeScript Training</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #1e1e1e; --panel: #252526; --header: #0078d4; --border: #3c3c3c; --text: #d4d4d4; --muted: #8a8a8a;
+        --select: #37373d; --accent: #0078d4; --button-off: #3a3a3a; --field: #3c3c3c; --stdin: #6a9955;
+        --status: #6a9fd4; --error: #f48771; --warning: #d7ba7d; --code-bg: #2d2d2d;
+        --tok-keyword: #569cd6; --tok-control: #c586c0; --tok-type: #4ec9b0; --tok-function: #dcdcaa;
+        --tok-variable: #9cdcfe; --tok-constant: #4fc1ff; --tok-string: #ce9178; --tok-number: #b5cea8;
+        --tok-comment: #6a9955; --tok-property: #9cdcfe;
+        --inline-code: #dcdcaa; --inline-code-bg: rgba(255, 255, 255, 0.08);
+        --lesson-size: 14px;
+        font-family: "Segoe UI", system-ui, sans-serif; font-size: 14px;
+      }
+      body.light {
+        color-scheme: light;
+        --bg: #ffffff; --panel: #f3f3f3; --border: #d0d0d0; --text: #1f1f1f; --muted: #6b6b6b;
+        --select: #cce4f7; --button-off: #d6d6d6; --field: #ffffff; --stdin: #008000; --status: #1f5fa6;
+        --error: #cd3131; --warning: #855f00; --code-bg: #f0f0f0;
+        --tok-keyword: #0000ff; --tok-control: #af00db; --tok-type: #267f99; --tok-function: #795e26;
+        --tok-variable: #001080; --tok-constant: #0070c1; --tok-string: #a31515; --tok-number: #098658;
+        --tok-comment: #008000; --tok-property: #001080;
+        --inline-code: #795e26; --inline-code-bg: rgba(0, 0, 0, 0.06);
+      }
+      * { box-sizing: border-box; }
+      html, body { margin: 0; height: 100%; background: var(--bg); color: var(--text); overflow: hidden; }
+      .hidden { display: none !important; }
+
+      .app { display: flex; height: 100vh; }
+
+      /* Sidebar: parts and chapters on top, the steps of the chosen chapter below */
+      .sidebar { width: 300px; min-width: 220px; flex: none; display: flex; flex-direction: column; background: var(--panel); }
+      .brand { display: flex; align-items: center; gap: 10px; padding: 14px 16px; background: var(--header); color: #ffffff; font-size: 18px; font-weight: 600; white-space: nowrap; }
+      .logo { width: 30px; height: 30px; }
+      .chapters { height: 55%; min-height: 120px; overflow-y: auto; padding: 6px 0; border-bottom: 1px solid var(--border); }
+      .steps-pane { flex: 1; min-height: 120px; overflow-y: auto; padding: 6px 0; }
+
+      .part-title { display: flex; align-items: center; gap: 6px; padding: 8px 14px 4px; font-size: 12px; font-weight: 600; color: var(--muted); letter-spacing: 0.04em; text-transform: uppercase; cursor: pointer; user-select: none; }
+      .part-title:hover { color: var(--text); }
+      .part-body { display: block; }
+      .part-body.collapsed { display: none; }
+      .chevron { width: 12px; flex: none; transition: transform 0.1s; }
+      .chevron svg { display: block; }
+      .part-title.open .chevron, .chapter-row.open .chevron { transform: rotate(90deg); }
+
+      .chapter-row { display: flex; align-items: center; gap: 8px; padding: 6px 14px 6px 22px; cursor: pointer; user-select: none; }
+      .chapter-row:hover { background: var(--select); }
+      .chapter-row.homework-row { padding-left: 34px; color: var(--muted); }
+      .chapter-row.selected { background: var(--accent); color: #ffffff; }
+
+      .pane-label { padding: 10px 14px 4px; font-size: 12px; font-weight: 600; color: var(--muted); letter-spacing: 0.04em; text-transform: uppercase; user-select: none; }
+      .steps-heading { padding: 8px 16px 4px; font-size: 12px; font-weight: 600; color: var(--muted); letter-spacing: 0.04em; text-transform: uppercase; }
+      .step-row { display: block; width: 100%; padding: 6px 16px 6px 22px; background: none; border: none; border-radius: 0; color: var(--text); text-align: left; cursor: pointer; font: inherit; }
+      .step-row:hover { background: var(--select); }
+      .step-row.selected { background: var(--accent); color: #ffffff; }
+      .step-row.homework { padding-left: 34px; }
+
+      /* Main area */
+      .main { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+      .header { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 20px; }
+      .heading h1 { margin: 0; font-size: 22px; font-weight: 600; }
+      .actions { display: flex; align-items: center; gap: 14px; }
+
+      button { padding: 6px 14px; background: var(--button-off); color: var(--text); border: none; border-radius: 3px; font: inherit; cursor: pointer; }
+      button:disabled { opacity: 0.5; cursor: default; }
+      /* Run, Check, and Test share one size, so the header doesn't change shape when a button changes state. */
+      button.run { min-width: 7.5em; padding: 8px 18px; font-size: 15px; white-space: nowrap; background: var(--accent); color: #ffffff; }
+      button.link { background: none; color: var(--muted); padding: 2px 6px; }
+      button.link:hover:not(:disabled) { color: var(--text); }
+      .icon-button { display: inline-flex; align-items: center; justify-content: center; padding: 3px 5px; background: none; color: var(--muted); }
+      .icon-button:hover:not(:disabled) { color: var(--text); background: var(--select); }
+      .icon { display: block; }
+
+      .theme-group { display: flex; align-items: center; gap: 8px; color: var(--muted); cursor: pointer; }
+      .theme-switch { position: relative; display: inline-block; width: 44px; height: 22px; }
+      .theme-switch input { opacity: 0; width: 0; height: 0; }
+      .slider { position: absolute; inset: 0; background: var(--button-off); border-radius: 22px; transition: background 0.15s; }
+      .slider::before { content: ""; position: absolute; left: 3px; top: 3px; width: 16px; height: 16px; background: #ffffff; border-radius: 50%; transition: transform 0.15s; }
+      .theme-switch input:checked + .slider::before { transform: translateX(22px); }
+
+      /* Output pane */
+      .output-pane { flex: 1; display: flex; flex-direction: column; min-height: 140px; }
+      .pane-bar { display: flex; align-items: center; justify-content: space-between; padding: 6px 20px; color: var(--muted); font-size: 12px; font-weight: 600; letter-spacing: 0.04em; }
+      .pane-actions { display: flex; align-items: center; gap: 4px; }
+      .output { flex: 1; margin: 0; padding: 4px 20px 12px; overflow-y: auto; white-space: pre-wrap; font-family: Consolas, "Cascadia Mono", monospace; font-size: 13px; }
+      .output .status { color: var(--status); }
+      .output .error { color: var(--error); }
+      .output .warning { color: var(--warning); }
+      .output .input { color: var(--stdin); }
+      .input-row { display: flex; align-items: center; gap: 8px; padding: 8px 20px; border-top: 1px solid var(--border); }
+      .input-row label { color: var(--muted); }
+      .input-row input { flex: 1; padding: 6px 10px; background: var(--field); color: var(--text); border: 1px solid var(--border); border-radius: 3px; font-family: Consolas, "Cascadia Mono", monospace; }
+
+      /* Source / Lesson pane */
+      .source-pane { height: 42%; min-height: 200px; display: flex; flex-direction: column; border-top: 1px solid var(--border); }
+      .tabs { display: flex; align-items: center; gap: 2px; padding: 0 12px; border-bottom: 1px solid var(--border); }
+      .tab { background: none; color: var(--muted); border-radius: 0; padding: 8px 14px; border-bottom: 2px solid transparent; }
+      .tab.active { color: var(--text); font-weight: 600; border-bottom-color: var(--accent); }
+      .tabs-right { margin-left: auto; display: flex; align-items: center; gap: 10px; }
+      .modified { color: var(--warning); font-size: 12px; }
+      .file-tabs { display: flex; align-items: center; gap: 8px; padding: 6px 12px; border-bottom: 1px solid var(--border); color: var(--muted); font-size: 12px; }
+      .file-select { background: var(--field); color: var(--text); border: 1px solid var(--border); border-radius: 3px; padding: 3px 6px; font-family: Consolas, "Cascadia Mono", monospace; font-size: 12px; }
+      body.popout .file-tabs { display: none !important; }
+      .spoiler { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 10px; padding: 24px 32px; max-width: 640px; color: var(--muted); }
+      .spoiler p { margin: 0; color: var(--text); }
+      .redock { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 10px; padding: 24px 32px; color: var(--muted); }
+      .redock p { margin: 0; color: var(--text); }
+
+      .editor-area { flex: 1; display: flex; min-height: 0; }
+      .gutter, .highlight, .editor { margin: 0; font-family: Consolas, "Cascadia Mono", monospace; font-size: 13px; line-height: 1.5; tab-size: 4; white-space: pre; border: 0; outline: none; }
+      .gutter { width: 56px; min-width: 56px; padding: 10px 12px 10px 0; text-align: right; color: var(--muted); overflow: hidden; user-select: none; }
+      .code-area { position: relative; flex: 1; min-width: 0; }
+      .highlight, .editor { position: absolute; inset: 0; padding: 10px 14px; overflow: auto; }
+      .highlight { color: var(--text); overflow: hidden; pointer-events: none; }
+      .editor { background: transparent; color: transparent; caret-color: var(--text); resize: none; }
+      .tok-keyword { color: var(--tok-keyword); }
+      .tok-control { color: var(--tok-control); }
+      .tok-type, .tok-typeName, .tok-className { color: var(--tok-type); }
+      .tok-function { color: var(--tok-function); }
+      .tok-variableName { color: var(--tok-variable); }
+      .tok-propertyName { color: var(--tok-property); }
+      .tok-number, .tok-bool { color: var(--tok-number); }
+      .tok-string { color: var(--tok-string); }
+      .tok-comment { color: var(--tok-comment); font-style: italic; }
+
+      /* Lesson pane. Ctrl + scroll wheel changes --lesson-size. */
+      .lesson { flex: 1; overflow: auto; padding: 14px 24px 24px; line-height: 1.6; font-size: var(--lesson-size); }
+      .lesson h1 { font-size: 1.7em; margin: 0.4em 0 0.6em; }
+      .lesson h2 { font-size: 1.36em; margin: 1.2em 0 0.5em; border-bottom: 1px solid var(--border); padding-bottom: 4px; }
+      .lesson p, .lesson ul, .lesson ol, .lesson table, .lesson blockquote { margin: 0.6em 0; }
+      .lesson a { color: var(--accent); }
+      .lesson code { font-family: Consolas, "Cascadia Mono", monospace; font-size: 0.93em; background: var(--inline-code-bg); padding: 1px 5px; border-radius: 4px; color: var(--inline-code); }
+      .lesson pre { background: var(--code-bg); padding: 10px 14px; border-radius: 4px; overflow-x: auto; }
+      .lesson pre code { background: none; padding: 0; color: inherit; }
+      .lesson th, .lesson td { border: 1px solid var(--border); padding: 4px 10px; text-align: left; }
+      .lesson table { border-collapse: collapse; }
+      .lesson blockquote { margin-left: 0; padding: 4px 14px; border-left: 3px solid var(--accent); color: var(--muted); }
+      .quiz { margin: 16px 0; padding: 12px 16px; border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: 4px; background: var(--panel); }
+      .quiz-question p { margin: 0.3em 0; }
+      .quiz-choices { display: flex; flex-direction: column; gap: 4px; margin: 6px 0; }
+      .quiz-choice { display: flex; align-items: center; gap: 8px; padding: 6px 10px; border-radius: 4px; cursor: pointer; }
+      .quiz-choice:hover { background: var(--select); }
+      .quiz-choice.right { background: rgba(46, 160, 67, 0.25); }
+      .quiz-choice.picked-wrong { background: rgba(244, 135, 113, 0.25); }
+      .quiz-choice input:disabled + span { opacity: 0.8; }
+      .quiz-buttons { display: flex; align-items: center; gap: 8px; margin-top: 8px; }
+      .quiz-text { width: 100%; max-width: 360px; padding: 6px 8px; margin-top: 6px; background: var(--field); color: var(--text); border: 1px solid var(--border); border-radius: 3px; font: inherit; }
+      .quiz-feedback.correct { color: var(--stdin); }
+      .quiz-feedback.wrong { color: var(--error); }
+      .quiz-feedback .explain { color: var(--text); margin-top: 4px; }
+      .quiz-feedback { display: block; margin-top: 6px; color: var(--text); }
+      .quiz-feedback[hidden] { display: none; }
+      .quiz-entry input { margin-left: 6px; padding: 5px 8px; background: var(--field); color: var(--text); border: 1px solid var(--border); border-radius: 3px; }
+      .quiz-status.right { color: var(--stdin); }
+      .quiz-status.wrong { color: var(--error); }
+      .error { color: var(--error); white-space: pre-wrap; }
+      .toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); padding: 8px 18px; border-radius: 4px; background: var(--header); color: #ffffff; font-size: 13px; pointer-events: none; z-index: 1000; opacity: 1; transition: opacity 0.8s; }
+      .toast.fade { opacity: 0; }
+
+      /* Pop-out mode: only the lesson is shown */
+      body.popout .sidebar, body.popout .output-pane, body.popout .tabs, body.popout .editor-area, body.popout .spoiler, body.popout .redock { display: none !important; }
+      body.popout .source-pane { height: 100%; border-top: none; }
+      body.popout .lesson { padding: 18px 28px; }
+      body.popout .header { display: flex; }
+      body.popout .actions > :not(.popout-only) { display: none !important; }
+    </style>
+  </head>
+  <body>
+    <div class="app">
+      <aside class="sidebar">
+        <div class="brand">
+          <img class="logo" src="logo.svg" alt="" width="30" height="30">
+          <span>TypeScript Training</span>
+        </div>
+        <div class="pane-label">Chapters</div>
+        <nav id="chapters" class="chapters" aria-label="Chapters"></nav>
+        <div class="pane-label">Steps</div>
+        <nav id="steps" class="steps-pane" aria-label="Steps"></nav>
+      </aside>
+
+      <section class="main">
+        <header class="header">
+          <div class="heading">
+            <h1 id="title">Select a step</h1>
+          </div>
+          <div class="actions">
+            <label class="theme-group" title="Light or dark theme">
+              <span id="moon" aria-hidden="true"></span>
+              <span class="theme-switch">
+                <input id="theme" type="checkbox" aria-label="Light theme">
+                <span class="slider"></span>
+              </span>
+              <span id="sun" aria-hidden="true"></span>
+            </label>
+            <button id="run" class="run" disabled>&#9654; Run</button>
+            <button id="check" class="run" disabled>Check</button>
+            <button id="visualize" class="run hidden" disabled>Visualize</button>
+            <button id="popout-copy" class="icon-button popout-only hidden" title="Copy the lesson's Markdown" aria-label="Copy the lesson's Markdown"></button>
+            <button id="popout-dock" class="icon-button popout-only hidden" title="Re-dock lesson into the main window" aria-label="Re-dock lesson into the main window"></button>
+          </div>
+        </header>
+
+        <div class="output-pane">
+          <div class="pane-bar">
+            <span>OUTPUT</span>
+            <span class="pane-actions">
+              <button id="copy-output" class="icon-button" title="Copy output" aria-label="Copy output"></button>
+              <button id="clear" class="icon-button" title="Clear output" aria-label="Clear output"></button>
+            </span>
+          </div>
+          <pre id="output" class="output"></pre>
+          <form id="input-form" class="input-row">
+            <label for="input">input:</label>
+            <input id="input" type="text" disabled>
+            <button id="send" type="submit" disabled>Send</button>
+            <button id="stop" type="button" class="link" disabled>Stop (Esc)</button>
+          </form>
+        </div>
+
+        <div class="source-pane">
+          <div class="tabs">
+            <button id="source-tab" class="tab active" data-tab="source">Source</button>
+            <button class="tab" data-tab="lesson">Lesson</button>
+            <span class="tabs-right">
+              <span id="modified" class="modified hidden">modified</span>
+              <button id="reset" class="link" disabled>Reset</button>
+              <button id="popout" class="icon-button" title="Open the lesson in its own window" aria-label="Open the lesson in its own window"></button>
+              <button id="copy-source" class="icon-button" title="Copy the text of this tab" aria-label="Copy the text of this tab"></button>
+            </span>
+          </div>
+
+          <div id="file-tabs" class="file-tabs hidden"><label for="file-select">File</label><select id="file-select" class="file-select"></select></div>
+          <div id="spoiler" class="spoiler hidden">
+            <p>Solve this exercise in your own file first. The solution is here when you want to compare your answer with it.</p>
+            <p>The solution is a spoiler, so you may learn more by trying first. It's shown read-only, and you can run it.</p>
+            <button id="reveal" class="run">Show solution (spoiler)</button>
+          </div>
+
+          <div id="redock" class="redock hidden">
+            <p>This lesson is open in its own window.</p>
+            <button id="redock-button" class="run">Re-dock lesson</button>
+          </div>
+
+          <div id="editor-area" class="editor-area">
+            <pre id="gutter" class="gutter" aria-hidden="true"></pre>
+            <div class="code-area">
+              <pre id="highlight" class="highlight" aria-hidden="true"></pre>
+              <textarea id="editor" class="editor" aria-label="Editor" spellcheck="false" wrap="off"></textarea>
+            </div>
+          </div>
+
+          <div id="lesson" class="lesson hidden"></div>
+        </div>
+      </section>
+    </div>
+    <div id="toast" class="toast hidden" role="status"></div>
+    <script src="renderer.js"></script>
+  </body>
+</html>

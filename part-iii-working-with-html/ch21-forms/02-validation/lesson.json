@@ -1,0 +1,9 @@
+{
+  "title": "Validation",
+  "runtime": "node",
+  "minutes": 25,
+  "objective": "Check a field's validity with checkValidity, show the learner a clear message, and let the script decide what to do.",
+  "prerequisites": ["Reading a form"],
+  "expected": "Thanks, we will write to ada@example.com.",
+  "verify": ["Thanks, we will write to ada@example.com.", "Please enter a valid email address."]
+}

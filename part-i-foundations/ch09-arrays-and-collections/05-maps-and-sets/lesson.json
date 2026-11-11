@@ -1,0 +1,9 @@
+{
+  "title": "Maps and sets",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Look up a value by its key in a map, check whether a key is present, and keep each value once in a set.",
+  "prerequisites": ["Tuples and destructuring"],
+  "expected": "36",
+  "verify": ["36", "false", "2"]
+}

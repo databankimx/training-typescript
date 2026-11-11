@@ -1,0 +1,9 @@
+{
+  "title": "Markup injection",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "See how text placed with innerHTML is read as markup, and how textContent shows the same text as plain characters.",
+  "prerequisites": ["Summary: Dynamic forms"],
+  "expected": "<b>bold</b> text",
+  "verify": ["<b>bold</b> text", "bold text"]
+}

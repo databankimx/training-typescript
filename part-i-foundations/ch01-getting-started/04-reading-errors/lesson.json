@@ -1,0 +1,9 @@
+{
+  "title": "Reading errors",
+  "runtime": "node",
+  "minutes": 15,
+  "objective": "Read a checker error and a Node error, and tell which one comes from a type mistake and which from a syntax mistake.",
+  "prerequisites": ["Comments"],
+  "expected": "42",
+  "verify": ["42"]
+}

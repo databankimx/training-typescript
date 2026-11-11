@@ -1,0 +1,8 @@
+{
+  "title": "Summary: Classes",
+  "runtime": "node",
+  "minutes": 5,
+  "objective": "Review how classes group data and rules, how access is controlled, and how interfaces and inheritance share behavior.",
+  "prerequisites": ["Extending classes"],
+  "verify": []
+}

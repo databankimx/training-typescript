@@ -1,0 +1,9 @@
+{
+  "title": "Callbacks",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Pass a function to another function as a value, and let that function call it.",
+  "prerequisites": ["Arrow functions"],
+  "expected": "16",
+  "verify": ["16", "Hi Ada", "Hi Grace"]
+}

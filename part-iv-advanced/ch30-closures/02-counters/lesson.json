@@ -1,0 +1,9 @@
+{
+  "title": "Counters with private state",
+  "runtime": "node",
+  "minutes": 25,
+  "objective": "Use a closure to keep a count that only the returned function can change, and see that each counter keeps its own count",
+  "prerequisites": ["Remembered variables"],
+  "expected": "3",
+  "verify": ["3", "1"]
+}

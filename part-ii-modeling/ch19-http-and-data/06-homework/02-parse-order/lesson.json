@@ -1,0 +1,9 @@
+{
+  "title": "Homework: parse order",
+  "runtime": "node",
+  "minutes": 25,
+  "objective": "Write a type guard for an order that arrived as JSON, and print the order only when its shape is valid.",
+  "prerequisites": ["Homework: status message"],
+  "expected": "Order 7: 35",
+  "verify": ["Order 7: 35"]
+}

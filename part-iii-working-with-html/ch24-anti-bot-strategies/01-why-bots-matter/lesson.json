@@ -1,0 +1,9 @@
+{
+  "title": "Why bots matter",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Recognize that a script can submit a form exactly as a person does, so a browser check cannot prove who sent the data",
+  "prerequisites": ["Summary: Security"],
+  "expected": "Saved 1 comment(s).",
+  "verify": []
+}

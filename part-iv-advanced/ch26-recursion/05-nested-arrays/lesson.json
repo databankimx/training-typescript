@@ -1,0 +1,9 @@
+{
+  "title": "Recursing through nested arrays",
+  "runtime": "node",
+  "minutes": 30,
+  "objective": "Describe nested data with a recursive type, and sum it with a recursive function that narrows each item before using it",
+  "prerequisites": ["Recursion versus iteration"],
+  "expected": "15",
+  "verify": ["15"]
+}

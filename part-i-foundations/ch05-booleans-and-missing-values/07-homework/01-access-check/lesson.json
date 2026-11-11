@@ -1,0 +1,9 @@
+{
+  "title": "Homework: access check",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Combine several yes-or-no answers into one decision about whether someone can enter.",
+  "prerequisites": ["Summary: Booleans and missing values"],
+  "expected": "false",
+  "verify": ["false"]
+}

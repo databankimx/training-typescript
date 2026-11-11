@@ -1,0 +1,9 @@
+{
+  "title": "The Math library",
+  "runtime": "node",
+  "minutes": 15,
+  "objective": "Use the Math library for common calculations, including the largest, smallest, absolute, and square-root values, and the constant pi.",
+  "prerequisites": ["Turning text into numbers"],
+  "expected": "9",
+  "verify": ["9", "3", "7", "3.14"]
+}

@@ -1,0 +1,9 @@
+{
+  "title": "Homework: safe title",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Use an unknown value safely, showing it in capitals only when it is text, and a fallback when it isn't.",
+  "prerequisites": ["Summary: Unknown and any"],
+  "expected": "MONTHLY REPORT",
+  "verify": ["MONTHLY REPORT"]
+}

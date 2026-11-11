@@ -1,0 +1,9 @@
+{
+  "title": "Shifting bits",
+  "runtime": "node",
+  "minutes": 25,
+  "objective": "Move bits left and right with the shift operators, and see that a left shift multiplies by a power of two and a signed right shift keeps the sign",
+  "prerequisites": ["Flags in one number"],
+  "expected": "20",
+  "verify": ["20", "5", "-5"]
+}

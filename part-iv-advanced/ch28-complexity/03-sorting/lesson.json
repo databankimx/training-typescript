@@ -1,0 +1,10 @@
+{
+  "title": "Selection, bubble, and insertion sort",
+  "runtime": "node",
+  "minutes": 45,
+  "objective": "Count the comparisons made by three quadratic sorts on the same values, and explain why one count is fixed while the others depend on the data",
+  "prerequisites": ["Linear and binary search"],
+  "expected": "Selection sort: 499500 comparisons, sorted: true",
+  "verify": ["Selection sort: 499500 comparisons, sorted: true", "Bubble sort: "],
+  "visualizerAlgorithm": "selection-sort"
+}

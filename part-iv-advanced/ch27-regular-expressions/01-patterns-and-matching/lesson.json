@@ -1,0 +1,9 @@
+{
+  "title": "Patterns and matching",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Write a pattern between slashes, test whether it matches anywhere in some text, and see that a match does not need to cover the whole text",
+  "prerequisites": ["Summary: Recursion"],
+  "expected": "true",
+  "verify": ["true", "false"]
+}

@@ -1,0 +1,9 @@
+{
+  "title": "Homework: stock lookup",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Look up a product in a map, and give a sensible answer when the product isn't there.",
+  "prerequisites": ["Homework: large sales"],
+  "expected": "0",
+  "verify": ["0"]
+}

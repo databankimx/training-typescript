@@ -1,0 +1,9 @@
+{
+  "title": "Private state with methods",
+  "runtime": "node",
+  "minutes": 25,
+  "objective": "Hide a balance inside a closure, and expose only the methods that may read and change it",
+  "prerequisites": ["Counters with private state"],
+  "expected": "150",
+  "verify": ["150"]
+}

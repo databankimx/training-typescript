@@ -1,0 +1,9 @@
+{
+  "title": "Array basics",
+  "runtime": "node",
+  "minutes": 15,
+  "objective": "Build an array, read an item by its position, and add an item to the end.",
+  "prerequisites": ["Summary: Objects"],
+  "expected": "Dallas",
+  "verify": ["Dallas", "3"]
+}

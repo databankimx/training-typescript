@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Categories</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <label>Category
+      <select id="category">
+        <option value="all" selected>All</option>
+        <option value="food">Food</option>
+        <option value="tools">Tools</option>
+      </select>
+    </label>
+    <ul id="items">
+      <li data-category="food">Apples</li>
+      <li data-category="tools">Hammer</li>
+      <li data-category="food">Bread</li>
+    </ul>
+    <p id="count"></p>
+    <script type="module" src="main.js"></script>
+  </body>
+</html>

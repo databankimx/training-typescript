@@ -1,0 +1,9 @@
+{
+  "title": "Finding every match",
+  "runtime": "node",
+  "minutes": 25,
+  "objective": "Find every match in a longer text with the global flag and matchAll, and read each capture with a typed loop",
+  "prerequisites": ["Groups and captures"],
+  "expected": "12, 7",
+  "verify": ["12, 7", "12", "7"]
+}

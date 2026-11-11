@@ -1,0 +1,8 @@
+{
+  "title": "Summary: Recursion",
+  "runtime": "node",
+  "minutes": 5,
+  "objective": "Review base cases, progress, recursive types, and the cost of repeated calls",
+  "prerequisites": ["Fibonacci and repeated work"],
+  "verify": []
+}

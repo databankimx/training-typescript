@@ -1,0 +1,9 @@
+{
+  "title": "Constraints",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Limit a type parameter with extends, so the function can safely use the properties every allowed type has.",
+  "prerequisites": ["Generic types"],
+  "expected": "7",
+  "verify": ["7"]
+}

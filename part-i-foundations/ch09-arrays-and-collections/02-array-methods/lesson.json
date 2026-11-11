@@ -1,0 +1,9 @@
+{
+  "title": "Transforming arrays",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Make a new list from an old one with map, keep only the items that match with filter, and find the first match with find.",
+  "prerequisites": ["Array basics"],
+  "expected": "8, 24, 14, 40",
+  "verify": ["8, 24, 14, 40", "4, 7", "true", "12"]
+}

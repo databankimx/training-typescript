@@ -1,0 +1,9 @@
+{
+  "title": "Homework: toggle message",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Show and hide a message with a button, by adding and removing a class on the element.",
+  "prerequisites": ["Homework: add item"],
+  "expected": "The message appears and disappears with each click",
+  "verify": ["The message appears and disappears with each click"]
+}

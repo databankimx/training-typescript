@@ -1,0 +1,9 @@
+{
+  "title": "Homework: shipping cost",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Write a function that takes a weight and returns a cost chosen from ranges.",
+  "prerequisites": ["Summary: Functions"],
+  "expected": "10",
+  "verify": ["10"]
+}

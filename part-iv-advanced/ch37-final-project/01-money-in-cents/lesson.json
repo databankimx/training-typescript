@@ -1,0 +1,9 @@
+{
+  "title": "Money in whole cents",
+  "runtime": "node",
+  "minutes": 30,
+  "objective": "Convert dollar text to whole cents, format cents back to dollars, and explain why the checker counts in cents",
+  "prerequisites": ["Summary: Testing types and library design"],
+  "expected": "1999",
+  "verify": ["1999", "$19.99"]
+}

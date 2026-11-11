@@ -1,0 +1,9 @@
+{
+  "title": "Escaping",
+  "runtime": "node",
+  "minutes": 25,
+  "objective": "Escape the characters that give markup its meaning, so text placed inside markup stays text.",
+  "prerequisites": ["Safe links"],
+  "expected": "<b>bold</b> text",
+  "verify": ["<b>bold</b> text"]
+}

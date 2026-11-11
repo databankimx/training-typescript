@@ -1,0 +1,9 @@
+{
+  "title": "Union types",
+  "runtime": "node",
+  "minutes": 15,
+  "objective": "Declare a value that can be one of two types, and see that the checker accepts either one but nothing else.",
+  "prerequisites": ["Summary: Aliases and interfaces"],
+  "expected": "42",
+  "verify": ["42", "A-17"]
+}

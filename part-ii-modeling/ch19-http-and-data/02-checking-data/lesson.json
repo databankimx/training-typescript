@@ -1,0 +1,9 @@
+{
+  "title": "Checking data",
+  "runtime": "node",
+  "minutes": 25,
+  "objective": "Write a type guard that checks the shape of data from outside the program, so only valid data is used as a typed value.",
+  "prerequisites": ["Responses and JSON"],
+  "expected": "Ada is 36",
+  "verify": ["Ada is 36", "invalid"]
+}

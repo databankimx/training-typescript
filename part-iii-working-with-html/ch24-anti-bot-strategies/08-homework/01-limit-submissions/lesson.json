@@ -1,0 +1,9 @@
+{
+  "title": "Homework: limit submissions",
+  "runtime": "node",
+  "minutes": 40,
+  "objective": "Limit a form to two submissions in thirty seconds, keeping the timestamps in a typed list, and show a neutral reply when the limit is reached",
+  "prerequisites": ["Summary: Anti-bot strategies"],
+  "expected": "Please wait a while before sending another comment.",
+  "verify": []
+}

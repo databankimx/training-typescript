@@ -1,0 +1,46 @@
+{
+  "parts": [
+    {
+      "title": "Part I - Foundations",
+      "chapters": [
+        "ch01-getting-started",
+        "ch02-types-as-promises",
+        "ch03-primitives-and-inference",
+        "ch04-functions",
+        "ch05-arrays-tuples-and-objects",
+        "ch06-aliases-and-interfaces",
+        "ch07-unions-and-narrowing",
+        "ch08-unknown-and-any"
+      ]
+    },
+    {
+      "title": "Part II - Modelling",
+      "chapters": [
+        "ch09-classes",
+        "ch10-generics",
+        "ch11-discriminated-unions",
+        "ch12-modules",
+        "ch13-utility-types"
+      ]
+    },
+    {
+      "title": "Part III - Working with JavaScript",
+      "chapters": [
+        "ch14-tsconfig-and-strictness",
+        "ch15-typing-the-dom",
+        "ch16-data-from-outside",
+        "ch17-migrating-javascript",
+        "ch18-declaration-files"
+      ]
+    },
+    {
+      "title": "Part IV - Advanced",
+      "chapters": [
+        "ch19-conditional-types",
+        "ch20-template-and-mapped-types",
+        "ch21-testing-types-and-libraries",
+        "final-project"
+      ]
+    }
+  ]
+}

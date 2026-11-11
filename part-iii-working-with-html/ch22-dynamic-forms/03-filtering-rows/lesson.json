@@ -1,0 +1,9 @@
+{
+  "title": "Filtering rows",
+  "runtime": "node",
+  "minutes": 25,
+  "objective": "Hide the rows that don't match what the learner types, by toggling a class on each row, and read each row's text safely.",
+  "prerequisites": ["Removing rows"],
+  "expected": "Pencils",
+  "verify": ["Pencils", "Paper", "Pens"]
+}

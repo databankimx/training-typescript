@@ -1,0 +1,8 @@
+{
+  "title": "Summary: Async",
+  "runtime": "node",
+  "minutes": 5,
+  "objective": "Review promises, async and await, rejection, and Promise.all, and test your understanding.",
+  "prerequisites": ["Waiting for several operations"],
+  "verify": []
+}

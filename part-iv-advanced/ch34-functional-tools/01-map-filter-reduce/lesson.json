@@ -1,0 +1,9 @@
+{
+  "title": "Map, filter, and reduce",
+  "runtime": "node",
+  "minutes": 25,
+  "objective": "Change every item with map, keep the items that pass a test with filter, and combine the remaining items into one value with reduce",
+  "prerequisites": ["Summary: Iterators and generators"],
+  "expected": "8, 20",
+  "verify": ["8, 20", "28"]
+}

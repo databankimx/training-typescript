@@ -1,0 +1,9 @@
+{
+  "title": "Homework: use the tax module",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Import a function from another module and call it with values from the program.",
+  "prerequisites": ["Summary: Modules"],
+  "expected": "100",
+  "verify": ["100"]
+}

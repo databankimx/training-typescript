@@ -1,0 +1,9 @@
+{
+  "title": "Changing text safely",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "React to typing with the input event, show the typed text with textContent, and see why innerHTML is risky for text from a learner.",
+  "prerequisites": ["Events"],
+  "expected": "Preview: hello",
+  "verify": ["Preview: hello"]
+}

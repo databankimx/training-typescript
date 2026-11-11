@@ -1,0 +1,8 @@
+{
+  "title": "Summary: Anti-bot strategies",
+  "runtime": "node",
+  "minutes": 5,
+  "objective": "Review the defences, where each one stops working, and why the server must enforce the rules that matter",
+  "prerequisites": ["Putting the checks together"],
+  "verify": []
+}

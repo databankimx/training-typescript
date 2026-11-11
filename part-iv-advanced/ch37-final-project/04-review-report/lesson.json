@@ -1,0 +1,9 @@
+{
+  "title": "The review report",
+  "runtime": "node",
+  "minutes": 40,
+  "objective": "Bring the invoice, its described rows, its notes, and its reconciliation status into one review report built from the checks already written",
+  "prerequisites": ["Reconciling a distribution"],
+  "expected": "Invoice INV-1001",
+  "verify": ["Invoice INV-1001", "Status: ready to submit"]
+}

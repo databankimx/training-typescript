@@ -1,0 +1,9 @@
+{
+  "title": "Homework: a pipe function",
+  "runtime": "node",
+  "minutes": 30,
+  "objective": "Write pipe, which joins any number of number-to-number functions so each one receives the previous result, in the order given",
+  "prerequisites": ["Summary: Functional tools"],
+  "expected": "10",
+  "verify": ["10", "9"]
+}

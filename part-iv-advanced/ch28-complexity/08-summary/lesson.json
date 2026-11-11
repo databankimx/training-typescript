@@ -1,0 +1,8 @@
+{
+  "title": "Summary: Complexity",
+  "runtime": "node",
+  "minutes": 5,
+  "objective": "Review how work grows with input, and how the search and sort methods compare",
+  "prerequisites": ["Shell sort"],
+  "verify": []
+}

@@ -1,0 +1,9 @@
+{
+  "title": "Defining functions",
+  "runtime": "node",
+  "minutes": 15,
+  "objective": "Write a function with a parameter and a return value, and call it more than once.",
+  "prerequisites": ["Summary: Arrays and collections"],
+  "expected": "Hello, Ada!",
+  "verify": ["Hello, Ada!", "Hello, Grace!"]
+}

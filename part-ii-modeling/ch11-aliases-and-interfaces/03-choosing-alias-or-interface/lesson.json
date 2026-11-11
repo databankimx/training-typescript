@@ -1,0 +1,9 @@
+{
+  "title": "Choosing between an alias and an interface",
+  "runtime": "node",
+  "minutes": 15,
+  "objective": "Use a type alias for a name that isn't an object shape, and use an interface for an object shape that other shapes extend.",
+  "prerequisites": ["Interfaces"],
+  "expected": "12 new, sale",
+  "verify": ["12 new, sale"]
+}

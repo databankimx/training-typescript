@@ -1,0 +1,9 @@
+{
+  "title": "Declaration files",
+  "runtime": "node",
+  "minutes": 25,
+  "objective": "Describe a type in a declaration file, import only that type, and use it to check a value the program builds.",
+  "prerequisites": ["The strict flags"],
+  "expected": "Items: 4",
+  "verify": ["Items: 4"]
+}

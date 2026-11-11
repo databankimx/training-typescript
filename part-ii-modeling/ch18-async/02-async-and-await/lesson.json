@@ -1,0 +1,9 @@
+{
+  "title": "Async and await",
+  "runtime": "node",
+  "minutes": 20,
+  "objective": "Write an async function that waits for a promise with await, so the steps read in order, and see that the rest of the program still runs while it waits.",
+  "prerequisites": ["Promises"],
+  "expected": "requested",
+  "verify": ["requested", "Mug costs 12"]
+}
