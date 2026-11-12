@@ -23,6 +23,6 @@
     "@types/markdown-it": "^14.1.2",
     "@types/node": "^24.0.0",
     "electron": "45.2.3",
-    "typescript": "6.0.3"
+    "typescript": "7.0.2"
   }
 }
