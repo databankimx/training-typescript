@@ -1,0 +1,10 @@
+# DataBank Standards Policy Configuration
+# See Custom-Dev-Developer-Guide.md for full rule documentation.
+#
+# Generated and installed folders are not authored code and are excluded
+# from standards enforcement.
+
+typescript:
+  excluded_globs:
+    - "**/node_modules/**"
+    - "**/dist/**"
