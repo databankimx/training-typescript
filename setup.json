@@ -9,12 +9,6 @@
   "installs": {
     "git": { "install": true, "winget": "Git.Git" },
     "powershell7": { "install": true, "pinned": "7", "winget": "Microsoft.PowerShell" },
-    "python": {
-      "install": true,
-      "pinned": "3.12",
-      "sideBySide": true,
-      "winget": "Python.Python.3.12"
-    },
     "node": { "install": true, "pinned": "24", "orNewer": true, "winget": "OpenJS.NodeJS.LTS" },
     "vcRuntime": { "install": true },
     "vscode": {
