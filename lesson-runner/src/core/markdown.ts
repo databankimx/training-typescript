@@ -1,4 +1,6 @@
 import MarkdownIt from "markdown-it";
+
+type MarkdownRenderer = InstanceType<typeof MarkdownIt>;
 import { highlightCode } from "./highlight.ts";
 import { parseQuiz, type Quiz } from "./quiz.ts";
 
@@ -6,7 +8,7 @@ import { parseQuiz, type Quiz } from "./quiz.ts";
 // A fence labelled "quiz" becomes a question with radio buttons (or a text box, for a fill-in question), and the window
 // adds the Check, Try again, and Show answer buttons behaviour.
 
-export function createLessonMarkdown(): MarkdownIt {
+export function createLessonMarkdown(): MarkdownRenderer {
   const md = new MarkdownIt({ html: false, linkify: false, typographer: false });
   const defaultFence = md.renderer.rules.fence;
 
@@ -30,7 +32,7 @@ export function createLessonMarkdown(): MarkdownIt {
   return md;
 }
 
-function renderQuiz(quiz: Quiz, md: MarkdownIt): string {
+function renderQuiz(quiz: Quiz, md: MarkdownRenderer): string {
   const question = `<div class="quiz-question">${md.renderInline(quiz.question)}</div>`;
   const buttons =
     `<div class="quiz-buttons">` +
