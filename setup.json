@@ -3,7 +3,7 @@
   "name": "Working With TypeScript",
   "folder": "training-typescript",
   "repoUrl": "https://github.com/databankimx/training-typescript.git",
-  "branch": "main",
+  "branch": "dev",
   "baseDirectory": "C:\\Development\\training",
   "runTests": true,
   "installs": {
@@ -16,7 +16,7 @@
       "winget": "Microsoft.VisualStudioCode",
       "extensions": []
     },
-    "notepadPlusPlus": { "install": false, "winget": "Notepad++.Notepad++" },
+    "notepadPlusPlus": { "install": true, "winget": "Notepad++.Notepad++" },
     "buildTools": { "install": false }
   },
   "steps": [
