@@ -3,7 +3,7 @@
   "name": "Working With TypeScript",
   "folder": "training-typescript",
   "repoUrl": "https://github.com/databankimx/training-typescript.git",
-  "branch": "dev",
+  "branch": "main",
   "baseDirectory": "C:\\Development\\training",
   "runTests": true,
   "installs": {

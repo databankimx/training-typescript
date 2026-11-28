@@ -4,33 +4,114 @@ This guide gets the lesson runner open. The runner is a desktop window, so the c
 
 ## Quick setup with the script
 
-`setup.ps1` checks for Git, Node.js, and the C++ Build Tools, clones the repository if you don't have it yet, installs the npm packages exactly as recorded in `package-lock.json`, builds the runner, and runs the course checks. It's safe to run more than once.
+### What gets installed
 
-Open PowerShell, go to the repository folder, and run:
+By default, the setup installs:
+
+* Git
+* PowerShell 7
+* Node.js 24 or newer
+* Microsoft Visual C++ runtime
+* VS Code
+* Notepad++
+
+The C++ Build Tools aren't installed up front. The script installs them only if Electron's binary can't download.
+
+The setup then runs these steps: npm packages; Build the lesson runner; Course tests; Course check. At the end it opens the repository in VS Code and starts the lesson runner window (Electron).
+
+### Getting started
+
+There are three methods available to set up this tutorial. They are currently Windows-only.
+
+#### Full Automation (if you don't have Git currently set up)
+
+This process will install Git and copy the repository to a subfolder of `C:\Development\training` and install all necessary software and extensions for the tutorial's lesson runner.
+
+1. Obtain the tutorial's GitHub slug name, which is `training-typescript`
+2. Open PowerShell using "Run as Administrator"
+3. Run the script below
 
 ```pwsh
-powershell -ExecutionPolicy Bypass -File .\setup.ps1
+# Obtain the load tutorial script
+irm https://raw.githubusercontent.com/databankimx/training-shared-template/main/load-tutorial.ps1 -OutFile "$env:TEMP\load-tutorial.ps1"
+
+# Perform automated setup
+powershell -NoProfile -ExecutionPolicy Bypass -File "$env:TEMP\load-tutorial.ps1" -RepoUrl https://github.com/databankimx/training-typescript.git
 ```
 
-The `-ExecutionPolicy Bypass` part lets this one script run. It doesn't change any setting on your machine.
+#### Automated Setup from Local Repo (assumes you already have Git installed and set up)
 
-By default, the script:
+In this process, you pull the existing repository and then run its setup script, which installs all necessary software and extensions for the tutorial's lesson runner.
 
-- checks that Node.js is version 24 or later, and stops with a message if it isn't
-- checks for the C++ Build Tools and for Python 3, which the native parts of the install need
-- runs `npm ci`, which installs exactly the versions in `package-lock.json`
-- downloads the Electron binary if it's missing, and retries once after rebuilding the native modules
-- builds the runner, then runs `npm test` and `npm run check`
-
-To install what's missing as well (Git, Node.js LTS, and the Build Tools), run the script from an **Administrator** PowerShell with the `-InstallMissing` switch:
+1. Obtain the tutorial's GitHub slug name, which is `training-typescript`
+2. Open PowerShell using "Run as Administrator"
+3. If you will use the default base directory `C:\Development\training`, run the following:
 
 ```pwsh
-powershell -ExecutionPolicy Bypass -File .\setup.ps1 -InstallMissing
+# Create the base folder if it doesn't exist yet
+New-Item -ItemType Directory -Force -Path C:\Development\training | Out-Null
 ```
 
-Installing uses winget. If winget isn't available, install **App Installer** from the Microsoft Store first. Company policy can block installs, in which case the script says so, and you'll need IT. Python 3 is not installed by the script. The script warns if it's missing. Install it from [python.org](https://www.python.org), or with `winget install -e --id Python.Python.3.12`.
+4. Clone the repository. If you're using a different base directory, replace `C:\Development\training` with your path:
 
-When the script finishes, it prints a summary. **Check:** every line says `ok`, except Python 3 and the C++ Build Tools, which must also say `ok` for the runner to build native modules.
+```pwsh
+# Go there and clone the tutorial
+cd C:\Development\training
+git clone https://github.com/databankimx/training-typescript.git
+cd training-typescript
+```
+
+5. If desired, edit the setup configuration, which determines what software is installed automatically (see "Change what gets installed" below)
+
+```pwsh
+# Optional: edit setup.json before installations
+notepad setup.json
+```
+
+6. Save the configuration if you edited it, then run the setup script
+
+##### If using the default base path, run this:
+
+```pwsh
+# Run the setup
+powershell -NoProfile -ExecutionPolicy Bypass -File .\setup.ps1
+```
+
+##### If using a different base path, replace `<BASE_DIR>` with your path and run this:
+
+```pwsh
+# Run the setup
+powershell -NoProfile -ExecutionPolicy Bypass -File .\setup.ps1 -BaseDirectory <BASE_DIR>
+```
+
+#### Manual Setup from Local Repo
+
+If you want to do everything manually, you can pull the repository and set up software on your own.
+
+1. Obtain the tutorial's GitHub slug name, which is `training-typescript`
+2. Run the script below
+
+```pwsh
+git clone https://github.com/databankimx/training-typescript.git
+```
+
+3. Review README.md and QUICKSTART.md in the repository for instructions for manual setup.
+
+### Switches and notes
+
+* `-SkipInstall` checks what's installed and installs nothing.
+* `-NoLaunch` runs the setup but doesn't open VS Code or start the runner.
+* `-SkipTests` skips the course tests, which the setup runs by default.
+* Installing uses winget. If winget isn't available, install **App Installer** from the Microsoft Store first. Company policy can block installs, in which case the script stops and you'll need IT.
+* If an install needs administrator rights, the script stops before installing anything and asks you to run it again from an Administrator PowerShell window.
+
+### Change what gets installed
+
+The settings are in `setup.json`, in the repository folder. Open it in any text editor:
+
+* Set an install's `"install"` to `true` to include it, or `false` to skip it.
+* `"pinned"` sets the version. `"extensions"` lists the VS Code extensions to add.
+* Save the file, then run `setup.ps1` again. It skips what's already installed.
 
 ## Requirements
 
